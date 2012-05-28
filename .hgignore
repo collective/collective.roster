@@ -4,6 +4,7 @@ bin
 develop-eggs
 parts
 
+*~
 *.pyc
 *.mo
 *.egg-info
