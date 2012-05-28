@@ -62,4 +62,5 @@ class Story(unittest.TestCase):
 
         @then(u"'Personnel Roster' is available to be added")
         def then(self):
-            self.assertIn("Personnel Roster", self.browser.contents)
+            self.assertIn(u"Personnel Roster", self.browser.contents,
+                          u"'Personnel Roster' not found on Add-ons from.")
