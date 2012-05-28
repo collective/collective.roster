@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:grok="http://namespaces.zope.org/grok"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="jyu.roster">
+
+    <includeDependencies package="." />
+    <grok:grok package="." />
+
+    <i18n:registerTranslations directory="locales" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Personnel Roster"
+        directory="profiles/default"
+        description="Installs generic personnel roster content types"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title description"
+        />
+
+    <!-- <include file="upgrades.zcml" /> -->
+
+</configure>
