@@ -1,43 +1,51 @@
 from five import grok
+
 from zope import schema
+from z3c.form import button
 
 from plone.directives import form, dexterity
+
+#from Products.statusmessages.interfaces import IStatusMessage
 
 from zope.interface import Invalid
 
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedImage
 
-from z3c.relationfield.schema import RelationList, RelationChoice
-from plone.formwidget.contenttree import ObjPathSourceBinder
+#from jyu.roster.interfaces import MessageFactory as _
 
 from jyu.roster import _
 
+
 class IPerson(form.Schema):
-    """A person in the roster. It can be any role.
+    """A person in the roster. 
     """
 
     title = schema.TextLine(
-            title=_(u"Name"),
+            title=_(u"Full Name"),
         )
 
-    description = schema.Text(
-            title=_(u"A short summary"),
+    salutation = schema.TextLine(
+            title=_(u"Preferred Salutation"),
         )
+
+#    description = schema.Text(
+#            title=_(u"A short summary"),
+#        )
 
     bio = RichText(
-            title=_(u"Bio"),
-            required=False
+        title=_(u"Bio"),
+        required=False
         )
 
-    picture = NamedImage(
+"""  picture = NamedImage(
             title=_(u"Picture"),
             description=_(u"Please upload an image"),
             required=False,
         )
-
-class View(dexterity.DisplayForm):
-    
+"""
+class View(grok.View):
+    #dexterity.DisplayForm in manual's code, instead of grok.View
     """Default view (called "@@view"") for a cinema.
     
     The associated template is found in cinema_templates/view.pt.
@@ -94,7 +102,7 @@ class ICinema(form.Schema):
     text = RichText(
             title=_(u"Details"),
             description=_(u"Description of the cinema"),
-	    required=False
+        required=False
         )
 
     highlightedFilms = RelationList(

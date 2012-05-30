@@ -26,6 +26,7 @@ setup(name="jyu.roster",
           "setuptools",
           "plone.app.dexterity",
           "plone.app.referenceablebehavior",
+          "five.grok",
       ],
       extras_require={
           "test": ["plone.app.testing", "corejet.pivotal"],

@@ -1,4 +1,4 @@
-?xml version="1.0"?>
+<?xml version="1.0"?>
 <object name="jyu.roster.person" meta_type="Dexterity FTI"
    i18n:domain="jyu.roster" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
