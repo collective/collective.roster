@@ -21,24 +21,15 @@ class IRoster(form.Schema):
         )
 
     description = schema.Text(
-            title=_(u"Session summary"),
+            title=_(u"Roster description"),
         )
 
-    details = RichText(
-            title=_(u"Session details"),
-            required=False
-        )
+#    details = RichText(
+#            title=_(u"Session details"),
+#            required=False
+#       )
 
-#    rosterPersonnel = RelationList(
-#        title=_(u"Highlighted films"),
-#        description=_(u"Personnel to connect to the roster"),
-#        value_type=RelationChoice(
-#               source=ObjPathSourceBinder(
-#                   object_provides=IPerson.__identifier__
-#                ),
-#             ),
-#           required=False,
-#    )
+
 
 
 class View(grok.View):
@@ -51,4 +42,20 @@ class View(grok.View):
     grok.context(IRoster)
     grok.require('zope2.View')
     grok.name('view')
+
+
+from plone.app.viewletmanager.manager import OrderedViewletManager
+
+
+class RosterViewletManager(OrderedViewletManager, grok.ViewletManager):
+    grok.context(IRoster)
+    grok.name("jyu.roster.roster")
+
+
+class RosterViewlet(grok.Viewlet):
+   grok.context(IRoster)
+   grok.viewletmanager(RosterViewletManager)
+   grok.name("jyu.roster.roster.details")
+
+
 
