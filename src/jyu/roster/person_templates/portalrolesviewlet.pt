@@ -9,8 +9,8 @@
 <!-- <div tal:replace="viewlet/title" /> --> 
 
 <dl>
-<dt>Full name</dt>
-<dd tal:content="viewlet/context/portalroles"></dd>
+<dt>Roles</dt>
+<!-- <dd tal:content="viewlet/context/portalroles"></dd> -->
 
 </dl>
 

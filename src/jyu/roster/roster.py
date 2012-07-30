@@ -9,6 +9,11 @@ from plone.app.textfield import RichText
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
+from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
+
+from jyu.roster.person import IPerson, IPortalRoles
+
 from jyu.roster.interfaces import MessageFactory as _
 
 class IRoster(form.Schema):
@@ -24,24 +29,33 @@ class IRoster(form.Schema):
             title=_(u"Roster description"),
         )
 
-#    details = RichText(
-#            title=_(u"Session details"),
-#            required=False
-#       )
-
-
-
-
 class View(grok.View):
-    #dexterity.DisplayForm in manual's code, instead of grok.View
-    """Default view (called "@@view"") for a cinema.
     
-    The associated template is found in cinema_templates/view.pt.
-    """
-
     grok.context(IRoster)
     grok.require('zope2.View')
     grok.name('view')
+
+    def people(self):
+        """Return a catalog search result of people to show
+        """
+        
+        context = aq_inner(self.context)
+        catalog = getToolByName(context, 'portal_catalog')
+        
+        return catalog(object_provides=IPerson.__identifier__,
+                       path='/'.join(context.getPhysicalPath()),
+                       sort_on='sortable_title')
+
+    def subjects(self):
+        """Return a catalog search result of subjects to show
+        """
+        
+        context = aq_inner(self.context)
+        catalog = getToolByName(context, 'portal_catalog')
+        
+        return catalog(object_provides=IPortalRoles.__identifier__,
+                       path='/'.join(context.getPhysicalPath()),
+                       sort_on='sortable_title')
 
 
 from plone.app.viewletmanager.manager import OrderedViewletManager

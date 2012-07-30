@@ -1,6 +1,7 @@
 from five import grok
 
 from zope import schema
+from zope.interface import Interface
 from z3c.form import button
 
 from plone.directives import form, dexterity
@@ -33,14 +34,14 @@ class RolesVocabulary(grok.GlobalUtility):
     def __call__(self, context):
        # if IRoster.providedBy(context):
         #    # find out the list of categories
-        #    categories = folder.Subject()
+        #    
         # How to get the parent folder of context?
         # from Acquisition import aq_parent, aq_inner
        # parent = aq_parent(aq_inner(context))
 
        # if IRoster.providedBy(parent):
         #    # find out the list of categories
-        #    categories = folder.Subject()
+        #   
         #else:
         return SimpleVocabulary([])
 
@@ -52,6 +53,7 @@ class RolesVocabulary(grok.GlobalUtility):
             )
         return roles
 
+#grok.global_utility(RolesVocabulary, name=u'jyu.roster.roles')
 
 class IPerson(form.Schema):
     """A person in the roster. 
@@ -88,12 +90,13 @@ class IPortalRoles(form.Schema):
     portalroles = schema.Tuple(
         title=_(u"Portal Roles"),
             value_type=schema.Choice(
-                vocabulary="jyu.roster.roles",
+                vocabulary="plone.app.vocabularies.Roles",
             ),
         required=False,
     )
 
-    form.order_before(portalroles = '*')
+    #this puts field after all the standard fields of content type
+    form.order_after(portalroles = '*')
        
     form.omitted('portalroles')
     form.no_omit(IEditForm, 'portalroles')
@@ -101,10 +104,11 @@ class IPortalRoles(form.Schema):
 
 alsoProvides(IPortalRoles, form.IFormFieldProvider)
 
+class IPortalRolesMarker(Interface):
+    """Marker interface for portal roles viewlet, etc..."""
+
 class MetadataBase(object):
-    """ This adapter uses DCFieldProperty to store metadata directly on an object
-        using the standard CMF DefaultDublinCoreImpl getters and setters.
-    """
+    
     adapts(IDexterityContent)
     
     def __init__(self, context):
@@ -113,10 +117,6 @@ class MetadataBase(object):
 _marker = object()
 
 class DCFieldProperty(object):
-    """Computed attributes based on schema fields.
-    Based on zope.schema.fieldproperty.FieldProperty.
-    """
-
     def __init__(self, field, get_name=None, set_name=None):
         if get_name is None:
             get_name = field.__name__
@@ -164,7 +164,6 @@ class DCFieldProperty(object):
         return getattr(self._field, name)
 
 
-#class PortalRoles(MetadataBase):
 class PortalRoles(object):
    
     implements(IPortalRoles)
@@ -188,28 +187,15 @@ class PortalRoles(object):
    #     self.context.subject = value
     #subjects = property(_get_subjects, _set_subjects)
 
-    #language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
 
 class View(grok.View):
-    #dexterity.DisplayForm in manual's code, instead of grok.View
-    """Default view (called "@@view"") for a cinema.
-    
-    The associated template is found in cinema_templates/view.pt.
-    """
 
     grok.context(IPerson)
     grok.require('zope2.View')
     grok.name('view')
 
 
-#    message = "foo" 
-# for example if the view_more-complex.pt was used, it needs to find information from view class, so here it would find for message property
-    @property
-    def message(self):
-        return "foo"
-        # self.context.title
-    
-   
+ 
     
 from plone.app.viewletmanager.manager import OrderedViewletManager
 
@@ -225,12 +211,8 @@ class PersonDetailsViewlet(grok.Viewlet):
    grok.name("jyu.roster.person.details")
 
 
-#class PortalRolesViewletManager(OrderedViewletManager, grok.Viewlet):
- #  grok.context(IPortalRoles)
-  # grok.name("jyu.roster.person.PortalRoles")
-
 class PortalRolesViewlet(grok.Viewlet):
-   grok.context(IPortalRoles)
+   grok.context(IPortalRolesMarker)
    grok.viewletmanager(PersonViewletManager)
    grok.name("jyu.roster.person.rolesview")
 

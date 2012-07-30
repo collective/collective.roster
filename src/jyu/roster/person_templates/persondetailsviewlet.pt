@@ -19,10 +19,7 @@
 <dd tal:content="string:${context/keywords}"></dd>
 
 <dt>Role</dt>
-<dd tal:content="string:${context/roles}">Role</dd>
-</dl>
-
-
+<dd tal:content="string:${context/Subject}"></dd>
 
 </body>
 </html>
