@@ -6,18 +6,7 @@
       i18n:domain="jyu.roster">
 <body>
 
-<!-- <div tal:replace="viewlet/title" />  
-
-<dl>
-<dt>Title</dt>
-<dd tal:content="viewlet/context/title">Title</dd>
-
-<dt>Full name with salutation</dt>
-<dd tal:content="string:${context/salutation} ${context/title}">Firstname Lastname</dd>
-</dl>
--->
-
-
+<!-- insert the viewlet html here -->
 
 </body>
 </html>

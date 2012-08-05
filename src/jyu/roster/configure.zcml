@@ -1,42 +1,27 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:zcml="http://namespaces.zope.org/zcml"
            xmlns:grok="http://namespaces.zope.org/grok"
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-           xmlns:plone="http://namespaces.plone.org/plone"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="jyu.roster">
 
     <includeDependencies package="." />
-    <grok:grok package="." />
-    
-    <include package="plone.behavior" file="meta.zcml"/>
 
-    <include package="plone.directives.form" file="meta.zcml" />
-    <include package="plone.directives.form" />
+    <grok:grok package=".roster" />
+    <grok:grok package=".person" />
 
     <i18n:registerTranslations directory="locales" />
 
-    <!-- vocabularies -->
-    <include package="plone.app.vocabularies"/>
+    <include file="behaviors.zcml" />
 
     <genericsetup:registerProfile
         name="default"
         title="Personnel Roster"
         directory="profiles/default"
-        description="Installs generic personnel roster content types"
+        description="Provides extendable personnel roster content types"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title description"
-        />
-
-    <plone:behavior
-        title="Portal Roles"
-        description="Adds a multiselect field to select portal roles for a person."
-        provides=".person.IPortalRoles"
-        factory=".person.PortalRoles"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        marker=".person.IPortalRolesMarker"
         />
 
     <!-- <include file="upgrades.zcml" /> -->
