@@ -6,15 +6,8 @@
       i18n:domain="jyu.roster">
 <body>
 
-<!-- <div tal:replace="viewlet/title" /> --> 
-
-<dl>
-<dt>Roles</dt>
-<!-- <dd tal:content="viewlet/context/portalroles"></dd> -->
-
-</dl>
-
-
+<tal:replace replace="structure viewlet/table/renderTable" />
+<tal:replace replace="structure viewlet/table/renderBatch" />
 
 </body>
 </html>
