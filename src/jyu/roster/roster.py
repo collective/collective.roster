@@ -3,8 +3,12 @@
 
 from five import grok
 
-from zope.component import getMultiAdapter
+from zope.component import getMultiAdapter, getUtility
 from zope.publisher.interfaces.browser import IBrowserRequest
+
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
 
 from z3c.table.interfaces import IValues, IColumn
 from z3c.table import table, column
@@ -12,12 +16,34 @@ from z3c.table import table, column
 from Products.CMFCore.utils import getToolByName
 
 from plone.app.viewletmanager.manager import OrderedViewletManager
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from jyu.roster.interfaces import IPersonnelListing
 from jyu.roster.schemas import IPerson, IRoster
+from jyu.roster.utils import getFirstParent
+
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
 _ = ZopeMessageFactory("jyu.roster")
+
+
+class LocalGroupsVocabulary(grok.GlobalUtility):
+    """Local roster groups vocabulary"""
+
+    grok.provides(IVocabularyFactory)
+    grok.name("jyu.roster.localgroups")
+
+    def __call__(self, context):
+        groups = []
+        normalizer = getUtility(IIDNormalizer)
+        roster = getFirstParent(context, IRoster)
+        for group in getattr(roster, "groups", ()):
+            groups.append(
+                SimpleTerm(group,
+                           token=normalizer.normalize(group),
+                           title=group)
+                )
+        return SimpleVocabulary(groups)
 
 
 class View(grok.View):
@@ -49,11 +75,14 @@ class ListingViewlet(grok.Viewlet):
 
     def __init__(self, *args, **kwargs):
         super(ListingViewlet, self).__init__(*args, **kwargs)
-        self.table = PersonnelListing(self.context, self.request)
+        self.tables = map(
+            lambda group: PersonnelListing(self.context, self.request, group),
+            self.context.groups)
 
     def update(self):
         super(ListingViewlet, self).update()
-        self.table.update()
+        for table in self.tables:
+            table.update()
 
 
 class PersonnelListing(table.Table):
@@ -74,6 +103,18 @@ class PersonnelListing(table.Table):
     batchSize = 10
     startBatchingAt = 10
 
+    @property
+    def title(self):
+        vocabulary_factory = getUtility(IVocabularyFactory,
+                                        name="jyu.roster.localgroups")
+        vocabulary = vocabulary_factory(self.context)
+        term = vocabulary.getTerm(self.group)
+        return term.title
+
+    def __init__(self, context, request, group):
+        super(PersonnelListing, self).__init__(context, request)
+        self.group = group
+
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
@@ -92,9 +133,16 @@ class PersonnelValues(grok.MultiAdapter):
 
     @property
     def values(self):
+        vocabulary_factory = getUtility(IVocabularyFactory,
+                                        name="jyu.roster.localgroups")
+        vocabulary = vocabulary_factory(self.context)
+        term = vocabulary.getTerm(self.table.group)
+
         pc = getToolByName(self.context, "portal_catalog")
         values = pc(path="/".join(self.context.getPhysicalPath()),
-                    object_provides=IPerson.__identifier__)
+                    object_provides=IPerson.__identifier__,
+                    Subject=(term.value,))
+
         return values
 
 
