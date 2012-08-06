@@ -3,6 +3,9 @@
 
 from five import grok
 
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
 from plone.indexer import indexer
 from plone.app.viewletmanager.manager import OrderedViewletManager
 
@@ -34,6 +37,19 @@ def title(obj):
 grok.global_adapter(title, name="Title")
 
 
+@indexer(IPerson)
+def subject(obj):
+    vocabulary_factory = getUtility(IVocabularyFactory,
+                                    name="jyu.roster.localgroups")
+    vocabulary = vocabulary_factory(obj)
+
+    terms = filter(lambda term: term.value in obj.groups, vocabulary)
+    groups = map(lambda term: term.value, terms)
+
+    return obj.subject + tuple(groups)
+grok.global_adapter(subject, name="Subject")
+
+
 class View(grok.View):
     """"Person view"""
 
@@ -47,10 +63,28 @@ class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
     grok.name("jyu.roster.personviewlets")
 
 
+class GroupsViewlet(grok.Viewlet):
+    """Groups viewlet"""
+
+    grok.viewletmanager(PersonViewlets)
+    grok.context(IPerson)
+    grok.name("jyu.roster.personviewlets.localgroups")
+
+    def render(self):
+        vocabulary_factory = getUtility(IVocabularyFactory,
+                                        name="jyu.roster.localgroups")
+        vocabulary = vocabulary_factory(self.context)
+
+        terms = filter(lambda term: term.value in self.context.groups,
+                       vocabulary)
+        titles = map(lambda term: term.title, terms)
+
+        return u"<p>%s</p>" % ", ".join(titles)
+
+
 class ExampleViewlet(grok.Viewlet):
     """Example viewlet"""
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
     grok.name("jyu.roster.personviewlets.example")
-

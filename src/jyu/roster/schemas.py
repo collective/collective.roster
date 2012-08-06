@@ -5,12 +5,24 @@ from zope import schema
 
 from plone.directives import form
 
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
 _ = ZopeMessageFactory("jyu.roster")
 
 
 class IRoster(form.Schema):
     """Personnel roster"""
+
+    groups = schema.List(
+        title=_(u"Groups"),
+        value_type = schema.TextLine(
+            title=_(u"Group"),
+            required=True
+            ),
+        min_length = 1,
+        required=True
+        )
 
 
 class IPerson(form.Schema):
@@ -39,4 +51,15 @@ class IPerson(form.Schema):
         title=_(u"Introduction"),
         missing_value = u"",
         required = False
+        )
+
+    form.widget(groups=CheckBoxFieldWidget)
+    groups = schema.List(
+        title=_(u"Groups"),
+        value_type = schema.Choice(
+            title=_("Group"),
+            vocabulary="jyu.roster.localgroups"
+            ),
+        min_length = 1,
+        required=True
         )
