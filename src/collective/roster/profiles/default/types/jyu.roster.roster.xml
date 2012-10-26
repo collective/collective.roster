@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<object name="jyu.roster.roster" meta_type="Dexterity FTI"
-        i18n:domain="jyu.roster" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<object name="collective.roster.roster" meta_type="Dexterity FTI"
+        i18n:domain="collective.roster" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">Roster</property>
@@ -10,11 +10,11 @@
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types">
-        <element value="jyu.roster.person" />
+        <element value="collective.roster.person" />
     </property>
 
     <!-- schema interface -->
-    <property name="schema">jyu.roster.schemas.IRoster</property>
+    <property name="schema">collective.roster.schemas.IRoster</property>
 
     <!-- class used for content items -->
     <property name="klass">plone.dexterity.content.Container</property>

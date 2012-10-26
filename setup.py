@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
 
-version = "1.0.0"
-
-setup(name="jyu.roster",
-    version=version,
+setup(
+    name="collective.roster",
+    version="1.0.0",
     description="Extendable Personnel Roster",
     long_description=open("README.txt").read() + "\n" +
-                     open("HISTORY.txt").read(),
+                     open("CHANGES.txt").read(),
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -19,7 +18,7 @@ setup(name="jyu.roster",
     license="GPL",
     packages=find_packages("src", exclude=["ez_setup"]),
     package_dir={"": "src"},
-    namespace_packages=["jyu"],
+    namespace_packages=["collective"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[

@@ -26,15 +26,15 @@ from z3c.form.interfaces import IAddForm
 from rwproperty import setproperty
 from rwproperty import getproperty
 
-from jyu.roster.person import PersonViewlets
+from collective.roster.person import PersonViewlets
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("jyu.roster")
+_ = ZopeMessageFactory("collective.roster")
 
 
 class RolesVocabulary(grok.GlobalUtility):
     grok.provides(IVocabularyFactory)
-    grok.name("jyu.roster.roles")
+    grok.name("collective.roster.roles")
 
     def __call__(self, context):
        # if IRoster.providedBy(context):
@@ -166,7 +166,7 @@ class PortalRoles(object):
 class PortalRolesViewlet(grok.Viewlet):
    grok.context(IPortalRolesMarker)
    grok.viewletmanager(PersonViewlets)
-   grok.name("jyu.roster.person.rolesview")
+   grok.name("collective.roster.person.rolesview")
 
 
     # def people(self):
