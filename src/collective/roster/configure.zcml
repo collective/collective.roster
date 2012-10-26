@@ -12,7 +12,7 @@
 
     <i18n:registerTranslations directory="locales" />
 
-    <include file="behaviors.zcml" />
+    <include package=".behaviors" />
 
     <genericsetup:registerProfile
         name="default"
