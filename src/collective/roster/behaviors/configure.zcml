@@ -12,5 +12,12 @@
         marker=".person.IPortalRolesMarker"
         />
     -->
+    <plone:behavior
+        title="Contact Info"
+        description="Provides contact info fields"
+        provides=".interfaces.IContactInfo"
+        factory="plone.behavior.AnnotationStorage"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
 
 </configure>

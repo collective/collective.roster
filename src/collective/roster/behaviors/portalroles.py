@@ -28,8 +28,7 @@ from rwproperty import getproperty
 
 from collective.roster.person import PersonViewlets
 
-from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("collective.roster")
+from collective.roster import _
 
 
 class RolesVocabulary(grok.GlobalUtility):

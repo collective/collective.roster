@@ -11,10 +11,7 @@ from plone.app.viewletmanager.manager import OrderedViewletManager
 
 from plone.app.content.interfaces import INameFromTitle
 
-from collective.roster.schemas import IPerson
-
-from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("collective.roster")
+from collective.roster.interfaces import IPerson
 
 
 class NameFromTitle(grok.Adapter):
