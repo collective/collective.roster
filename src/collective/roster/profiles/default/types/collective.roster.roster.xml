@@ -14,7 +14,7 @@
     </property>
 
     <!-- schema interface -->
-    <property name="schema">collective.roster.schemas.IRoster</property>
+    <property name="schema">collective.roster.interfaces.IRoster</property>
 
     <!-- class used for content items -->
     <property name="klass">plone.dexterity.content.Container</property>

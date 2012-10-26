@@ -18,8 +18,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
-from collective.roster.interfaces import IPersonnelListing
-from collective.roster.schemas import IPerson, IRoster
+from collective.roster.interfaces import IPersonnelListing, IPerson, IRoster
 from collective.roster.utils import getFirstParent
 
 
@@ -42,7 +41,7 @@ class LocalGroupsVocabulary(grok.GlobalUtility):
                 SimpleTerm(group,
                            token=normalizer.normalize(group),
                            title=group)
-                )
+            )
         return SimpleVocabulary(groups)
 
 
@@ -174,4 +173,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
         return item.getURL()
 
     def getLinkContent(self, item):
-        return item.Title
+        title = item.Title
+        if type(title) != unicode:
+            title = unicode(title, u"utf-8")
+        return title

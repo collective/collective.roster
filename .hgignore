@@ -3,10 +3,19 @@ syntax: glob
 bin
 develop-eggs
 parts
+tags
+var
 
-*~
 *.pyc
 *.mo
 *.egg-info
 
+develop-custom.cfg
+
 .installed.cfg
+.mr.developer.cfg
+
+log.html
+output.xml
+report.html
+selenium-screenshot-*.png
