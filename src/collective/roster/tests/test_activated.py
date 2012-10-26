@@ -11,7 +11,7 @@ from plone.app.testing import setRoles
 
 from plone.testing import z2
 
-from jyu.roster.testing import ROSTER_CONFIGURED_FUNCTIONAL_TESTING
+from collective.roster.testing import ROSTER_CONFIGURED_FUNCTIONAL_TESTING
 
 
 @story(id="30278553", title=u"As a user, I want to add a new personnel roster")

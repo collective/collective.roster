@@ -8,7 +8,7 @@ from plone.directives import form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("jyu.roster")
+_ = ZopeMessageFactory("collective.roster")
 
 
 class IRoster(form.Schema):
@@ -58,7 +58,7 @@ class IPerson(form.Schema):
         title=_(u"Groups"),
         value_type = schema.Choice(
             title=_("Group"),
-            vocabulary="jyu.roster.localgroups"
+            vocabulary="collective.roster.localgroups"
             ),
         min_length = 1,
         required=True

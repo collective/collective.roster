@@ -18,20 +18,20 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
-from jyu.roster.interfaces import IPersonnelListing
-from jyu.roster.schemas import IPerson, IRoster
-from jyu.roster.utils import getFirstParent
+from collective.roster.interfaces import IPersonnelListing
+from collective.roster.schemas import IPerson, IRoster
+from collective.roster.utils import getFirstParent
 
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("jyu.roster")
+_ = ZopeMessageFactory("collective.roster")
 
 
 class LocalGroupsVocabulary(grok.GlobalUtility):
     """Local roster groups vocabulary"""
 
     grok.provides(IVocabularyFactory)
-    grok.name("jyu.roster.localgroups")
+    grok.name("collective.roster.localgroups")
 
     def __call__(self, context):
         groups = []
@@ -57,13 +57,13 @@ class View(grok.View):
         from zope.viewlet.interfaces import IViewletManager
         self.viewlets = getMultiAdapter(
             (self.context, self.request, self),
-            IViewletManager, name="jyu.roster.rosterviewlets")
+            IViewletManager, name="collective.roster.rosterviewlets")
         self.viewlets.update()
 
 
 class RosterViewlets(OrderedViewletManager, grok.ViewletManager):
     grok.context(IRoster)
-    grok.name("jyu.roster.rosterviewlets")
+    grok.name("collective.roster.rosterviewlets")
 
 
 class ListingViewlet(grok.Viewlet):
@@ -71,7 +71,7 @@ class ListingViewlet(grok.Viewlet):
 
     grok.viewletmanager(RosterViewlets)
     grok.context(IRoster)
-    grok.name("jyu.roster.rosterviewlets.listing")
+    grok.name("collective.roster.rosterviewlets.listing")
 
     def __init__(self, *args, **kwargs):
         super(ListingViewlet, self).__init__(*args, **kwargs)
@@ -106,7 +106,7 @@ class PersonnelListing(table.Table):
     @property
     def title(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="jyu.roster.localgroups")
+                                        name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
         term = vocabulary.getTerm(self.group)
         return term.title
@@ -134,7 +134,7 @@ class PersonnelValues(grok.MultiAdapter):
     @property
     def values(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="jyu.roster.localgroups")
+                                        name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
         term = vocabulary.getTerm(self.table.group)
 
@@ -151,7 +151,7 @@ class PersonnelValues(grok.MultiAdapter):
 #
 #     grok.provides(IColumn)
 #     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-#     grok.name("jyu.roster.personnellisting.title")
+#     grok.name("collective.roster.personnellisting.title")
 #
 #     weight = 100
 #
@@ -164,7 +164,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-    grok.name("jyu.roster.personnellisting.title")
+    grok.name("collective.roster.personnellisting.title")
 
     weight = 100
 

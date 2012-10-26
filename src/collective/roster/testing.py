@@ -10,8 +10,8 @@ class RosterConfiguredFixture(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import jyu.roster
-        self.loadZCML(package=jyu.roster)
+        import collective.roster
+        self.loadZCML(package=collective.roster)
 
     def setUpPloneSite(self, portal):
         pass

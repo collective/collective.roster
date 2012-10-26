@@ -4,13 +4,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="jyu.roster">
+      i18n:domain="plone">
 <body>
 
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
 
-    <div tal:replace="structure provider:jyu.roster.rosterviewlets" />
+    <div tal:replace="structure provider:collective.roster.personviewlets" />
 
     </metal:content-core>
 </metal:content-core>

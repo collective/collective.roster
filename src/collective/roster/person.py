@@ -11,10 +11,10 @@ from plone.app.viewletmanager.manager import OrderedViewletManager
 
 from plone.app.content.interfaces import INameFromTitle
 
-from jyu.roster.schemas import IPerson
+from collective.roster.schemas import IPerson
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
-_ = ZopeMessageFactory("jyu.roster")
+_ = ZopeMessageFactory("collective.roster")
 
 
 class NameFromTitle(grok.Adapter):
@@ -40,7 +40,7 @@ grok.global_adapter(title, name="Title")
 @indexer(IPerson)
 def subject(obj):
     vocabulary_factory = getUtility(IVocabularyFactory,
-                                    name="jyu.roster.localgroups")
+                                    name="collective.roster.localgroups")
     vocabulary = vocabulary_factory(obj)
 
     terms = filter(lambda term: term.value in obj.groups, vocabulary)
@@ -60,7 +60,7 @@ class View(grok.View):
 
 class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
     grok.context(IPerson)
-    grok.name("jyu.roster.personviewlets")
+    grok.name("collective.roster.personviewlets")
 
 
 class GroupsViewlet(grok.Viewlet):
@@ -68,11 +68,11 @@ class GroupsViewlet(grok.Viewlet):
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
-    grok.name("jyu.roster.personviewlets.localgroups")
+    grok.name("collective.roster.personviewlets.localgroups")
 
     def render(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="jyu.roster.localgroups")
+                                        name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
 
         terms = filter(lambda term: term.value in self.context.groups,
@@ -87,4 +87,4 @@ class ExampleViewlet(grok.Viewlet):
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
-    grok.name("jyu.roster.personviewlets.example")
+    grok.name("collective.roster.personviewlets.example")
