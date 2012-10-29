@@ -11,10 +11,7 @@ from zope.component import (
 
 from zope.publisher.interfaces.browser import IBrowserRequest
 
-from zope.schema.interfaces import (
-    IVocabularyFactory,
-    IList
-)
+from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import (
     SimpleTerm,
     SimpleVocabulary
@@ -75,14 +72,12 @@ class DisplayColumnsVocabulary(grok.GlobalUtility):
     grok.provides(IVocabularyFactory)
     grok.name("collective.roster.columns")
 
-    def _isColumnAdapter(self, obj):
-        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
-            and obj.provided == IColumn
-
     def __call__(self, context):
         gsm = getGlobalSiteManager()
         adapters = gsm.registeredAdapters()
-        columns = filter(self._isColumnAdapter, adapters)
+        columns = filter(lambda x: x.required == (IRoster, IBrowserRequest,
+                                                  IPersonnelListing)
+                         and x.provided == IColumn, adapters)
         terms = map(lambda x: SimpleTerm(x.name, x.name, x.factory.header),
                     columns)
         return SimpleVocabulary(terms)
@@ -94,28 +89,23 @@ class RosterDataManager(grok.MultiAdapter, AttributeField):
 
     grok.adapts(IRoster, IHiddenColumnsField)
 
-    def _isColumnAdapter(self, obj):
-        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
-            and obj.provided == IColumn
-
-    def _getAllColumns(self):
-        gsm = getGlobalSiteManager()
-        adapters = gsm.registeredAdapters()
-        columns = filter(self._isColumnAdapter, adapters)
-        return map(lambda x: x.name, columns)
+    @property
+    def columns(self):
+        factory = getUtility(IVocabularyFactory,
+                             name="collective.roster.columns")
+        vocabulary = factory(self.context)
+        return map(lambda x: x.value, vocabulary)
 
     def get(self):
         value = super(RosterDataManager, self).get()
         if value is not None:  # This will let us to pass None for Add Form
-            columns = self._getAllColumns()  # XXX: could use vocab instead
             selection = [] if value is None else value  # value can be None
-            value = filter(lambda x: x not in selection, columns)
+            value = filter(lambda x: x not in selection, self.columns)
         return value
 
     def set(self, value):
-        columns = self._getAllColumns()  # XXX: could use vocab instead
         selection = [] if value is None else value  # value can be None
-        value = filter(lambda x: x not in selection, columns)
+        value = filter(lambda x: x not in selection, self.columns)
         return super(RosterDataManager, self).set(value)
 
 
@@ -193,6 +183,7 @@ class PersonnelListing(table.Table):
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
+
     def setUpColumns(self):
         hidden = getattr(self.context, "columns_hidden", [])
         cols = super(PersonnelListing, self).setUpColumns()
