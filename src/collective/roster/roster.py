@@ -262,11 +262,10 @@ class EmailColumn(grok.MultiAdapter, column.Column):
     header = _(u"Email")
 
     def renderCell(self, item):
-        try:
-            return IContactInfo(item.getObject()).email or u""
-        except TypeError:
-            # Behavior not found
-            return u""
+        adapter = IContactInfo(item.getObject(), None)
+        if adapter:
+            return adapter.email
+        return u""
 
 
 class PhoneNumberColumn(grok.MultiAdapter, column.Column):
@@ -281,8 +280,7 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
     header = _(u"Phone Number")
 
     def renderCell(self, item):
-        try:
-            return IContactInfo(item.getObject()).phone_number or u""
-        except TypeError:
-            # Behavior not found
-            return u""
+        adapter = IContactInfo(item.getObject(), None)
+        if adapter:
+            return adapter.phone_number
+        return u""
