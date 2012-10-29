@@ -27,6 +27,7 @@ setup(
         "zope.schema",
         "zope.i18nmessageid",
         "plone.indexer",
+        "plone.directives.form",
         "plone.app.dexterity",
         "plone.app.referenceablebehavior",
         "plone.app.viewletmanager",
