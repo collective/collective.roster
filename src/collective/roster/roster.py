@@ -15,7 +15,10 @@ from zope.schema.interfaces import (
     IVocabularyFactory,
     IList
 )
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.vocabulary import (
+    SimpleTerm,
+    SimpleVocabulary
+)
 
 from z3c.form.datamanager import AttributeField
 from z3c.table.interfaces import (
@@ -32,7 +35,12 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
-from collective.roster.interfaces import IPersonnelListing, IPerson, IRoster
+from collective.roster.interfaces import (
+    IHiddenColumnsField,
+    IPersonnelListing,
+    IPerson,
+    IRoster
+)
 from collective.roster.utils import getFirstParent
 
 
@@ -84,7 +92,7 @@ class RosterDataManager(grok.MultiAdapter, AttributeField):
     """z3c.form datamanager, which reverts the behavior of display columns
     field to store hidden columns instead"""
 
-    grok.adapts(IRoster, IList)
+    grok.adapts(IRoster, IHiddenColumnsField)
 
     def _isColumnAdapter(self, obj):
         return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
@@ -98,17 +106,16 @@ class RosterDataManager(grok.MultiAdapter, AttributeField):
 
     def get(self):
         value = super(RosterDataManager, self).get()
-        if self.field.__name__ == "columns_hidden" and value is not None:
+        if value is not None:  # This will let us to pass None for Add Form
             columns = self._getAllColumns()  # XXX: could use vocab instead
             selection = [] if value is None else value  # value can be None
             value = filter(lambda x: x not in selection, columns)
         return value
 
     def set(self, value):
-        if self.field.__name__ == "columns_hidden":
-            columns = self._getAllColumns()  # XXX: could use vocab instead
-            selection = [] if value is None else value  # value can be None
-            value = filter(lambda x: x not in selection, columns)
+        columns = self._getAllColumns()  # XXX: could use vocab instead
+        selection = [] if value is None else value  # value can be None
+        value = filter(lambda x: x not in selection, columns)
         return super(RosterDataManager, self).set(value)
 
 
