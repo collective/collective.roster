@@ -196,7 +196,8 @@ class PersonnelListing(table.Table):
                                         self.batchSize)), 1)
 
     def setUpColumns(self):
-        hidden = getattr(self.context, "columns_hidden", [])
+        bound = IRoster["columns_hidden"].bind(self.context)
+        hidden = bound.get(self.context) or []
         cols = super(PersonnelListing, self).setUpColumns()
         return filter(lambda x: x.__name__ not in hidden, cols)
 
