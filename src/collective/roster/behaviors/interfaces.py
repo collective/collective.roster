@@ -3,6 +3,7 @@ from zope import schema
 from collective.roster import _
 from zope.interface import alsoProvides
 from plone.formwidget.contenttree import UUIDSourceBinder
+from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 
 
 class IContactInfo(form.Schema):
@@ -22,6 +23,7 @@ alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 class IRelatedPersons(form.Schema):
     """ Interface which provides related persons for any dexterity content """
+    form.widget(related_persons=MultiContentTreeFieldWidget)
     related_persons = schema.List(
         title=u"Related persons",
         description=u"Search for person that is related to this item",
