@@ -1,17 +1,31 @@
 # -*- coding: utf-8 -*-
-"""Personnel roster"""
+"""Personnel roster, which contains and displays person information"""
 
 from five import grok
 
-from zope.component import getMultiAdapter, getUtility
+from zope.component import (
+    getGlobalSiteManager,
+    getMultiAdapter,
+    getUtility
+)
+
 from zope.publisher.interfaces.browser import IBrowserRequest
 
-from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.interfaces import (
+    IVocabularyFactory,
+    IList
+)
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-
-from z3c.table.interfaces import IValues, IColumn
-from z3c.table import table, column
+from z3c.form.datamanager import AttributeField
+from z3c.table.interfaces import (
+    IValues,
+    IColumn
+)
+from z3c.table import (
+    table,
+    column
+)
 
 from Products.CMFCore.utils import getToolByName
 
@@ -27,7 +41,8 @@ _ = ZopeMessageFactory("collective.roster")
 
 
 class LocalGroupsVocabulary(grok.GlobalUtility):
-    """Local roster groups vocabulary"""
+    """Returns a new context bound vocabulary, which returns the groups defined
+    in the nearest parent roster"""
 
     grok.provides(IVocabularyFactory)
     grok.name("collective.roster.localgroups")
@@ -45,8 +60,61 @@ class LocalGroupsVocabulary(grok.GlobalUtility):
         return SimpleVocabulary(groups)
 
 
+class DisplayColumnsVocabulary(grok.GlobalUtility):
+    """Returns a new context indepeneent vocabulary, which return all the table
+    columns registered for the roster interface"""
+
+    grok.provides(IVocabularyFactory)
+    grok.name("collective.roster.columns")
+
+    def _isColumnAdapter(self, obj):
+        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
+            and obj.provided == IColumn
+
+    def __call__(self, context):
+        gsm = getGlobalSiteManager()
+        adapters = gsm.registeredAdapters()
+        columns = filter(self._isColumnAdapter, adapters)
+        terms = map(lambda x: SimpleTerm(x.name, x.name, x.factory.header),
+                    columns)
+        return SimpleVocabulary(terms)
+
+
+class RosterDataManager(grok.MultiAdapter, AttributeField):
+    """z3c.form datamanager, which reverts the behavior of display columns
+    field to store hidden columns instead"""
+
+    grok.adapts(IRoster, IList)
+
+    def _isColumnAdapter(self, obj):
+        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
+            and obj.provided == IColumn
+
+    def _getAllColumns(self):
+        gsm = getGlobalSiteManager()
+        adapters = gsm.registeredAdapters()
+        columns = filter(self._isColumnAdapter, adapters)
+        return map(lambda x: x.name, columns)
+
+    def get(self):
+        value = super(RosterDataManager, self).get()
+        if self.field.__name__ == "columns_hidden" and value is not None:
+            columns = self._getAllColumns()  # XXX: could use vocab instead
+            selection = [] if value is None else value  # value can be None
+            value = filter(lambda x: x not in selection, columns)
+        return value
+
+    def set(self, value):
+        if self.field.__name__ == "columns_hidden":
+            columns = self._getAllColumns()  # XXX: could use vocab instead
+            selection = [] if value is None else value  # value can be None
+            value = filter(lambda x: x not in selection, columns)
+        return super(RosterDataManager, self).set(value)
+
+
 class View(grok.View):
-    """Personnel listing"""
+    """Personnel listing view, which is composed using its own viewlet
+    manager to make it extensible and configurable"""
 
     grok.context(IRoster)
     grok.require("zope2.View")
@@ -66,7 +134,8 @@ class RosterViewlets(OrderedViewletManager, grok.ViewletManager):
 
 
 class ListingViewlet(grok.Viewlet):
-    """Personnel listing"""
+    """The default personnel listing viewlet, which generates a personnel
+    listing table per defined group in personnel roster"""
 
     grok.viewletmanager(RosterViewlets)
     grok.context(IRoster)
@@ -85,7 +154,7 @@ class ListingViewlet(grok.Viewlet):
 
 
 class PersonnelListing(table.Table):
-    """Personnel listing"""
+    """Personnel listing table, which can be exteneded with custom columns"""
     grok.implements(IPersonnelListing)
 
     # CSS
@@ -117,10 +186,16 @@ class PersonnelListing(table.Table):
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
+    def setUpColumns(self):
+        hidden = getattr(self.context, "columns_hidden", [])
+        cols = super(PersonnelListing, self).setUpColumns()
+        return filter(lambda x: x.__name__ not in hidden, cols)
 
 
 class PersonnelValues(grok.MultiAdapter):
-    """Personnel values"""
+    """Personnel values adapter, which provides catalog brains for all
+    the persons with the same group as the currently rendered personnel
+    listing table under the current personnel roster"""
 
     grok.provides(IValues)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -159,7 +234,7 @@ class PersonnelValues(grok.MultiAdapter):
 
 
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
-    """Title column"""
+    """Column, which renders person's full name with salutation"""
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
