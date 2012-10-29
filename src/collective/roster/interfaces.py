@@ -22,6 +22,8 @@ class IPersonnelListing(Interface):
 class IHiddenColumnsField(Interface):
     """Marker interface for roster hidden columns field"""
 
+class IHasRelatedPersons(Interface):
+    """Marker interface for related persons"""
 
 class IRoster(form.Schema):
     """Personnel roster (to contain and display persons). Contained persons

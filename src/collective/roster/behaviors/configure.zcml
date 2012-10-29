@@ -20,4 +20,12 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <plone:behavior
+        title="Related persons"
+        description="Provides related persons list in any dexterity content type"
+        provides=".interfaces.IRelatedPersons"
+        factory="plone.behavior.AnnotationStorage"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
 </configure>
