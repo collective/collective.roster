@@ -32,7 +32,15 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
-from collective.roster.interfaces import IPersonnelListing, IPerson, IRoster
+from collective.roster.interfaces import (
+    IPersonnelListing,
+    IPerson,
+    IRoster
+)
+from collective.roster.behaviors.interfaces import (
+    IContactInfo
+
+)
 from collective.roster.utils import getFirstParent
 
 
@@ -186,6 +194,7 @@ class PersonnelListing(table.Table):
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
+
     def setUpColumns(self):
         hidden = getattr(self.context, "columns_hidden", [])
         cols = super(PersonnelListing, self).setUpColumns()
@@ -220,19 +229,6 @@ class PersonnelValues(grok.MultiAdapter):
         return values
 
 
-# class TitleColumn(grok.MultiAdapter, column.GetAttrColumn):
-#     """Title column"""
-#
-#     grok.provides(IColumn)
-#     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-#     grok.name("collective.roster.personnellisting.title")
-#
-#     weight = 100
-#
-#     header = _(u"Title")
-#     attrName = "Title"
-
-
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
     """Column, which renders person's full name with salutation"""
 
@@ -240,7 +236,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
     grok.name("collective.roster.personnellisting.title")
 
-    weight = 100
+    weight = 99
 
     header = _(u"Title")
 
@@ -252,3 +248,33 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
         return title
+
+
+class EmailColumn(grok.MultiAdapter, column.Column):
+    """Column, which renders person's email address"""
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.email")
+
+    weight = 100
+
+    header = _(u"Email")
+
+    def renderCell(self, item):
+        return IContactInfo(item.getObject()).email
+
+
+class PhoneNumberColumn(grok.MultiAdapter, column.Column):
+    """Column, which renders person's phone number"""
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.phone_number")
+
+    weight = 101
+
+    header = _(u"Phone Number")
+
+    def renderCell(self, item):
+        return IContactInfo(item.getObject()).phone_number or u""

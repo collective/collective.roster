@@ -8,8 +8,13 @@ class IContactInfo(form.Schema):
     """ Interface for providing contact info """
 
     email = schema.TextLine(
-        title=_(u"From"),
-        description=_(u"Form letter sender"),
+        title=_(u"Email"),
+        description=_(u"Email address"),
+    )
+
+    phone_number = schema.TextLine(
+        title=_(u"Phone"),
+        description=_(u"Phone number"),
     )
 
 alsoProvides(IContactInfo, form.IFormFieldProvider)
