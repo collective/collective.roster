@@ -11,7 +11,8 @@ class IPersonnelListing(Interface):
 
 
 class IRoster(form.Schema):
-    """Personnel roster"""
+    """Personnel roster (to contain and display persons). Contained persons
+    can be assigned into one ore more groups."""
 
     groups = schema.List(
         title=_(u"Groups"),
@@ -23,9 +24,23 @@ class IRoster(form.Schema):
         required=True
     )
 
+    columns_hidden = schema.List(
+        # README: We must do this backwards to auto-enable the new columns
+        # we may introduce with upgdates or add-ons. That is, the user does
+        # a white list of displayed columns, but what is actually stored is
+        # a black list of hidden columns.
+        title=_(u"Display columns"),
+        description=_(u"Display only the selected person information columns "
+                      u"on supporting views."),
+        value_type=schema.Choice(
+            title=_("Column"),
+            vocabulary="collective.roster.columns",
+        ),
+    )
+
 
 class IPerson(form.Schema):
-    """A person"""
+    """A person to store and display person related information"""
 
     title = schema.TextLine(
         title=_(u"Title"),
