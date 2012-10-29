@@ -7,7 +7,7 @@ from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 
 
 class IContactInfo(form.Schema):
-    """ Interface for providing contact info """
+    """ Behavior interface for providing contact info """
 
     email = schema.TextLine(
         title=_(u"Email"),
@@ -22,7 +22,7 @@ alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 
 class IRelatedPersons(form.Schema):
-    """ Interface which provides related persons for any dexterity content """
+    """Behavior interface which provides related persons for any dexterity content """
     form.widget(related_persons=MultiContentTreeFieldWidget)
     related_persons = schema.List(
         title=u"Related persons",
@@ -32,3 +32,4 @@ class IRelatedPersons(form.Schema):
         )
     )
 alsoProvides(IRelatedPersons, form.IFormFieldProvider)
+

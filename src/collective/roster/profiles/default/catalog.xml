@@ -1,0 +1,3 @@
+<object name="portal_catalog">
+  <index name="related_persons" meta_type="KeywordIndex" />
+</object>
