@@ -1,13 +1,26 @@
 # -*- coding: utf-8 -*-
-from zope.interface import Interface
-from plone.directives import form
+"""Personnel roster elated interfaces and schemas"""
+
 from zope import schema
-from collective.roster import _
+
+from zope.interface import (
+    alsoProvides,
+    Interface
+)
+
+from plone.directives import form
+
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+
+from collective.roster import _
 
 
 class IPersonnelListing(Interface):
     """Marker interface for personnel listing tables"""
+
+
+class IHiddenColumnsField(Interface):
+    """Marker interface for roster hidden columns field"""
 
 
 class IRoster(form.Schema):
@@ -37,6 +50,9 @@ class IRoster(form.Schema):
             vocabulary="collective.roster.columns",
         ),
     )
+
+alsoProvides(IRoster['columns_hidden'], IHiddenColumnsField)
+# ^ Enables our custom data manager for the hidden columns field.
 
 
 class IPerson(form.Schema):
