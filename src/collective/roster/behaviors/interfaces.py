@@ -22,7 +22,8 @@ alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 
 class IRelatedPersons(form.Schema):
-    """Behavior interface which provides related persons for any dexterity content """
+    """Behavior interface which provides related persons for
+    any dexterity content"""
     form.widget(related_persons=MultiContentTreeFieldWidget)
     related_persons = schema.List(
         title=u"Related persons",
@@ -32,4 +33,3 @@ class IRelatedPersons(form.Schema):
         )
     )
 alsoProvides(IRelatedPersons, form.IFormFieldProvider)
-

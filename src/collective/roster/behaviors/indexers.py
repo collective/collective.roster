@@ -7,6 +7,7 @@ from plone.indexer import indexer
 @indexer(IHasRelatedPersons)
 def RelatedPersonsIndexer(context):
     """ create index from UUID list so we can search catalog with it"""
+    import pdb; pdb.set_trace()
     adapted = IRelatedPersons(context)
     bound = IRelatedPersons["related_persons"].bind(adapted)
     return bound.get(adapted)
