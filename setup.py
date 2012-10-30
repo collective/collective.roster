@@ -5,7 +5,7 @@ setup(
     version="1.0.0",
     description="Extendable Personnel Roster",
     long_description=open("README.txt").read() + "\n" +
-                     open("CHANGES.txt").read(),
+                open("CHANGES.txt").read(),
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -33,12 +33,19 @@ setup(
         "plone.app.viewletmanager",
         "plone.z3ctable",
     ],
-    extras_require={
-        "test": ["plone.app.testing", "corejet.pivotal"],
-    },
+    extras_require={"test": [
+        "Pillow",
+        "robotframework-selenium2library",
+        "selenium",  # Python 2.6
+        "decorator",  # Python 2.6
+        "plone.act",
+        "robotsuite",
+        "corejet.pivotal",
+        "corejet.robot",
+    ]},
     entry_points="""
     # -*- Entry points: -*-
     [z3c.autoinclude.plugin]
     target = plone
      """
-    )
+)

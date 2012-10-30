@@ -1,0 +1,6 @@
+*** Settings ***
+
+Resource  common.txt
+
+Suite Setup  Open browser  ${PLONE_URL}
+Suite Teardown  Close All Browsers

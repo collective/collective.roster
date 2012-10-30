@@ -1,0 +1,18 @@
+*** Settings ***
+
+Library  Selenium2Library  timeout=10  implicit_wait=0.5
+
+Resource  plone/act/keywords.txt
+
+Library  Remote  ${PLONE_URL}/RosterRemoteLibrary
+
+*** Keywords ***
+
+I'm logged in as a site manager
+    Log in admin
+
+Log in admin
+    Log in  ${SITE_OWNER_NAME}  ${SITE_OWNER_PASSWORD}
+
+Log in user
+    Log in  ${TEST_USER_NAME}  ${TEST_USER_PASSWORD}

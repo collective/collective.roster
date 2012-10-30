@@ -1,0 +1,22 @@
+
+*** Settings ***
+
+Meta: Id  38652139
+Meta: Title  As a ME, I Want to create personnel roster
+
+Suite Setup  Background
+
+*** Keywords ***
+
+Background
+    Given the Roster product is activated
+    And I'm logged in as a site manager
+
+*** Test Cases ***
+
+Create personnel roster
+    When I add a new roster
+    And I fill the necessary information
+    And I click 'Save'
+    Then new roster is created
+
