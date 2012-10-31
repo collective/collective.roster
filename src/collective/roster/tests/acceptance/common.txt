@@ -8,6 +8,9 @@ Library  Remote  ${PLONE_URL}/RosterRemoteLibrary
 
 *** Keywords ***
 
+The personnel roster product is activated
+    Product has been activated  collective.roster
+
 I'm logged in as a site manager
     Log in admin
 

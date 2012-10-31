@@ -12,12 +12,24 @@ from plone.app.testing import (
     applyProfile,
     FunctionalTesting,
     PLONE_FIXTURE,
+    IntegrationTesting
 )
 
 from plone.testing.z2 import ZSERVER_FIXTURE
 
 from Products.MailHost.interfaces import IMailHost
 from Products.CMFPlone.tests.utils import MockMailHost
+
+
+# class RosterConfiguredFixture(PloneSandboxLayer):
+#     defaultBases = (PLONE_FIXTURE,)
+
+#     def setUpZope(self, app, configurationContext):
+#         import collective.roster
+#         self.loadZCML(package=collective.roster)
+
+#     def setUpPloneSite(self, portal):
+#         pass
 
 
 class RosterLayer(PloneSandboxLayer):
@@ -56,6 +68,16 @@ ROSTER_FIXTURE = RosterLayer()
 ROSTER_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(ROSTER_FIXTURE, ZSERVER_FIXTURE),
     name="Acceptance")
+
+ROSTER_CONFIGURED_FIXTURE = RosterLayer()
+
+ROSTER_CONFIGURED_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(ROSTER_CONFIGURED_FIXTURE,),
+    name="RosterConfiguredFixture:Integration")
+
+ROSTER_CONFIGURED_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(ROSTER_CONFIGURED_FIXTURE,),
+    name="RosterConfiguredFixture:Functional")
 
 
 class RemoteLibrary(SimpleItem):
@@ -129,5 +151,4 @@ class Keywords(object):
         except ConflictError:
             if retry:
                 self.create_form_letter_template(title, max(0, retry - 1))
-
 
