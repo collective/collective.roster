@@ -23,8 +23,6 @@
     <dt i18n:translate="description">Description</dt>
     <dd tal:content="structure context/description" />
 
-    <dt i18n:translate="groups">Groups</dt>
-    <dd tal:repeat="group context/groups" tal:content="group" />
 </dl>
 </body>
 </html>

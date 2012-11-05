@@ -67,7 +67,8 @@ class GroupsViewlet(grok.Viewlet):
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets.localgroups")
 
-    def render(self):
+    @property
+    def groups(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
                                         name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
@@ -75,8 +76,7 @@ class GroupsViewlet(grok.Viewlet):
         terms = filter(lambda term: term.value in self.context.groups,
                        vocabulary)
         titles = map(lambda term: term.title, terms)
-
-        return u"<p>%s</p>" % ", ".join(titles)
+        return titles
 
 
 class PersonViewlet(grok.Viewlet):

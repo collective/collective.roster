@@ -1,0 +1,4 @@
+<dl>
+    <dt i18n:translate="groups">Groups</dt>
+    <dd tal:repeat="group viewlet/groups" tal:content="structure group" />
+</dl>
