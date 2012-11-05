@@ -1,6 +1,18 @@
-<!-- <dl>
-    <dt i18n:translate="email"></dt>
-    <dd tal:content="structure context/email" />
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en" tal:omit-tag=""
+      i18n:domain="collective.roster">
+<body tal:omit-tag="">
+
+<!-- insert the viewlet html here -->
+<dl>
+    <dt i18n:translate="email">Email</dt>
+    <dd tal:content="structure viewlet/email" />
+
+    <dt i18n:translate="phone_number">Phone number</dt>
+    <dd tal:content="structure viewlet/phone_number" />
 </dl>
- -->
-<p> JJOJJO </p>
+</body>
+</html>
