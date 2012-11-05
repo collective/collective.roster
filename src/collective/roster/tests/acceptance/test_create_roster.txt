@@ -12,7 +12,20 @@ Suite Setup  Background
 
 Background
     Given the personnel roster product is activated
-    And I'm logged in as a site manager
+        And I'm logged in as a site manager
+        And There's a section for form letter templates
+        And I go to form letter templates section
+
+I add a new roster
+    Open add new menu
+    Click link  collective-roster-roster
+
+I fill the necessary information
+    Input text  form.widgets.IBasic.title  Rejection Letter
+    Input text  form.widgets.IBasic.description
+    ...         To be sent when a submission is rejected
+I click 'Save'
+new roster is created
 
 *** Test Cases ***
 

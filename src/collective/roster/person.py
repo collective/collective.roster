@@ -79,9 +79,10 @@ class GroupsViewlet(grok.Viewlet):
         return u"<p>%s</p>" % ", ".join(titles)
 
 
-class ExampleViewlet(grok.Viewlet):
-    """Example viewlet"""
+class PersonViewlet(grok.Viewlet):
+    """Renders the basic information of person"""
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.example")
+    grok.name("collective.roster.personviewlets.person")
+
