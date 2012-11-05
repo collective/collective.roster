@@ -12,5 +12,9 @@ class ContactInfoViewlet(grok.Viewlet):
     grok.name("collective.roster.personviewlets.contactinfo")
 
     @property
-    def contact_info(self):
-        return IContactInfo(self.context)
+    def email(self):
+        return IContactInfo(self.context).email
+
+    @property
+    def phone_number(self):
+        return IContactInfo(self.context).phone_number
