@@ -5,7 +5,7 @@
 
     <grok:grok package=".interfaces" />
     <grok:grok package=".indexers" />
-
+    <grok:grok package=".viewlets" />
     <!--
     <plone:behavior
         title="Portal Roles"

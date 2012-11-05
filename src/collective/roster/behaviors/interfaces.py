@@ -5,6 +5,7 @@ from zope.interface import alsoProvides
 from plone.formwidget.contenttree import UUIDSourceBinder
 from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 
+from zope.interface import Interface
 
 class IContactInfo(form.Schema):
     """ Behavior interface for providing contact info """
@@ -20,6 +21,8 @@ class IContactInfo(form.Schema):
     )
 alsoProvides(IContactInfo, form.IFormFieldProvider)
 
+class IHasContactInfo(Interface):
+    """ MARKER """
 
 class IRelatedPersons(form.Schema):
     """Behavior interface which provides related persons for
