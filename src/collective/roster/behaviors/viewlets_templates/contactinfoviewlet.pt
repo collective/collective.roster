@@ -1,0 +1,6 @@
+<!-- <dl>
+    <dt i18n:translate="email"></dt>
+    <dd tal:content="structure context/email" />
+</dl>
+ -->
+<p> JJOJJO </p>

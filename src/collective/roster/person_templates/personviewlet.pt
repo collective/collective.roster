@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="collective.roster">
+<body>
+
+<!-- insert the viewlet html here -->
+<dl>
+    <dt i18n:translate="title">Title</dt>
+    <dd tal:content="structure context/title" />
+
+    <dt i18n:translate="first_name">First name</dt>
+    <dd tal:content="structure context/firstname" />
+
+    <dt i18n:translate="last_name">Last name</dt>
+    <dd tal:content="structure context/lastname" />
+
+    <dt i18n:translate="salutation">Salutation</dt>
+    <dd tal:content="structure context/salutation" />
+
+    <dt i18n:translate="description">Description</dt>
+    <dd tal:content="structure context/description" />
+
+    <dt i18n:translate="groups">Groups</dt>
+    <dd tal:repeat="group context/groups" tal:content="group" />
+</dl>
+</body>
+</html>
