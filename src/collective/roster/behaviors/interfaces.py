@@ -50,6 +50,9 @@ class IHasContactInfo(Interface):
     """ Marker interface for contact info behavior """
 
 
+class IHasRelatedPersons(Interface):
+    """Marker interface for related persons behavior"""
+    
 class IRelatedPersons(form.Schema):
     """Behavior interface which provides related persons for
     any dexterity content"""

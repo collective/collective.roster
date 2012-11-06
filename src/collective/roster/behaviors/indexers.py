@@ -1,4 +1,4 @@
-from collective.roster.interfaces import IHasRelatedPersons
+from collective.roster.behaviors.interfaces import IHasRelatedPersons
 from collective.roster.behaviors.interfaces import IRelatedPersons
 from five import grok
 from plone.indexer import indexer
