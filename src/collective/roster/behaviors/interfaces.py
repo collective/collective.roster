@@ -24,6 +24,15 @@ def validateaddress(value):
 class IContactInfo(form.Schema):
     """ Behavior interface for providing contact info """
 
+ # Feedback fieldset
+    
+    form.fieldset(
+        'Contact Information', 
+        label=_(u"Contact Information"),
+        fields=['email', 'phone_number']
+    )
+    
+
     email = schema.TextLine(
         title=_(u"Email"),
         description=_(u"Email address"),
