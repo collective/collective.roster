@@ -21,11 +21,14 @@ I add a new roster
     Click link  collective-roster-roster
 
 I fill the necessary information
-    Input text  form.widgets.IBasic.title  Rejection Letter
-    Input text  form.widgets.IBasic.description
-    ...         To be sent when a submission is rejected
-I click 'Save'
-new roster is created
+    Input text  form.widgets.IBasic.title  Roster
+    Input text  form.widgets.IBasic.description  Personnel roster
+
+I click 'save'
+    Click button  Save
+
+New roster is created
+    Page should contain  Item created
 
 *** Test Cases ***
 
@@ -34,4 +37,3 @@ Create personnel roster
     And I fill the necessary information
     And I click 'Save'
     Then new roster is created
-
