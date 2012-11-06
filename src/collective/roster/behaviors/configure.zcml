@@ -30,7 +30,7 @@
         description="Provides related persons list in any dexterity content type"
         provides=".interfaces.IRelatedPersons"
         factory="plone.behavior.AnnotationStorage"
-        marker="collective.roster.interfaces.IHasRelatedPersons"
+        marker="collective.roster.behaviors.interfaces.IHasRelatedPersons"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
