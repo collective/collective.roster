@@ -11,11 +11,8 @@ import robotsuite
 
 def test_suite():
     suite = unittest.TestSuite()
-    # suite.addTests([
-    #     layered(robotsuite.RobotTestSuite("acceptance"),
-    #     layer=ROSTER_ACCEPTANCE_TESTING),
-    # ])
+    suite.addTests([
+        layered(robotsuite.RobotTestSuite("acceptance"),
+        layer=ROSTER_ACCEPTANCE_TESTING),
+    ])
     return suite
-
-print("TODO: Enabled acceptance tests from "
-      "collective.roster.tests.test_acceptance once they are ready.")

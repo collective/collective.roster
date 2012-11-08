@@ -19,10 +19,3 @@ Log in admin
 
 Log in user
     Log in  ${TEST_USER_NAME}  ${TEST_USER_PASSWORD}
-
-There's a section for form letter templates
-    Goto  ${PLONE_URL}
-    Add folder  rosters
-
-I go to form letter templates section
-    Goto  ${PLONE_URL}/rosters

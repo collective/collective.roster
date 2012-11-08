@@ -1,4 +1,3 @@
-
 *** Settings ***
 
 Resource  common.txt
@@ -13,19 +12,29 @@ Suite Setup  Background
 Background
     Given the personnel roster product is activated
         And I'm logged in as a site manager
-        And There's a section for form letter templates
-        And I go to form letter templates section
 
 I add a new roster
+    Go to  ${PLONE_URL}
     Open add new menu
     Click link  collective-roster-roster
 
 I fill the necessary information
-    Input text  form.widgets.IBasic.title  Rejection Letter
-    Input text  form.widgets.IBasic.description
-    ...         To be sent when a submission is rejected
-I click 'Save'
-new roster is created
+    Input text  form.widgets.IBasic.title  Roster
+    Input text  form.widgets.IBasic.description  Personnel roster
+    Input text  form.widgets.groups  Members
+    select from list  form.widgets.columns_hidden.from
+    ...               collective.roster.personnellisting.title
+    select from list  form.widgets.columns_hidden.from
+    ...               collective.roster.personnellisting.email
+    select from list  form.widgets.columns_hidden.from
+    ...               collective.roster.personnellisting.phone_number
+    Click button  from2toButton
+
+I click 'save'
+    Click button  Save
+
+New roster is created
+    Page should contain  Item created
 
 *** Test Cases ***
 
@@ -34,4 +43,3 @@ Create personnel roster
     And I fill the necessary information
     And I click 'Save'
     Then new roster is created
-
