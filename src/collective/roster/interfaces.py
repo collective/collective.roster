@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Personnel roster elated interfaces and schemas"""
+""" Personnel roster and person related interfaces and schemas """
 
 from zope import schema
 
@@ -16,16 +16,16 @@ from collective.roster import _
 
 
 class IPersonnelListing(Interface):
-    """Marker interface for personnel listing tables"""
+    """ Marker interface for personnel listing tables """
 
 
 class IHiddenColumnsField(Interface):
-    """Marker interface for roster hidden columns field"""
+    """ Marker interface for roster hidden columns field """
 
 
 class IRoster(form.Schema):
-    """Personnel roster (to contain and display persons). Contained persons
-    can be assigned into one ore more groups."""
+    """ Personnel roster (to contain and display persons). Contained persons
+    can be assigned into one ore more groups. """
 
     groups = schema.List(
         title=_(u"Groups"),
@@ -56,7 +56,7 @@ alsoProvides(IRoster['columns_hidden'], IHiddenColumnsField)
 
 
 class IPerson(form.Schema):
-    """A person to store and display person related information"""
+    """ A person to store and display person related information """
 
     title = schema.TextLine(
         title=_(u"Title"),

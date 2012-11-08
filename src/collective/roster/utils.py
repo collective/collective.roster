@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Utility methods"""
+""" Useful utility methods """
 
 from Acquisition import aq_inner, aq_parent
 
 
 def parents(context):
-    """Parents of the context
+    """ Parents of the context
 
     Generator to walk the acquistion chain of object, considering that it
     could be a function.

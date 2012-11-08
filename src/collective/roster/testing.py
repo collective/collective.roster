@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Test layer"""
+""" Test layer """
 
 from Acquisition import aq_base
 from ZODB.POSException import ConflictError
@@ -9,27 +9,18 @@ from OFS.SimpleItem import SimpleItem
 
 from plone.app.testing import (
     PloneSandboxLayer,
-    applyProfile,
-    FunctionalTesting,
     PLONE_FIXTURE,
-    IntegrationTesting
+
+    applyProfile,
+
+    IntegrationTesting,
+    FunctionalTesting,
 )
 
 from plone.testing.z2 import ZSERVER_FIXTURE
 
 from Products.MailHost.interfaces import IMailHost
 from Products.CMFPlone.tests.utils import MockMailHost
-
-
-# class RosterConfiguredFixture(PloneSandboxLayer):
-#     defaultBases = (PLONE_FIXTURE,)
-
-#     def setUpZope(self, app, configurationContext):
-#         import collective.roster
-#         self.loadZCML(package=collective.roster)
-
-#     def setUpPloneSite(self, portal):
-#         pass
 
 
 class RosterLayer(PloneSandboxLayer):
@@ -65,19 +56,17 @@ class RosterLayer(PloneSandboxLayer):
 
 ROSTER_FIXTURE = RosterLayer()
 
+ROSTER_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(ROSTER_FIXTURE, ),
+    name="Functional")
+
+ROSTER_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(ROSTER_FIXTURE, ),
+    name="Functional")
+
 ROSTER_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(ROSTER_FIXTURE, ZSERVER_FIXTURE),
     name="Acceptance")
-
-ROSTER_CONFIGURED_FIXTURE = RosterLayer()
-
-ROSTER_CONFIGURED_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(ROSTER_CONFIGURED_FIXTURE,),
-    name="RosterConfiguredFixture:Integration")
-
-ROSTER_CONFIGURED_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(ROSTER_CONFIGURED_FIXTURE,),
-    name="RosterConfiguredFixture:Functional")
 
 
 class RemoteLibrary(SimpleItem):
@@ -114,41 +103,3 @@ class Keywords(object):
         quickinstaller = getToolByName(getSite(), "portal_quickinstaller")
 
         assert quickinstaller.isProductInstalled(product_name)
-
-    def create_form_letter_template(self, title, retry=3):
-        from zope.component import getUtility
-        from zope.component.hooks import getSite
-        from plone.i18n.normalizer.interfaces import IURLNormalizer
-        from plone.dexterity.utils import createContentInContainer
-
-        if not type(title) == unicode:
-            title = unicode(title, "utf-8")
-
-        portal = getSite()
-        if portal:
-            portal._p_jar.sync()
-
-            name = getUtility(IURLNormalizer).normalize(title)
-            createContentInContainer(portal, 'collective.roster.template',
-                                     checkConstraints=False, id=str(name))
-
-            obj = portal[name]
-
-            from plone.app.dexterity.behaviors.metadata import IBasic
-            IBasic(obj).title = unicode(title)
-            IBasic(obj).description = u"This is a form letter template"
-
-            obj.header_from = u"nobody@collective.fi"
-            obj.header_to = [u"plone-support@collective.fi"]
-            obj.header_subject = u"Important message"
-            obj.body = u"Important message from ${absolute_url}."
-
-            obj.reindexObject()
-
-        try:
-            from transaction import commit
-            commit()
-        except ConflictError:
-            if retry:
-                self.create_form_letter_template(title, max(0, retry - 1))
-

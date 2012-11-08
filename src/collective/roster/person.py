@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Person"""
+""" Person content type, its default adapters, views and viewlets """
 
 from five import grok
 
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
+from Products.CMFCore.utils import getToolByName
+
 from plone.indexer import indexer
+from plone.uuid.interfaces import IUUID
 from plone.app.viewletmanager.manager import OrderedViewletManager
 
 from plone.app.content.interfaces import INameFromTitle
@@ -30,7 +33,7 @@ def title(obj):
         obj.title = u"%s %s" % (obj.salutation, INameFromTitle(obj).title)
     else:
         obj.title = INameFromTitle(obj).title
-    return obj.title.encode('utf-8')  # XXX: Unicode would crash the indexing.
+    return obj.title.encode('utf-8')  # XXX: unicode could crash the indexing
 grok.global_adapter(title, name="Title")
 
 
@@ -48,7 +51,7 @@ grok.global_adapter(subject, name="Subject")
 
 
 class View(grok.View):
-    """"Person view"""
+    """ Person main view, which mainly renders the person viewlet manager """
 
     grok.context(IPerson)
     grok.require("zope2.View")
@@ -56,12 +59,13 @@ class View(grok.View):
 
 
 class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
+    """ Person viewlet manager, which manages all person related viewlets """
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets")
 
 
 class GroupsViewlet(grok.Viewlet):
-    """Groups viewlet"""
+    """ Groups viewlet, which render list of groups the person belongs to """
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
@@ -80,9 +84,23 @@ class GroupsViewlet(grok.Viewlet):
 
 
 class PersonViewlet(grok.Viewlet):
-    """Renders the basic information of person"""
+    """ Person viewlet, which renders the basic information of the person """
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets.person")
 
+
+class RelatedContentViewlet(grok.Viewlet):
+    """ Related content viewlet, which renders list of content linked to the
+    person """
+
+    grok.viewletmanager(PersonViewlets)
+    grok.context(IPerson)
+    grok.name("collective.roster.personviewlets.relatedcontent")
+
+    @property
+    def related_items(self):
+        pc = getToolByName(self.context, "portal_catalog")
+        results = pc(related_persons=[IUUID(self.context)])
+        return results

@@ -1,48 +1,57 @@
-from plone.directives import form
-from zope import schema
-from collective.roster import _
-from zope.interface import alsoProvides
-from plone.formwidget.contenttree import UUIDSourceBinder
-from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
+# -*- coding: utf-8 -*-
+""" Personnel roster related interfaces and schemas """
 
-from zope.interface import Interface
+from plone.directives import form
+
+from zope import schema
 from zope.schema import ValidationError
 
-class InvalidEmailAddress(ValidationError):
-    "Invalid email address"
+from zope.interface import (
+    Interface,
+    alsoProvides
+)
 
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 
-def validateaddress(value):
+from plone.formwidget.contenttree import UUIDSourceBinder
+from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
+
+from collective.roster import _
+
+
+class InvalidEmailAddress(ValidationError):
+    """ Invalid email address """
+
+
+def isEmailAddress(value):
     try:
         checkEmailAddress(value)
     except EmailAddressInvalid:
         raise InvalidEmailAddress(value)
     return True
 
+
 class IContactInfo(form.Schema):
     """ Behavior interface for providing contact info """
-
- # Feedback fieldset
-    
-    form.fieldset(
-        'Contact Information', 
-        label=_(u"Contact Information"),
-        fields=['email', 'phone_number']
-    )
-    
 
     email = schema.TextLine(
         title=_(u"Email"),
         description=_(u"Email address"),
-        constraint=validateaddress
+        constraint=isEmailAddress
     )
 
     phone_number = schema.TextLine(
         title=_(u"Phone"),
         description=_(u"Phone number"),
     )
+
+    form.fieldset(
+        'Contact Information',
+        label=_(u"Contact Information"),
+        fields=['email', 'phone_number']
+    )
+
 alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 
@@ -50,12 +59,10 @@ class IHasContactInfo(Interface):
     """ Marker interface for contact info behavior """
 
 
-class IHasRelatedPersons(Interface):
-    """Marker interface for related persons behavior"""
-    
 class IRelatedPersons(form.Schema):
-    """Behavior interface which provides related persons for
-    any dexterity content"""
+    """ Behavior interface which provides related persons for
+    any dexterity content """
+
     form.widget(related_persons=MultiContentTreeFieldWidget)
     related_persons = schema.List(
         title=u"Related persons",
@@ -64,4 +71,9 @@ class IRelatedPersons(form.Schema):
             source=UUIDSourceBinder(portal_type="collective.roster.person")
         )
     )
+
 alsoProvides(IRelatedPersons, form.IFormFieldProvider)
+
+
+class IHasRelatedPersons(Interface):
+    """ Marker interface for related persons behavior """

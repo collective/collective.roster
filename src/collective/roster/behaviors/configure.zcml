@@ -1,37 +1,33 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:grok="http://namespaces.zope.org/grok"
            xmlns:plone="http://namespaces.plone.org/plone"
-           xmlns:browser="http://namespaces.zope.org/browser">
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
 
     <grok:grok package=".interfaces" />
     <grok:grok package=".indexers" />
     <grok:grok package=".viewlets" />
-    <!--
+
     <plone:behavior
-        title="Portal Roles"
-        description="Adds a multiselect field to select portal roles for a person."
-        provides=".person.IPortalRoles"
-        factory=".person.PortalRoles"
+        title="Related persons"
+        description="Provides related persons list for any dexterity
+                     content type"
+        provides=".interfaces.IRelatedPersons"
         for="plone.dexterity.interfaces.IDexterityContent"
-        marker=".person.IPortalRolesMarker"
+        factory="plone.behavior.AnnotationStorage"
+        marker=".interfaces.IHasRelatedPersons"
+        i18n:attributes="title description"
         />
-    -->
+
     <plone:behavior
         title="Contact Info"
         description="Provides contact info fields"
         provides=".interfaces.IContactInfo"
-        factory="plone.behavior.AnnotationStorage"
         for="plone.dexterity.interfaces.IDexterityContent"
+        factory="plone.behavior.AnnotationStorage"
         marker=".interfaces.IHasContactInfo"
-        />
-
-    <plone:behavior
-        title="Related persons"
-        description="Provides related persons list in any dexterity content type"
-        provides=".interfaces.IRelatedPersons"
-        factory="plone.behavior.AnnotationStorage"
-        marker="collective.roster.behaviors.interfaces.IHasRelatedPersons"
-        for="plone.dexterity.interfaces.IDexterityContent"
+        i18n:attributes="title description"
         />
 
 </configure>
