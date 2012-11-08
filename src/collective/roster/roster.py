@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Personnel roster, which contains and displays person information"""
+""" Personnel roster content type, its default adapters, views and viewlets """
 
 from five import grok
 
@@ -49,8 +49,8 @@ _ = ZopeMessageFactory("collective.roster")
 
 
 class LocalGroupsVocabulary(grok.GlobalUtility):
-    """Returns a new context bound vocabulary, which returns the groups defined
-    in the nearest parent roster"""
+    """ Returns a new context bound vocabulary, which returns the groups defined
+    in the nearest parent roster """
 
     grok.provides(IVocabularyFactory)
     grok.name("collective.roster.localgroups")
@@ -69,8 +69,8 @@ class LocalGroupsVocabulary(grok.GlobalUtility):
 
 
 class DisplayColumnsVocabulary(grok.GlobalUtility):
-    """Returns a new context indepeneent vocabulary, which return all the table
-    columns registered for the roster interface"""
+    """ Returns a new context independent vocabulary, which return all the
+    table columns registered for the roster interface """
 
     grok.provides(IVocabularyFactory)
     grok.name("collective.roster.columns")
@@ -89,8 +89,8 @@ class DisplayColumnsVocabulary(grok.GlobalUtility):
 
 
 class RosterDataManager(grok.MultiAdapter, AttributeField):
-    """z3c.form datamanager, which reverts the behavior of display columns
-    field to store hidden columns instead"""
+    """ z3c.form datamanager, which reverts the behavior of display columns
+    field to store hidden columns instead """
 
     grok.adapts(IRoster, IList)
 
@@ -121,8 +121,8 @@ class RosterDataManager(grok.MultiAdapter, AttributeField):
 
 
 class View(grok.View):
-    """Personnel listing view, which is composed using its own viewlet
-    manager to make it extensible and configurable"""
+    """ Personnel listing view, which is composed using its own viewlet manager
+    to make it extensible and configurable """
 
     grok.context(IRoster)
     grok.require("zope2.View")
@@ -142,8 +142,8 @@ class RosterViewlets(OrderedViewletManager, grok.ViewletManager):
 
 
 class ListingViewlet(grok.Viewlet):
-    """The default personnel listing viewlet, which generates a personnel
-    listing table per defined group in personnel roster"""
+    """ The default personnel listing viewlet, which generates a personnel
+    listing table per defined group in personnel roster """
 
     grok.viewletmanager(RosterViewlets)
     grok.context(IRoster)
@@ -162,7 +162,7 @@ class ListingViewlet(grok.Viewlet):
 
 
 class PersonnelListing(table.Table):
-    """Personnel listing table, which can be exteneded with custom columns"""
+    """ Personnel listing table, which can be exteneded with custom columns """
     grok.implements(IPersonnelListing)
 
     # CSS
@@ -203,9 +203,9 @@ class PersonnelListing(table.Table):
 
 
 class PersonnelValues(grok.MultiAdapter):
-    """Personnel values adapter, which provides catalog brains for all
-    the persons with the same group as the currently rendered personnel
-    listing table under the current personnel roster"""
+    """ Personnel values adapter, which provides catalog brains for all the
+    persons with the same group as the currently rendered personnel listing
+    table under the current personnel roster """
 
     grok.provides(IValues)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -231,7 +231,7 @@ class PersonnelValues(grok.MultiAdapter):
 
 
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
-    """Column, which renders person's full name with salutation"""
+    """ Column, which renders person's full name with salutation """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -252,7 +252,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
 
 class EmailColumn(grok.MultiAdapter, column.Column):
-    """Column, which renders person's email address"""
+    """ Column, which renders person's email address """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -270,7 +270,7 @@ class EmailColumn(grok.MultiAdapter, column.Column):
 
 
 class PhoneNumberColumn(grok.MultiAdapter, column.Column):
-    """Column, which renders person's phone number"""
+    """ Column, which renders person's phone number """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)

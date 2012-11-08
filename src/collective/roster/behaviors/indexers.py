@@ -1,12 +1,19 @@
-from collective.roster.behaviors.interfaces import IHasRelatedPersons
-from collective.roster.behaviors.interfaces import IRelatedPersons
+# -*- coding: utf-8 -*-
+""" Portal catalog indexers """
+
 from five import grok
+
 from plone.indexer import indexer
+
+from collective.roster.behaviors.interfaces import (
+    IHasRelatedPersons,
+    IRelatedPersons
+)
 
 
 @indexer(IHasRelatedPersons)
 def RelatedPersonsIndexer(context):
-    """ create index from UUID list so we can search catalog with it"""
+    """ Indexes related person UUIDs to be searched from the catalog """
     adapted = IRelatedPersons(context)
     bound = IRelatedPersons["related_persons"].bind(adapted)
     return bound.get(adapted)
