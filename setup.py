@@ -29,6 +29,7 @@ setup(
         "plone.indexer",
         "plone.directives.form",
         "plone.app.dexterity",
+        "plone.formwidget.contenttree",
         "plone.app.referenceablebehavior",
         "plone.app.viewletmanager",
         "plone.z3ctable",
