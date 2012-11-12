@@ -22,10 +22,6 @@
 
     <!-- enabled behaviors -->
     <property name="behaviors">
-<!--         <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
-        <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
-        <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
- -->        
         <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
         <element value="plone.app.dexterity.behaviors.metadata.IBasic" />
     </property>
