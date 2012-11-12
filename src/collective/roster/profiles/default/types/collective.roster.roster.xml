@@ -5,7 +5,7 @@
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">Roster</property>
     <property name="description" i18n:translate="">A personnel roster</property>
-    <property name="content_icon">folder_icon.gif</property>
+    <property name="content_icon">folder_icon.png</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
