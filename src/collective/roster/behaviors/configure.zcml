@@ -21,8 +21,8 @@
         />
 
     <plone:behavior
-        title="Contact Info"
-        description="Provides contact info fields"
+        title="Contact information"
+        description="Provides contact information fields"
         provides=".interfaces.IContactInfo"
         for="plone.dexterity.interfaces.IDexterityContent"
         factory="plone.behavior.AnnotationStorage"
