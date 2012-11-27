@@ -5,6 +5,7 @@ develop-eggs
 parts
 tags
 var
+dist
 
 *.pyc
 *.mo
