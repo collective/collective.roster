@@ -90,6 +90,6 @@ class IPerson(form.Schema):
             title=_("Group"),
             vocabulary="collective.roster.localgroups"
         ),
-        min_length=1,
-        required=True
+        # min_length=1,
+        required=False
     )
