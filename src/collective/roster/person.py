@@ -28,12 +28,26 @@ class NameFromTitle(grok.Adapter):
 
 
 @indexer(IPerson)
-def title(obj):
-    if obj.salutation:
-        obj.title = u"%s %s" % (obj.salutation, INameFromTitle(obj).title)
-    else:
-        obj.title = INameFromTitle(obj).title
-    return obj.title.encode('utf-8')  # XXX: unicode could crash the indexing
+def title(context):
+
+    title = INameFromTitle(context).title
+
+    adapted = IPerson(context, None)
+
+    if adapted:
+        bound = IPerson["salutation"].bind(adapted)
+        salutation = bound.get(adapted)
+        if salutation:
+            title = u"%s %s" % (salutation, title)
+
+    # XXX: We are mutating object during indexing... by purpose.
+    context.title = title
+    # Note: If binding and setting through the schema is so cool, why not here?
+    # Because the field to be set is meant to be readonly on forms and setting
+    # through the schema would explicitly prevent setting readonly fields.
+
+    return title.encode("utf-8")  # XXX: unicode could crash the indexing
+
 grok.global_adapter(title, name="Title")
 
 
