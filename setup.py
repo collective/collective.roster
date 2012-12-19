@@ -25,6 +25,7 @@ setup(
         "setuptools",
         "five.grok",
         "zope.schema",
+#        "zope.i18n",  # fails on Plone with <includeDependencies />
         "zope.i18nmessageid",
         "plone.indexer",
         "plone.directives.form",
