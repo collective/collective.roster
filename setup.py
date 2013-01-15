@@ -33,6 +33,8 @@ setup(
         "plone.formwidget.contenttree",
         "plone.app.referenceablebehavior",
         "plone.app.viewletmanager",
+        "plone.namedfile[blobs]",
+        "plone.formwidget.namedfile",
         "plone.z3ctable",
     ],
     extras_require={"test": [
