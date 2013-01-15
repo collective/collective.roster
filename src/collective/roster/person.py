@@ -72,6 +72,7 @@ class View(grok.View):
     grok.name("view")
 
 
+
 class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
     """ Person viewlet manager, which manages all person related viewlets """
     grok.context(IPerson)

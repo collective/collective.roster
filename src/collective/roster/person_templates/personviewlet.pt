@@ -23,6 +23,14 @@
     <dt i18n:translate="description">Description</dt>
     <dd tal:content="structure context/description" />
 
+    <div tal:define="picture nocall:context/picture"
+      tal:condition="nocall:picture">
+    <img tal:attributes="src string:${context/absolute_url}/@@download/picture/${picture/filename};
+                         height picture/_height | nothing;
+                         width picture/_width | nothing;"
+    />
+    </div> 
+
 </dl>
 </body>
 </html>

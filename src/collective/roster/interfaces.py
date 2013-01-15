@@ -13,6 +13,7 @@ from plone.directives import form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from collective.roster import _
+from plone.namedfile.field import NamedBlobImage
 
 
 class IPersonnelListing(Interface):
@@ -82,6 +83,10 @@ class IPerson(form.Schema):
         missing_value=u"",
         required=False
     )
+    picture = NamedBlobImage(
+        title=_(u"Upload an image"),
+        required=False,
+    ) 
 
     form.widget(groups=CheckBoxFieldWidget)
     groups = schema.List(
