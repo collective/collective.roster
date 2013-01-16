@@ -1,5 +1,5 @@
   <div class="person_image" tal:condition="context/image"> 
-    <img tal:attributes="src string:${context/absolute_url}/@@images/image"/>
+    <img tal:attributes="src string:${context/absolute_url}/@@images/image/mini"/>
   </div>
   <!-- insert the viewlet html here -->
   <dl>
