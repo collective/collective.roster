@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """ Personnel roster and person related interfaces and schemas """
 
 from zope import schema
@@ -83,7 +82,9 @@ class IPerson(form.Schema):
         missing_value=u"",
         required=False
     )
-    picture = NamedBlobImage(
+    
+    form.primary('image')
+    image = NamedBlobImage(
         title=_(u"Upload an image"),
         required=False,
     ) 

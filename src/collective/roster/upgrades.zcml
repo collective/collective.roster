@@ -1,0 +1,16 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup"
+  i18n_domain="collective.roster">
+
+  <gs:upgradeDepends
+    title="Add person.css"
+    description=""
+    source="1"
+    destination="2"
+    profile="collective.roster:default"
+    import_steps="cssregistry"
+    purge="False"
+    run_deps="False"
+  />
+</configure>
