@@ -245,7 +245,9 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
         return item.getURL()
 
     def getLinkContent(self, item):
-        title = item.Title
+        obj = item.getObject()
+        title = u"%s %s" % (obj.lastname,
+                           obj.firstname)
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
         return title
@@ -285,3 +287,17 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
         if adapter:
             return adapter.phone_number
         return u""
+
+class SalutationColumn(grok.MultiAdapter, column.Column):
+    """ Column which renders person's salutation """
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.salutation")
+
+    weight = 102
+
+    header = _(u"Salutation")
+
+    def renderCell(self, item):
+        return item.getObject().salutation
