@@ -2,7 +2,8 @@
 <object>
   <order manager="collective.roster.personviewlets" skinname="*">
     <viewlet name="collective.roster.personviewlets.portrait" />
-    <viewlet name="collective.roster.personviewlets.contact_info" />
+    <viewlet name="collective.roster.personviewlets.contactinfo" />
     <viewlet name="collective.roster.personviewlets.localgroups" />
+    <viewlet name="collective.roster.personviewlets.person" />
   </order>
 </object>
