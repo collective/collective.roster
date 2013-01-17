@@ -1,8 +1,9 @@
-<!-- insert the viewlet html here -->
-<dl>
-    <dt i18n:translate="email">Email</dt>
-    <dd tal:content="structure viewlet/email" />
+<div class="person_contactinfo">
+  <dl>
+      <dt i18n:translate="email">Email</dt>
+      <dd tal:content="structure viewlet/email" />
 
-    <dt i18n:translate="phone_number">Phone number</dt>
-    <dd tal:content="structure viewlet/phone_number" />
-</dl>
+      <dt i18n:translate="phone_number">Phone number</dt>
+      <dd tal:content="structure viewlet/phone_number" />
+    </dl>
+</div>
