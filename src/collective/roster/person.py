@@ -72,7 +72,6 @@ class View(grok.View):
     grok.name("view")
 
 
-
 class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
     """ Person viewlet manager, which manages all person related viewlets """
     grok.context(IPerson)
@@ -104,6 +103,14 @@ class PortraitViewlet(grok.Viewlet):
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets.portrait")
+
+
+class PersonViewlet(grok.Viewlet):
+    """ Person viewlet, which renders the person image """
+
+    grok.viewletmanager(PersonViewlets)
+    grok.context(IPerson)
+    grok.name("collective.roster.personviewlets.person")
 
 
 class RelatedContentViewlet(grok.Viewlet):

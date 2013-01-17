@@ -1,0 +1,3 @@
+  <div class="portrait" tal:condition="context/image"> 
+    <img tal:attributes="src string:${context/absolute_url}/@@images/image/mini"/>
+  </div>
