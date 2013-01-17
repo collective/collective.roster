@@ -23,8 +23,8 @@ class NameFromTitle(grok.Adapter):
 
     @property
     def title(self):
-        return u"%s %s" % (self.context.firstname,
-                           self.context.lastname)
+        return u"%s %s" % (self.context.lastname,
+                           self.context.firstname)
 
 
 @indexer(IPerson)
@@ -38,7 +38,7 @@ def title(context):
         bound = IPerson["salutation"].bind(adapted)
         salutation = bound.get(adapted)
         if salutation:
-            title = u"%s %s" % (salutation, title)
+            title = u"%s, %s" % (title, salutation)
 
     # XXX: We are mutating object during indexing... by purpose.
     context.title = title
@@ -98,12 +98,12 @@ class GroupsViewlet(grok.Viewlet):
         return titles
 
 
-class PersonViewlet(grok.Viewlet):
-    """ Person viewlet, which renders the basic information of the person """
+class PortraitViewlet(grok.Viewlet):
+    """ Portrait viewlet, which renders the portrait image """
 
     grok.viewletmanager(PersonViewlets)
     grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.person")
+    grok.name("collective.roster.personviewlets.portrait")
 
 
 class RelatedContentViewlet(grok.Viewlet):

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object>
   <order manager="collective.roster.personviewlets" skinname="*">
-    <viewlet name="collective.roster.personviewlets.person" />
+    <viewlet name="collective.roster.personviewlets.portrait" />
     <viewlet name="collective.roster.personviewlets.contact_info" />
     <viewlet name="collective.roster.personviewlets.localgroups" />
   </order>
