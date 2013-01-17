@@ -1,6 +1,13 @@
 Changelog
 =========
 
+
+0.9.1 (2012-01-17)
+------------------
+- Person view updates: image and biography added
+  [Toni Haka-Risku]
+- Roster view updates: salutation column added  and title changed
+
 0.9.0 (2012-12-19)
 ------------------
 
