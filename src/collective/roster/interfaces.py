@@ -78,6 +78,12 @@ class IPerson(form.Schema):
     )
 
     description = schema.Text(
+        title=_(u"Description"),
+        missing_value=u"",
+        required=False
+    )
+
+    biography = schema.Text(
         title=_(u"Biography"),
         missing_value=u"",
         required=False
