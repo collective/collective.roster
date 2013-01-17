@@ -4,10 +4,10 @@
   border: 1px solid #ccc;
 }
 
-.person_info{
+.person_contactinfo{
   float: left;
 }
 
-.groups_info{
+.person_groups{
   float: left;
 }
