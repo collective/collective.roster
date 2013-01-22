@@ -25,6 +25,7 @@
     <!-- enabled behaviors -->
     <property name="behaviors">
         <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+        <element value="collective.roster.behaviors.interfaces.IContactInfo" />
     </property>
 
     <!-- View information -->
