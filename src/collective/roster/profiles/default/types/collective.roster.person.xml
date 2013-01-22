@@ -9,13 +9,15 @@
     <property name="allow_discussion">False</property>
     <property name="global_allow">False</property>
     <property name="filter_content_types">True</property>
-    <property name="allowed_content_types" />
+    <property name="allowed_content_types">
+        <element value="File" />
+    </property>
 
     <!-- schema interface -->
     <property name="schema">collective.roster.interfaces.IPerson</property>
 
     <!-- class used for content items -->
-    <property name="klass">plone.dexterity.content.Item</property>
+    <property name="klass">plone.dexterity.content.Container</property>
 
     <!-- add permission -->
     <property name="add_permission">cmf.AddPortalContent</property>

@@ -25,4 +25,15 @@
     run_deps="False"
   />
 
+  <gs:upgradeDepends
+    title="change person to container and allow file content-type"
+    description=""
+    source="3"
+    destination="4"
+    profile="collective.roster:default"
+    import_steps="typeinfo"
+    purge="False"
+    run_deps="False"
+  />
+
 </configure>
