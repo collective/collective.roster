@@ -15,6 +15,7 @@ from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.app.content.interfaces import INameFromTitle
 
 from collective.roster.interfaces import IPerson
+from plone.directives import dexterity
 
 
 class NameFromTitle(grok.Adapter):
@@ -64,7 +65,7 @@ def subject(obj):
 grok.global_adapter(subject, name="Subject")
 
 
-class View(grok.View):
+class View(dexterity.DisplayForm):
     """ Person main view, which mainly renders the person viewlet manager """
 
     grok.context(IPerson)
