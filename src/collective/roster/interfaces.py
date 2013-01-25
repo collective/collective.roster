@@ -13,6 +13,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from collective.roster import _
 from plone.namedfile.field import NamedBlobImage
+from plone.app.textfield import RichText
 
 
 class IPersonnelListing(Interface):
@@ -82,10 +83,8 @@ class IPerson(form.Schema):
         missing_value=u"",
         required=False
     )
-
-    biography = schema.Text(
+    biography = RichText(
         title=_(u"Biography"),
-        missing_value=u"",
         required=False
     )
     
