@@ -113,11 +113,6 @@ class PersonViewlet(grok.Viewlet):
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets.person")
 
-    def hasContent(self):
-        if len(self.context) > 0:
-            return True
-        return False
-
 
 class RelatedContentViewlet(grok.Viewlet):
     """ Related content viewlet, which renders list of content linked to the
