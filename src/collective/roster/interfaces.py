@@ -87,12 +87,12 @@ class IPerson(form.Schema):
         title=_(u"Biography"),
         required=False
     )
-    
+
     form.primary('image')
     image = NamedBlobImage(
         title=_(u"Upload an image"),
         required=False,
-    ) 
+    )
 
     form.widget(groups=CheckBoxFieldWidget)
     groups = schema.List(
