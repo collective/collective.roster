@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.9.3 (2013-01-25)
+------------------
+- Biography changed to rich text field
+
 0.9.2 (2013-01-25)
 ------------------
 - Attachments added
