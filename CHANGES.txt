@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.9.4 (2013-01-25)
+------------------
+- Accachments rendering removed
+
 0.9.3 (2013-01-25)
 ------------------
 - Biography changed to rich text field
