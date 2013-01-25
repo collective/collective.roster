@@ -1,6 +1,6 @@
 <dl>
   <dt i18n:translate="biography">Biography</dt>
-  <dd tal:content="structure context/biography" />
+  <dd tal:content="structure context/biography/output" />
 </dl>
 
 <fieldset tal:condition="viewlet/hasContent" id="folder-listing">                                              
