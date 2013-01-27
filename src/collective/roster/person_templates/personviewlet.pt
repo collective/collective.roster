@@ -1,4 +1,4 @@
-<dl>
+<dl tal:condition="context/biography/output|nothing">
   <dt i18n:translate="biography">Biography</dt>
   <dd tal:content="structure context/biography/output" />
 </dl>
