@@ -1,6 +1,4 @@
-<div class="person_groups">
-  <dl>
-      <dt i18n:translate="groups">Groups</dt>
-      <dd tal:repeat="group viewlet/groups" tal:content="structure group" />
-    </dl>
-</div>
+<dl class="person_groups" tal:condition="viewlet/groups|nothing">
+  <dt i18n:translate="groups">Groups</dt>
+  <dd tal:repeat="group viewlet/groups" tal:content="structure group" />
+</dl>
