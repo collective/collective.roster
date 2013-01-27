@@ -1,39 +1,53 @@
-<configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:gs="http://namespaces.zope.org/genericsetup"
-  i18n_domain="collective.roster">
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-  <gs:upgradeDepends
-    title="Add person.css"
-    description=""
-    source="1"
-    destination="2"
-    profile="collective.roster:default"
-    import_steps="cssregistry"
-    purge="False"
-    run_deps="False"
-  />
+    <!-- <genericsetup:registerProfile -->
+    <!--     name="upgrade1to2" -->
+    <!--     title="Upgrade collective.roster (1 to 2)" -->
+    <!--     directory="profiles/upgrade1to2" -->
+    <!--     description="Upgrades collective.roster from profile 1 to 2." -->
+    <!--     provides="Products.GenericSetup.interfaces.EXTENSION" -->
+    <!--     for="Products.CMFPlone.interfaces.IPloneSiteRoot" -->
+    <!--     /> -->
 
-  <gs:upgradeDepends
-    title="change viewlet order"
-    description=""
-    source="2"
-    destination="3"
-    profile="collective.roster:default"
-    import_steps="viewlets"
-    purge="False"
-    run_deps="False"
-  />
+    <genericsetup:upgradeDepends
+        source="1" destination="2" sortkey="1"
+        title="Upgrade collective.roster 1 to 2"
+        description="Add person.css."
+        profile="collective.roster:default"
+        import_steps="cssregistry"
+        purge="False"
+        run_deps="false"
+        />
 
-  <gs:upgradeDepends
-    title="change person to container and allow file content-type"
-    description=""
-    source="3"
-    destination="4"
-    profile="collective.roster:default"
-    import_steps="typeinfo"
-    purge="False"
-    run_deps="False"
-  />
+    <genericsetup:upgradeDepends
+        source="2" destination="3" sortkey="2"
+        title="Upgrade collective.roster 2 to 3"
+        description="Change viewlet order."
+        profile="collective.roster:default"
+        import_steps="viewlets"
+        purge="False"
+        run_deps="false"
+        />
+
+    <genericsetup:upgradeDepends
+        source="3" destination="4" sortkey="3"
+        title="Upgrade collective.roster 3 to 4"
+        description="Change person to container and allow file content-type."
+        profile="collective.roster:default"
+        import_steps="typeinfo"
+        purge="False"
+        run_deps="false"
+        />
+
+    <genericsetup:upgradeStep
+        title="Upgrade collective.roster (4 to 5)"
+        description="Migrates item objects to conatainers,
+                    firstname-fields to first_name-fields and
+                    lastname-fields to last_name-fields."
+        profile="collective.roster:default"
+        source="4" destination="5" sortkey="4"
+        handler="collective.roster.upgrades.upgrade4to5"
+        />
 
 </configure>

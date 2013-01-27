@@ -246,8 +246,8 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
     def getLinkContent(self, item):
         obj = item.getObject()
-        title = u"%s %s" % (obj.lastname,
-                           obj.firstname)
+        title = u"%s %s" % (obj.last_name,
+                           obj.first_name)
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
         return title

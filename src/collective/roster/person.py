@@ -24,8 +24,8 @@ class NameFromTitle(grok.Adapter):
 
     @property
     def title(self):
-        return u"%s %s" % (self.context.lastname,
-                           self.context.firstname)
+        return u"%s %s" % (self.context.last_name,
+                           self.context.first_name)
 
 
 @indexer(IPerson)

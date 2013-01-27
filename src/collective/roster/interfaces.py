@@ -64,11 +64,11 @@ class IPerson(form.Schema):
         readonly=True, required=False,
     )
 
-    firstname = schema.TextLine(
+    first_name = schema.TextLine(
         title=_(u"First name")
     )
 
-    lastname = schema.TextLine(
+    last_name = schema.TextLine(
         title=_(u"Last name")
     )
 
