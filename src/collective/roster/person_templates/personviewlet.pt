@@ -1,4 +1,18 @@
-<dl tal:condition="context/biography/output|nothing">
-  <dt i18n:translate="biography">Biography</dt>
-  <dd tal:content="structure context/biography/output" />
+<tal:value condition="nocall:context/biography">
+<dl class="personBiography"
+    tal:define="output python:context.biography.output_relative_to(view.context)"
+    tal:condition="output">
+    <dt i18n:domain="collective.roster" i18n:translate="">Biography</dt>
+    <dd tal:content="structure output" />
 </dl>
+</tal:value>
+<tal:comment replace="nothing">
+Rendering RichText is not as trivial as it looks. We must render it using its
+output_relative_to-method to get relative links (e.g. anchors) rendered
+correctly.
+
+https://raw.github.com/plone/plone.app.textfield/master/plone/app/textfield/widget_display.pt
+
+To avoid this, we could use plone.directives.dexterity.DisplayForm and
+display widgets instead of manually rendering field's content.
+</tal:comment>

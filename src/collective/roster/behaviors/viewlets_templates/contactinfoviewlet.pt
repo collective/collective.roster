@@ -1,9 +1,7 @@
-<div class="person_contactinfo">
-  <dl>
-      <dt i18n:translate="email">Email</dt>
-      <dd tal:content="structure viewlet/email" />
+<dl class="personContactInfo" i18n:domain="collective.roster">
+    <dt i18n:translate="">Email</dt>
+    <dd tal:content="structure context/email" />
 
-      <dt i18n:translate="phone_number">Phone number</dt>
-      <dd tal:content="structure viewlet/phone_number" />
-    </dl>
-</div>
+    <dt i18n:translate="">Phone number</dt>
+    <dd tal:content="structure context/phone_number" />
+</dl>

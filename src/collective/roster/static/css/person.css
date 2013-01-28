@@ -1,15 +1,24 @@
-.portrait {
+.personView dl {
+  clear: left;
+}
+
+.personView dl dt {
+  clear: left;
+  float: left;
+}
+
+.personView dl dd {
+  float: left;
+}
+
+.personPortrait{
   float: right;
   margin-right: 1em;
   border: 1px solid #ccc;
 }
 
-.person_contactinfo{
+#content .personBiography dd {
+  clear: left;
   margin-top: 1em;
-  padding: 0;
-}
-
-.person_groups{
-  margin-top: 1em;
-  padding: 0;
+  margin-left: 0;
 }

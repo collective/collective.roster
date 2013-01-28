@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-""" Personnel roster related interfaces and schemas """
 
 from plone.directives import form
 
@@ -21,7 +20,8 @@ from collective.roster import _
 
 
 class InvalidEmailAddress(ValidationError):
-    """ Invalid email address """
+    """Invalid email address.
+    """
 
 
 def isEmailAddress(value):
@@ -33,7 +33,8 @@ def isEmailAddress(value):
 
 
 class IContactInfo(form.Schema):
-    """ Behavior interface for providing contact info """
+    """Behavior interface for providing contact info.
+    """
 
     email = schema.TextLine(
         title=_(u"Email"),
@@ -47,22 +48,19 @@ class IContactInfo(form.Schema):
     )
 
     form.fieldset(
-        'Contact Information',
-        label=_(u"Contact Information"),
+        'Contact information',
+        label=_(u"Contact information"),
         fields=['email', 'phone_number']
     )
 
 alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 
-class IHasContactInfo(Interface):
-    """ Marker interface for contact info behavior """
-
-
 class IRelatedPersons(form.Schema):
-    """ Behavior interface which provides related persons for
-    any dexterity content """
+    """Behavior interface which provides related persons for any dexterity
+    content. Related persons behavior is to link content to persons.
 
+    """
     form.widget(related_persons=MultiContentTreeFieldWidget)
     related_persons = schema.List(
         title=u"Related persons",
@@ -76,4 +74,5 @@ alsoProvides(IRelatedPersons, form.IFormFieldProvider)
 
 
 class IHasRelatedPersons(Interface):
-    """ Marker interface for related persons behavior """
+    """Marker interface for related persons behavior.
+    """

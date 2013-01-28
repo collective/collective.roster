@@ -1,0 +1,118 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-01-28 04:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.roster\n"
+
+#: collective/roster/profiles/default/types/collective.roster.person.xml
+msgid "A person"
+msgstr ""
+
+#: collective/roster/profiles/default/types/collective.roster.roster.xml
+msgid "A personnel roster"
+msgstr ""
+
+#: collective/roster/interfaces.py:87
+#: collective/roster/person_templates/personviewlet.pt:5
+msgid "Biography"
+msgstr ""
+
+#: collective/roster/interfaces.py:50
+msgid "Column"
+msgstr ""
+
+#: collective/roster/behaviors/interfaces.py:52
+msgid "Contact information"
+msgstr ""
+
+#: collective/roster/interfaces.py:82
+msgid "Description"
+msgstr ""
+
+#: collective/roster/interfaces.py:46
+msgid "Display columns"
+msgstr ""
+
+#: collective/roster/interfaces.py:47
+msgid "Display only the selected person information columns on supporting views."
+msgstr ""
+
+#: collective/roster/behaviors/interfaces.py:40
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:2
+#: collective/roster/roster.py:265
+msgid "Email"
+msgstr ""
+
+#: collective/roster/behaviors/interfaces.py:41
+msgid "Email address"
+msgstr ""
+
+#: collective/roster/interfaces.py:68
+msgid "First name"
+msgstr ""
+
+#: collective/roster/interfaces.py:34
+msgid "Group"
+msgstr ""
+
+#: collective/roster/interfaces.py:32
+#: collective/roster/person_templates/groupsviewlet.pt:2
+msgid "Groups"
+msgstr ""
+
+#: collective/roster/interfaces.py:72
+msgid "Last name"
+msgstr ""
+
+#: collective/roster/profiles/default/types/collective.roster.person.xml
+msgid "Person"
+msgstr ""
+
+#: collective/roster/behaviors/interfaces.py:46
+msgid "Phone"
+msgstr ""
+
+#: collective/roster/behaviors/interfaces.py:47
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:5
+#: collective/roster/roster.py:283
+msgid "Phone number"
+msgstr ""
+
+#: collective/roster/interfaces.py:76
+msgid "Preferred salutation"
+msgstr ""
+
+#: collective/roster/person_templates/relatedcontentviewlet.pt:3
+msgid "Related content"
+msgstr ""
+
+#: collective/roster/profiles/default/types/collective.roster.roster.xml
+msgid "Roster"
+msgstr ""
+
+#: collective/roster/roster.py:300
+msgid "Salutation"
+msgstr ""
+
+#: collective/roster/interfaces.py:63
+#: collective/roster/roster.py:242
+msgid "Title"
+msgstr ""
+
+#: collective/roster/interfaces.py:93
+msgid "Upload an image"
+msgstr ""
+
