@@ -1,21 +1,38 @@
 # -*- coding: utf-8 -*-
 """ Person content type, its default adapters, views and viewlets """
 
-from five import grok
+from cgi import parse_qs
 
-from zope.component import getUtility
+from five import grok
+from plone.directives import dexterity
+
+from Acquisition import aq_base
+
+from zope.component import (
+    getUtility,
+    getAdapters,
+    getMultiAdapter,
+    queryMultiAdapter
+)
 from zope.schema.interfaces import IVocabularyFactory
 
 from Products.CMFCore.utils import getToolByName
 
 from plone.indexer import indexer
 from plone.uuid.interfaces import IUUID
-from plone.app.viewletmanager.manager import OrderedViewletManager
+
+from zope.viewlet.interfaces import IViewlet
+from zope.contentprovider.interfaces import IContentProvider
+
+from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+from plone.app.viewletmanager.manager import (
+    OrderedViewletManager,
+    ManageViewlets
+)
 
 from plone.app.content.interfaces import INameFromTitle
 
 from collective.roster.interfaces import IPerson
-from plone.directives import dexterity
 
 
 class NameFromTitle(grok.Adapter):
@@ -77,6 +94,15 @@ class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
     """ Person viewlet manager, which manages all person related viewlets """
     grok.context(IPerson)
     grok.name("collective.roster.personviewlets")
+
+
+class ManagePersonViewlets(View, ManageViewlets):
+    grok.context(IPerson)
+    grok.name("manage-viewlets")
+
+    def __call__(self):
+        self.index = lambda self=self: View.__call__(self)
+        return ManageViewlets.__call__(self)
 
 
 class GroupsViewlet(grok.Viewlet):
