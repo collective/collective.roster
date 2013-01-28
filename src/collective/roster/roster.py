@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-""" Personnel roster content type, its default adapters, views and viewlets """
+"""Roster (aka. personnel directory)
+"""
 
 from five import grok
 
 from zope.component import (
     getGlobalSiteManager,
-    getMultiAdapter,
     getUtility
 )
 
@@ -29,7 +29,6 @@ from z3c.table import (
 
 from Products.CMFCore.utils import getToolByName
 
-from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from collective.roster.interfaces import (
@@ -60,10 +59,14 @@ class LocalGroupsVocabulary(grok.GlobalUtility):
         normalizer = getUtility(IIDNormalizer)
         roster = getFirstParent(context, IRoster)
         for group in getattr(roster, "groups", ()):
+            if "|" in group:
+                value, title = group.split("|", 1)
+            else:
+                value = title = group
             groups.append(
-                SimpleTerm(group,
+                SimpleTerm(value,
                            token=normalizer.normalize(group),
-                           title=group)
+                           title=title)
             )
         return SimpleVocabulary(groups)
 
@@ -128,35 +131,19 @@ class View(grok.View):
     grok.require("zope2.View")
     grok.name("view")
 
-    def update(self):
-        from zope.viewlet.interfaces import IViewletManager
-        self.viewlets = getMultiAdapter(
-            (self.context, self.request, self),
-            IViewletManager, name="collective.roster.rosterviewlets")
-        self.viewlets.update()
+    def __init__(self, context, request):
+        super(View, self).__init__(context, request)
 
-
-class RosterViewlets(OrderedViewletManager, grok.ViewletManager):
-    grok.context(IRoster)
-    grok.name("collective.roster.rosterviewlets")
-
-
-class ListingViewlet(grok.Viewlet):
-    """ The default personnel listing viewlet, which generates a personnel
-    listing table per defined group in personnel roster """
-
-    grok.viewletmanager(RosterViewlets)
-    grok.context(IRoster)
-    grok.name("collective.roster.rosterviewlets.listing")
-
-    def __init__(self, *args, **kwargs):
-        super(ListingViewlet, self).__init__(*args, **kwargs)
+        vocabulary_factory = getUtility(IVocabularyFactory,
+                                        name="collective.roster.localgroups")
+        vocabulary = vocabulary_factory(self.context)
         self.tables = map(
             lambda group: PersonnelListing(self.context, self.request, group),
-            self.context.groups)
+            map(lambda term: term.value, vocabulary)
+        )
 
     def update(self):
-        super(ListingViewlet, self).update()
+        super(View, self).update()
         for table in self.tables:
             table.update()
 
@@ -223,9 +210,11 @@ class PersonnelValues(grok.MultiAdapter):
         term = vocabulary.getTerm(self.table.group)
 
         pc = getToolByName(self.context, "portal_catalog")
-        values = pc(path="/".join(self.context.getPhysicalPath()),
-                    object_provides=IPerson.__identifier__,
-                    Subject=(term.value,))
+        values = pc(
+            path="/".join(self.context.getPhysicalPath()),
+            object_provides=IPerson.__identifier__,
+            Subject=(term.title.encode("utf-8"),)  # are indexed by titles
+        )
 
         return values
 
@@ -287,6 +276,7 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
         if adapter:
             return adapter.phone_number
         return u""
+
 
 class SalutationColumn(grok.MultiAdapter, column.Column):
     """ Column which renders person's salutation """
