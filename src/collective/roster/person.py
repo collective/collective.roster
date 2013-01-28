@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-""" Person content type, its default adapters, views and viewlets """
+"""Person.
+"""
 
 from five import grok
 from plone.directives import dexterity
@@ -57,15 +58,15 @@ grok.global_adapter(title, name="Title")
 
 
 @indexer(IPerson)
-def subject(obj):
+def subject(context):
     vocabulary_factory = getUtility(IVocabularyFactory,
                                     name="collective.roster.localgroups")
-    vocabulary = vocabulary_factory(obj)
+    vocabulary = vocabulary_factory(context)
 
-    terms = filter(lambda term: term.value in obj.groups, vocabulary)
-    groups = map(lambda term: term.value, terms)
+    terms = filter(lambda term: term.value in context.groups, vocabulary)
+    groups = map(lambda term: term.title.encode("utf-8"), terms)
 
-    return obj.subject + tuple(groups)
+    return context.subject + tuple(groups)
 grok.global_adapter(subject, name="Subject")
 
 
