@@ -1,19 +1,10 @@
 # -*- coding: utf-8 -*-
 """ Person content type, its default adapters, views and viewlets """
 
-from cgi import parse_qs
-
 from five import grok
 from plone.directives import dexterity
 
-from Acquisition import aq_base
-
-from zope.component import (
-    getUtility,
-    getAdapters,
-    getMultiAdapter,
-    queryMultiAdapter
-)
+from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 from Products.CMFCore.utils import getToolByName
@@ -21,10 +12,6 @@ from Products.CMFCore.utils import getToolByName
 from plone.indexer import indexer
 from plone.uuid.interfaces import IUUID
 
-from zope.viewlet.interfaces import IViewlet
-from zope.contentprovider.interfaces import IContentProvider
-
-from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
 from plone.app.viewletmanager.manager import (
     OrderedViewletManager,
     ManageViewlets
