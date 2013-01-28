@@ -39,35 +39,20 @@
           </script>
       </metal:javascript_head_slot>
 
-
 <body>
-<metal:main fill-slot="main">
-
-    <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-    <h1 class="documentFirstHeading"
-        i18n:translate="label_title">
-      Title
-    </h1>
-
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-    <div class="documentDescription"
-       i18n:translate="label_description">
-        Description
-    </div>
-
-    <div tal:replace="structure provider:plone.abovecontentbody" />
-
-    <div id="content-core">
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
         <div class="personView">
-              <tal:block replace="structure provider:collective.roster.personviewlets" />
+             <tal:block replace="structure provider:collective.roster.personviewlets" />
         </div>
-    </div>
-
-    <div tal:replace="structure provider:plone.belowcontentbody" />
-
-</metal:main>
-
+    </metal:content-core>
+</metal:content-core>
 </body>
+
+<tal:comment replace="nothing">
+The key for managing own custom viewletmanagers using the manage-viewlets-view
+is to simply render the custom viewlet manager in the manage-viewlets-view's
+template.
+</tal:comment>
+
 </html>
