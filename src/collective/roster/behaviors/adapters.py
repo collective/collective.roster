@@ -10,7 +10,6 @@ from collective.roster.behaviors.interfaces import IAutoRoles
 class AutoRoleAdapter(grok.Adapter):
     grok.provides(ILocalRoleProvider)
     grok.context(IAutoRoles)
-    grok.name("person")
 
     _default_roles = ("Contributor", "Editor", "Reviewer")
 
