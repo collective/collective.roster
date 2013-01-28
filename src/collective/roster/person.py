@@ -88,8 +88,12 @@ class ManagePersonViewlets(View, ManageViewlets):
     grok.context(IPerson)
     grok.name("manage-viewlets")
 
+    def index(self):
+        # ManageViewlets.__call__ may call this at its end, and then we'd like
+        # to render by using our dexterity.DisplayForm based View-class.
+        return View.__call__(self)
+
     def __call__(self):
-        self.index = lambda self=self: View.__call__(self)
         return ManageViewlets.__call__(self)
 
 
