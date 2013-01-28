@@ -280,7 +280,7 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
 
     weight = 101
 
-    header = _(u"Phone Number")
+    header = _(u"Phone number")
 
     def renderCell(self, item):
         adapter = IContactInfo(item.getObject(), None)

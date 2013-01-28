@@ -43,11 +43,20 @@
     <genericsetup:upgradeStep
         title="Upgrade collective.roster (4 to 5)"
         description="Migrates item objects to conatainers,
-                    firstname-fields to first_name-fields and
-                    lastname-fields to last_name-fields."
+                     firstname-fields to first_name-fields and
+                     lastname-fields to last_name-fields."
         profile="collective.roster:default"
         source="4" destination="5" sortkey="4"
         handler="collective.roster.upgrades.upgrade4to5"
+        />
+
+    <genericsetup:upgradeStep
+        title="Upgrade collective.roster (5 to 6)"
+        description="Migrates contact info behavior from annotations
+                     into content."
+        profile="collective.roster:default"
+        source="5" destination="6" sortkey="5"
+        handler="collective.roster.upgrades.upgrade5to6"
         />
 
 </configure>
