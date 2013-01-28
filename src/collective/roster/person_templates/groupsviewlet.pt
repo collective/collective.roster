@@ -1,4 +1,4 @@
-<dl class="personGroups" tal:condition="viewlet/groups|nothing">
+<dl class="personGroups" tal:condition="nocall:context/groups">
     <dt i18n:domain="collective.roster" i18n:translate="">Groups</dt>
-    <dd tal:repeat="group viewlet/groups" tal:content="structure group" />
+    <dd tal:content="structure view/w/groups/render" />
 </dl>
