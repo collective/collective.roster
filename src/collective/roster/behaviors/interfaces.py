@@ -56,6 +56,11 @@ class IContactInfo(form.Schema):
 alsoProvides(IContactInfo, form.IFormFieldProvider)
 
 
+class IAutoRoles(Interface):
+    """Marker interface for auto-roles behavior.
+    """
+
+
 class IRelatedPersons(form.Schema):
     """Behavior interface which provides related persons for any dexterity
     content. Related persons behavior is to link content to persons.
