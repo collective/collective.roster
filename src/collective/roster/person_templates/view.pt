@@ -9,9 +9,9 @@
 
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
-    <div class="personView">
-          <tal:block replace="structure provider:collective.roster.personviewlets" />
-    </div>
+        <div class="personView">
+             <tal:block replace="structure provider:collective.roster.personviewlets" />
+        </div>
     </metal:content-core>
 </metal:content-core>
 
