@@ -32,6 +32,23 @@ def isEmailAddress(value):
     return True
 
 
+class IOfficeInfo(form.Schema):
+    """Behavior interface for providing office info.
+    """
+
+    room = schema.TextLine(
+        title=_(u"Room"),
+        description=_(u"Room Info"),
+    )
+
+    form.fieldset(
+        'Contact information',
+        label=_(u"Office information"),
+        fields=['room']
+    )
+alsoProvides(IOfficeInfo, form.IFormFieldProvider)
+
+
 class IContactInfo(form.Schema):
     """Behavior interface for providing contact info.
     """

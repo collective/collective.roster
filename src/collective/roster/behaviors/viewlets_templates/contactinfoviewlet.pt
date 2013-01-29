@@ -1,7 +1,7 @@
 <dl class="personContactInfo" i18n:domain="collective.roster">
-    <dt i18n:translate="">Email</dt>
+    <dt i18n:translate="email">Email:</dt>
     <dd tal:content="structure view/w/IContactInfo.email/render" />
 
-    <dt i18n:translate="">Phone number</dt>
+    <dt i18n:translate="phone">Phone number:</dt>
     <dd tal:content="structure view/w/IContactInfo.phone_number/render" />
 </dl>
