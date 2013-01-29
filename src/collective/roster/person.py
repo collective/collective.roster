@@ -124,15 +124,6 @@ class PortraitViewlet(grok.Viewlet):
     grok.name("collective.roster.personviewlets.portrait")
 
 
-class PublicationsViewlet(grok.Viewlet):
-    """ Portrait viewlet, which renders the portrait the
-        publications (tutkapages) """
-
-    grok.viewletmanager(PersonViewlets)
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.publications")
-
-
 class PersonViewlet(grok.Viewlet):
     """ Person viewlet, which renders the person image """
 
