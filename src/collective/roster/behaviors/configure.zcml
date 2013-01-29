@@ -32,6 +32,14 @@
         i18n:attributes="title description"
         />
 
+    <plone:behavior
+        title="Office Information"
+        description="Provides office information fields"
+        provides=".interfaces.IOfficeInfo"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        i18n:attributes="title description"
+        />
+
     <!-- Note: Because it's important to store 'email' field directly on the
          content object (for compatibility with dexterity membrane), we'll use
          attribute storage (default; doesn't require extra marker interface for
