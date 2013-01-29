@@ -18,7 +18,7 @@ class ContactInfoViewlet(grok.Viewlet):
 
 
 class OfficeInfoViewlet(grok.Viewlet):
-    """Viewlet for rendering the contact info."""
+    """Viewlet for rendering the office info."""
     grok.viewletmanager(PersonViewlets)
     grok.context(IOfficeInfo)
     grok.name("collective.roster.personviewlets.officeinfo")

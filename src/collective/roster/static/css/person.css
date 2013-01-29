@@ -24,3 +24,9 @@
   margin-top: 1em;
   margin-left: 0;
 }
+
+#content .personBiography dt {
+  margin-top: 1em;
+  font-size: 1.5em;
+
+}
