@@ -58,4 +58,14 @@
         source="5" destination="6" sortkey="5"
         handler="collective.roster.upgrades.upgrade5to6"
         />
+
+    <genericsetup:upgradeDepends
+        source="6" destination="7" sortkey="6"
+        title="Upgrade collective.roster 6 to 7"
+        description="Change viewlet order"
+        profile="collective.roster:default"
+        import_steps="typeinfo"
+        purge="False"
+        run_deps="false"
+        />
 </configure>

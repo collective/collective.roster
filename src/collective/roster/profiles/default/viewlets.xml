@@ -4,6 +4,7 @@
     <viewlet name="collective.roster.personviewlets.portrait" />
     <viewlet name="collective.roster.personviewlets.contactinfo" />
     <viewlet name="collective.roster.personviewlets.localgroups" />
+    <viewlet name="collective.roster.personviewlets.officeinfo" />
     <viewlet name="collective.roster.personviewlets.person" />
   </order>
 </object>
