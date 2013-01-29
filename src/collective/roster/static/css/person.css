@@ -1,13 +1,15 @@
-.personView dl {
+#content .personView dl {
   clear: left;
 }
 
-.personView dl dt {
-  clear: left;
+#content .personView dd {
   float: left;
+  margin-left: 0.5em;
+  margin-top: 0em;
+  margin-bottom: 0em;
 }
-
-.personView dl dd {
+#content .personView dt {
+  clear: left;
   float: left;
 }
 
