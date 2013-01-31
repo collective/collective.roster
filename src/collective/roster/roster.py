@@ -139,7 +139,8 @@ class View(grok.View):
                                         name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
         self.tables = map(
-            lambda group: PersonnelListing(self.context, self.request, group),
+            lambda group: PersonnelGroupListing(self.context, self.request,
+                                                group),
             map(lambda term: term.value, vocabulary)
         )
 
@@ -149,9 +150,32 @@ class View(grok.View):
             table.update()
 
 
+class AlphaView(grok.View):
+    grok.context(IRoster)
+    grok.require("zope2.View")
+    grok.name("alphaview")
+
+    def __init__(self, context, request):
+        super(AlphaView, self).__init__(context, request)
+        self.table = PersonnelAlphaListing(self.context, self.request)
+
+    def update(self):
+        super(AlphaView, self).update()
+        self.table.update()
+
+    #def render(self):
+        #table = self.table.render()
+        #output = ""
+        #for alpha in self.table.alpha:
+            #output += """<a href="#%s">%s</a>""" % (alpha, alpha)
+        #return output + table
+
+
 class PersonnelListing(table.Table):
     """ Personnel listing table, which can be exteneded with custom columns """
     grok.implements(IPersonnelListing)
+
+    title = u""
 
     # CSS
     cssClasses = {'table': u"listing", 'td': u"notDraggable"}
@@ -167,18 +191,6 @@ class PersonnelListing(table.Table):
     batchSize = 10
     startBatchingAt = 10
 
-    @property
-    def title(self):
-        vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="collective.roster.localgroups")
-        vocabulary = vocabulary_factory(self.context)
-        term = vocabulary.getTerm(self.group)
-        return term.title
-
-    def __init__(self, context, request, group):
-        super(PersonnelListing, self).__init__(context, request)
-        self.group = group
-
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
@@ -189,20 +201,71 @@ class PersonnelListing(table.Table):
         cols = super(PersonnelListing, self).setUpColumns()
         return filter(lambda x: x.__name__ not in hidden, cols)
 
+    @property
+    def values(self):
+        pc = getToolByName(self.context, "portal_catalog")
+        values = pc(
+            path="/".join(self.context.getPhysicalPath()),
+            object_provides=IPerson.__identifier__
+        )
 
-class PersonnelValues(grok.MultiAdapter):
+        return values
+
+
+class PersonnelAlphaListing(PersonnelListing):
+
+    cssClasses = {'table': u"listing", 'td': u"nosort notDraggable"}
+
+    alpha = []
+    @property
+    def values(self):
+        values = super(PersonnelAlphaListing, self).values
+        sort_by_title = lambda x, y: cmp(x.Title.lower(), y.Title.lower())
+        return sorted(values, cmp=sort_by_title)
+
+    def update(self):
+        super(PersonnelAlphaListing, self).update()
+        self.alpha = []
+
+
+class AlphaColumn(grok.MultiAdapter, column.Column):
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, PersonnelAlphaListing)
+    grok.name("collective.roster.personnellisting.alpha")
+
+    weight = 0
+
+    header = _(u"#")
+
+    def renderCell(self, item):
+        obj = item.getObject()
+        alpha = obj.last_name[0] if len(obj.last_name) else None
+        if not self.table.alpha or alpha != self.table.alpha[-1]:
+            alpha = alpha.lower()
+            self.table.alpha.append(alpha)
+            return u"""<a name="%s">%s</a>""" % (alpha, alpha)
+        else:
+            return u""
+
+
+class PersonnelGroupListing(PersonnelListing):
+
+    def __init__(self, context, request, group):
+        super(PersonnelGroupListing, self).__init__(context, request)
+        self.group = group
+
+    @property
+    def title(self):
+        vocabulary_factory = getUtility(IVocabularyFactory,
+                                        name="collective.roster.localgroups")
+        vocabulary = vocabulary_factory(self.context)
+        term = vocabulary.getTerm(self.group)
+        return term.title
+
     """ Personnel values adapter, which provides catalog brains for all the
     persons with the same group as the currently rendered personnel listing
     table under the current personnel roster """
-
-    grok.provides(IValues)
-    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-
-    def __init__(self, context, request, table):
-        self.context = context
-        self.request = request
-        self.table = table
-
     @property
     def values(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
