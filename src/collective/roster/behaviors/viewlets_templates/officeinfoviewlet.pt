@@ -1,4 +1,4 @@
 <dl class="personOfficeInfo" i18n:domain="collective.roster">
-    <dt i18n:translate="Room">Room:</dt>
+    <dt i18n:translate="room">Room:</dt>
     <dd tal:content="structure view/w/IOfficeInfo.room/render" />
 </dl>
