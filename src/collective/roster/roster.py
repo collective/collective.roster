@@ -49,8 +49,8 @@ _ = ZopeMessageFactory("collective.roster")
 
 
 class LocalGroupsVocabulary(grok.GlobalUtility):
-    """ Returns a new context bound vocabulary, which returns the groups defined
-    in the nearest parent roster """
+    """ Returns a new context bound vocabulary, which returns the
+    groups defined in the nearest parent roster """
 
     grok.provides(IVocabularyFactory)
     grok.name("collective.roster.localgroups")
@@ -236,47 +236,25 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
     def getLinkContent(self, item):
         obj = item.getObject()
-        title = u"%s %s" % (obj.last_name,
-                           obj.first_name)
+        title = u"%s %s" % (obj.last_name, obj.first_name)
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
         return title
 
 
-class EmailColumn(grok.MultiAdapter, column.Column):
-    """ Column, which renders person's email address """
+class SalutationColumn(grok.MultiAdapter, column.Column):
+    """ Column which renders person's salutation """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-    grok.name("collective.roster.personnellisting.email")
+    grok.name("collective.roster.personnellisting.salutation")
 
     weight = 100
 
-    header = _(u"Email")
+    header = _(u"Salutation")
 
     def renderCell(self, item):
-        adapter = IContactInfo(item.getObject(), None)
-        if adapter:
-            return getattr(adapter, "email", u"")
-        return u""
-
-
-class PhoneNumberColumn(grok.MultiAdapter, column.Column):
-    """ Column, which renders person's phone number """
-
-    grok.provides(IColumn)
-    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-    grok.name("collective.roster.personnellisting.phone_number")
-
-    weight = 101
-
-    header = _(u"Phone number")
-
-    def renderCell(self, item):
-        adapter = IContactInfo(item.getObject(), None)
-        if adapter:
-            return getattr(adapter, "phone_number", u"")
-        return u""
+        return item.getObject().salutation
 
 
 class RoomColumn(grok.MultiAdapter, column.Column):
@@ -286,7 +264,7 @@ class RoomColumn(grok.MultiAdapter, column.Column):
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
     grok.name("collective.roster.personnellisting.room")
 
-    weight = 102
+    weight = 101
 
     header = _(u"Room")
 
@@ -297,16 +275,37 @@ class RoomColumn(grok.MultiAdapter, column.Column):
         return u""
 
 
-class SalutationColumn(grok.MultiAdapter, column.Column):
-    """ Column which renders person's salutation """
+class PhoneNumberColumn(grok.MultiAdapter, column.Column):
+    """ Column, which renders person's phone number """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
-    grok.name("collective.roster.personnellisting.salutation")
+    grok.name("collective.roster.personnellisting.phone_number")
 
     weight = 102
 
-    header = _(u"Salutation")
+    header = _(u"Phone number")
 
     def renderCell(self, item):
-        return item.getObject().salutation
+        adapter = IContactInfo(item.getObject(), None)
+        if adapter:
+            return getattr(adapter, "phone_number", u"")
+        return u""
+
+
+class EmailColumn(grok.MultiAdapter, column.Column):
+    """ Column, which renders person's email address """
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.email")
+
+    weight = 103
+
+    header = _(u"Email")
+
+    def renderCell(self, item):
+        adapter = IContactInfo(item.getObject(), None)
+        if adapter:
+            return getattr(adapter, "email", u"")
+        return u""
