@@ -37,7 +37,8 @@ from collective.roster.interfaces import (
     IRoster
 )
 from collective.roster.behaviors.interfaces import (
-    IContactInfo
+    IContactInfo,
+    IOfficeInfo
 
 )
 from collective.roster.utils import getFirstParent
@@ -256,7 +257,7 @@ class EmailColumn(grok.MultiAdapter, column.Column):
     def renderCell(self, item):
         adapter = IContactInfo(item.getObject(), None)
         if adapter:
-            return adapter.email
+            return getattr(adapter, "email", u"")
         return u""
 
 
@@ -274,7 +275,25 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
     def renderCell(self, item):
         adapter = IContactInfo(item.getObject(), None)
         if adapter:
-            return adapter.phone_number
+            return getattr(adapter, "phone_number", u"")
+        return u""
+
+
+class RoomColumn(grok.MultiAdapter, column.Column):
+    """ Column, which renders person's room """
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.room")
+
+    weight = 102
+
+    header = _(u"Room")
+
+    def renderCell(self, item):
+        adapter = IOfficeInfo(item.getObject(), None)
+        if adapter:
+            return getattr(adapter, "room", u"")
         return u""
 
 
