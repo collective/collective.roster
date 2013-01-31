@@ -11,7 +11,7 @@
     <!--     /> -->
 
     <genericsetup:upgradeDepends
-        source="1" destination="2" sortkey="1"
+        source="1" destination="2" sortkey="2"
         title="Upgrade collective.roster 1 to 2"
         description="Add person.css."
         profile="collective.roster:default"
