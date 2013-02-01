@@ -231,27 +231,6 @@ class PersonnelAlphaListing(PersonnelListing):
         self.alpha = []
 
 
-class AlphaColumn(grok.MultiAdapter, column.Column):
-
-    grok.provides(IColumn)
-    grok.adapts(IRoster, IBrowserRequest, PersonnelAlphaListing)
-    grok.name("collective.roster.personnellisting.alpha")
-
-    weight = 0
-
-    header = _(u"#")
-
-    def renderCell(self, item):
-        obj = item.getObject()
-        alpha = obj.last_name[0] if len(obj.last_name) else None
-        if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
-            alpha = alpha.upper()
-            self.table.alpha.append(alpha)
-            return u"""<a name="%s">%s</a>""" % (alpha, alpha)
-        else:
-            return u""
-
-
 class PersonnelGroupListing(PersonnelListing):
 
     def __init__(self, context, request, group):
@@ -284,6 +263,27 @@ class PersonnelGroupListing(PersonnelListing):
         )
 
         return values
+
+
+class AlphaColumn(grok.MultiAdapter, column.Column):
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, PersonnelAlphaListing)
+    grok.name("collective.roster.personnellisting.alpha")
+
+    weight = 0
+
+    header = _(u"#")
+
+    def renderCell(self, item):
+        obj = item.getObject()
+        alpha = obj.last_name[0] if len(obj.last_name) else None
+        if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
+            alpha = alpha.upper()
+            self.table.alpha.append(alpha)
+            return u"""<a name="%s">%s</a>""" % (alpha, alpha)
+        else:
+            return u""
 
 
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
@@ -341,7 +341,7 @@ class RoomColumn(grok.MultiAdapter, column.Column):
         return u""
 
 
-class PhoneNumberColumn(grok.MultiAdapter, column.Column):
+class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
     """ Column, which renders person's phone number """
 
     grok.provides(IColumn)
@@ -352,14 +352,18 @@ class PhoneNumberColumn(grok.MultiAdapter, column.Column):
 
     header = _(u"Phone number")
 
-    def renderCell(self, item):
+    def getLinkURL(self, item):
+        adapter = IContactInfo(item.getObject(), None)
+        return "tel:" + getattr(adapter, "phone_number", u"")
+
+    def getLinkContent(self, item):
         adapter = IContactInfo(item.getObject(), None)
         if adapter:
             return getattr(adapter, "phone_number", u"")
         return u""
 
 
-class EmailColumn(grok.MultiAdapter, column.Column):
+class EmailColumn(grok.MultiAdapter, column.LinkColumn):
     """ Column, which renders person's email address """
 
     grok.provides(IColumn)
@@ -370,7 +374,11 @@ class EmailColumn(grok.MultiAdapter, column.Column):
 
     header = _(u"Email")
 
-    def renderCell(self, item):
+    def getLinkURL(self, item):
+        adapter = IContactInfo(item.getObject(), None)
+        return "mailto:" + getattr(adapter, "email", u"")
+
+    def getLinkContent(self, item):
         adapter = IContactInfo(item.getObject(), None)
         if adapter:
             return getattr(adapter, "email", u"")

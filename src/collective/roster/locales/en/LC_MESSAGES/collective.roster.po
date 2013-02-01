@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-31 09:38+0000\n"
+"POT-Creation-Date: 2013-02-01 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+
+#: collective/roster/roster.py:242
+msgid "#"
+msgstr ""
 
 #: collective/roster/profiles/default/types/collective.roster.person.xml
 msgid "A person"
@@ -47,7 +51,7 @@ msgid "Display only the selected person information columns on supporting views.
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:57
-#: collective/roster/roster.py:305
+#: collective/roster/roster.py:371
 msgid "Email"
 msgstr ""
 
@@ -84,7 +88,7 @@ msgid "Phone"
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:64
-#: collective/roster/roster.py:287
+#: collective/roster/roster.py:353
 msgid "Phone number"
 msgstr ""
 
@@ -98,7 +102,7 @@ msgstr ""
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:40
-#: collective/roster/roster.py:269
+#: collective/roster/roster.py:335
 msgid "Room"
 msgstr ""
 
@@ -110,12 +114,12 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/roster.py:254
+#: collective/roster/roster.py:320
 msgid "Salutation"
 msgstr ""
 
 #: collective/roster/interfaces.py:63
-#: collective/roster/roster.py:232
+#: collective/roster/roster.py:298
 msgid "Title"
 msgstr ""
 

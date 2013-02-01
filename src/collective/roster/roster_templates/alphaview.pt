@@ -10,15 +10,11 @@
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
     <div class="rosterView">
-         <!--<tal:repeat repeat="table view/tables">-->
-             <!--<h2 tal:content="table/title">Title</h2>-->
-             <!--<tal:replace replace="structure table/renderTable" />-->
-             <!--<tal:replace replace="structure table/renderBatch" />-->
-             <!--</tal:repeat>-->
         <div class="alpha-links">
             <tal:replace replace="structure view/atoz" />
         </div>
         <tal:replace replace="structure view/table/renderTable" />
+        <tal:replace replace="structure view/table/renderBatch" />
     </div>
     </metal:content-core>
 </metal:content-core>
