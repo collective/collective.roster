@@ -241,8 +241,8 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
     def renderCell(self, item):
         obj = item.getObject()
         alpha = obj.last_name[0] if len(obj.last_name) else None
-        if not self.table.alpha or alpha != self.table.alpha[-1]:
-            alpha = alpha.lower()
+        if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
+            alpha = alpha.upper()
             self.table.alpha.append(alpha)
             return u"""<a name="%s">%s</a>""" % (alpha, alpha)
         else:
