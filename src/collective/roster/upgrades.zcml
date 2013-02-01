@@ -1,15 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-    <!-- <genericsetup:registerProfile -->
-    <!--     name="upgrade1to2" -->
-    <!--     title="Upgrade collective.roster (1 to 2)" -->
-    <!--     directory="profiles/upgrade1to2" -->
-    <!--     description="Upgrades collective.roster from profile 1 to 2." -->
-    <!--     provides="Products.GenericSetup.interfaces.EXTENSION" -->
-    <!--     for="Products.CMFPlone.interfaces.IPloneSiteRoot" -->
-    <!--     /> -->
-
     <genericsetup:upgradeDepends
         source="1" destination="2" sortkey="2"
         title="Upgrade collective.roster 1 to 2"
