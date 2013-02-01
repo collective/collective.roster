@@ -2,4 +2,8 @@
 <stylesheet title="" id="++resource++collective.roster/css/person.css"
   media="screen" rel="stylesheet" rendering="link" cacheable="False"
   compression="safe" cookable="False" enabled="1" expression=""/>
+
+<stylesheet title="" id="++resource++collective.roster/css/roster.css"
+  media="screen" rel="stylesheet" rendering="link" cacheable="False"
+  compression="safe" cookable="False" enabled="1" expression=""/>
 </object>
