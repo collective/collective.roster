@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.roster">
+<body>
+
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+  <div class="rosterView">
+    <tal:repeat repeat="group view/tables">
+    <h2 tal:content="group/title">Title</h2>
+      <tal:repeat repeat="person group/values">
+
+      <table>
+        <tr>
+          <td>
+          <div class="gallery_portrait">
+            <img tal:replace="structure person/@@images/image/thumb"
+            tal:condition="nocall:person/image|nothing"/>
+            </div>
+
+          </td>
+        <td>
+            <dl class="gallery_person">
+              <dd tal:condition="nocall:person/title|nothing"
+                  tal:content="person/title" />
+              
+              <dd tal:condition="nocall:person/email|nothing"
+              tal:content="person/email" />
+
+              <dd tal:condition="nocall:person/phone_number|nothing"
+                  tal:content="person/phone_number" />
+
+              <dd tal:condition="nocall:person/room|nothing"
+                  tal:content="person/room" />
+            </dl>
+        </td>
+        </tr>
+
+      </tal:repeat>
+    </tal:repeat>
+  </div>
+  </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
