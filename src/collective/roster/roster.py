@@ -29,6 +29,7 @@ from z3c.table import (
 from Products.CMFCore.utils import getToolByName
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from plone.memoize import view
 
 from collective.roster.interfaces import (
     IPersonnelListing,
@@ -173,6 +174,16 @@ class AlphaView(grok.View):
         return output
 
 
+class GalleryView(View):
+    """ Gallery view for persons """
+    grok.context(IRoster)
+    grok.require("zope2.View")
+    grok.name("galleryview")
+
+    def update(self):
+        pass
+
+
 class PersonnelListing(table.Table):
     """ Personnel listing table, which can be exteneded with custom columns """
     grok.implements(IPersonnelListing)
@@ -204,13 +215,14 @@ class PersonnelListing(table.Table):
         return filter(lambda x: x.__name__ not in hidden, cols)
 
     @property
+    @view.memoize
     def values(self):
         pc = getToolByName(self.context, "portal_catalog")
-        values = pc(
+        brains = pc(
             path="/".join(self.context.getPhysicalPath()),
             object_provides=IPerson.__identifier__
         )
-
+        values = map(lambda x: x.getObject(), brains)
         return values
 
 
@@ -221,10 +233,12 @@ class PersonnelAlphaListing(PersonnelListing):
     alpha = []
 
     @property
+    @view.memoize
     def values(self):
         values = super(PersonnelAlphaListing, self).values
-        sort_by_title = lambda x, y: cmp(x.Title.lower(), y.Title.lower())
-        return sorted(values, cmp=sort_by_title)
+        sort_by_title = lambda x, y: cmp(x.title.lower(), y.title.lower())
+        sorted_values = sorted(values, cmp=sort_by_title)
+        return sorted_values
 
     def update(self):
         super(PersonnelAlphaListing, self).update()
@@ -249,6 +263,7 @@ class PersonnelGroupListing(PersonnelListing):
     persons with the same group as the currently rendered personnel listing
     table under the current personnel roster """
     @property
+    @view.memoize
     def values(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
                                         name="collective.roster.localgroups")
@@ -256,12 +271,12 @@ class PersonnelGroupListing(PersonnelListing):
         term = vocabulary.getTerm(self.group)
 
         pc = getToolByName(self.context, "portal_catalog")
-        values = pc(
+        brains = pc(
             path="/".join(self.context.getPhysicalPath()),
             object_provides=IPerson.__identifier__,
             Subject=(term.title.encode("utf-8"),)  # are indexed by titles
         )
-
+        values = map(lambda x: x.getObject(), brains)
         return values
 
 
@@ -275,8 +290,7 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
 
     header = _(u"#")
 
-    def renderCell(self, item):
-        obj = item.getObject()
+    def renderCell(self, obj):
         alpha = obj.last_name[0] if len(obj.last_name) else None
         if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
             alpha = alpha.upper()
@@ -297,11 +311,10 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
     header = _(u"Title")
 
-    def getLinkURL(self, item):
-        return item.getURL()
+    def getLinkURL(self, obj):
+        return obj.absolute_url()
 
-    def getLinkContent(self, item):
-        obj = item.getObject()
+    def getLinkContent(self, obj):
         title = u"%s %s" % (obj.last_name, obj.first_name)
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
@@ -319,8 +332,8 @@ class SalutationColumn(grok.MultiAdapter, column.Column):
 
     header = _(u"Salutation")
 
-    def renderCell(self, item):
-        return item.getObject().salutation
+    def renderCell(self, obj):
+        return obj.salutation
 
 
 class RoomColumn(grok.MultiAdapter, column.Column):
@@ -334,8 +347,8 @@ class RoomColumn(grok.MultiAdapter, column.Column):
 
     header = _(u"Room")
 
-    def renderCell(self, item):
-        adapter = IOfficeInfo(item.getObject(), None)
+    def renderCell(self, obj):
+        adapter = IOfficeInfo(obj, None)
         if adapter:
             return getattr(adapter, "room", u"")
         return u""
@@ -352,12 +365,12 @@ class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
 
     header = _(u"Phone number")
 
-    def getLinkURL(self, item):
-        adapter = IContactInfo(item.getObject(), None)
+    def getLinkURL(self, obj):
+        adapter = IContactInfo(obj, None)
         return "tel:" + getattr(adapter, "phone_number", u"")
 
-    def getLinkContent(self, item):
-        adapter = IContactInfo(item.getObject(), None)
+    def getLinkContent(self, obj):
+        adapter = IContactInfo(obj, None)
         if adapter:
             return getattr(adapter, "phone_number", u"")
         return u""
@@ -374,12 +387,12 @@ class EmailColumn(grok.MultiAdapter, column.LinkColumn):
 
     header = _(u"Email")
 
-    def getLinkURL(self, item):
-        adapter = IContactInfo(item.getObject(), None)
+    def getLinkURL(self, obj):
+        adapter = IContactInfo(obj, None)
         return "mailto:" + getattr(adapter, "email", u"")
 
-    def getLinkContent(self, item):
-        adapter = IContactInfo(item.getObject(), None)
+    def getLinkContent(self, obj):
+        adapter = IContactInfo(obj, None)
         if adapter:
             return getattr(adapter, "email", u"")
         return u""
