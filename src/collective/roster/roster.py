@@ -19,7 +19,6 @@ from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from z3c.form.datamanager import AttributeField
 from z3c.table.interfaces import (
-    IValues,
     IColumn
 )
 from z3c.table import (
@@ -217,6 +216,7 @@ class PersonnelAlphaListing(PersonnelListing):
     cssClasses = {'table': u"listing", 'td': u"nosort notDraggable"}
 
     alpha = []
+
     @property
     def values(self):
         values = super(PersonnelAlphaListing, self).values
