@@ -150,6 +150,7 @@ class View(grok.View):
 
 
 class AlphaView(grok.View):
+    """ A to Z view for all persons """
     grok.context(IRoster)
     grok.require("zope2.View")
     grok.name("alphaview")
@@ -163,10 +164,12 @@ class AlphaView(grok.View):
         self.table.update()
 
     def atoz(self):
+        """ Render A to Z links for template """
         self.table.render()
         output = ""
         for alpha in self.table.alpha:
-            output += """<a href="#%s">%s</a>""" % (alpha, alpha)
+            output += """<a class="alpha-anchor"
+                        href="#%s">%s</a>""" % (alpha, alpha)
         return output
 
 
