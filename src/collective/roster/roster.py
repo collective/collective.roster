@@ -271,7 +271,7 @@ class PersonnelGroupListing(PersonnelListing):
         vocabulary_factory = getUtility(IVocabularyFactory,
                                         name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
-        term = vocabulary.getTerm(self.table.group)
+        term = vocabulary.getTerm(self.group)
 
         pc = getToolByName(self.context, "portal_catalog")
         values = pc(
