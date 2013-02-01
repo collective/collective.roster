@@ -69,4 +69,14 @@
         purge="False"
         run_deps="false"
         />
+
+    <genericsetup:upgradeDepends
+        source="8" destination="9" sortkey="8"
+        title="Upgrade collective.roster 8 to 9"
+        description="Add roster.css"
+        profile="collective.roster:default"
+        import_steps="typeinfo"
+        purge="False"
+        run_deps="false"
+        />
 </configure>
