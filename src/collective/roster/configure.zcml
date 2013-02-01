@@ -46,4 +46,13 @@
         i18n:attributes="title description"
     />
 
+    <browser:menuItem
+        for="collective.roster.interfaces.IRoster"
+        menu="plone_displayviews"
+        title="Gallery view"
+        action="@@galleryview"
+        description="Gallery listing for persons"
+        i18n:attributes="title description"
+    />
+
 </configure>
