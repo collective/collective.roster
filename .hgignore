@@ -16,6 +16,7 @@ develop-custom.cfg
 
 .installed.cfg
 .mr.developer.cfg
+.ropeproject
 
 log.html
 output.xml
