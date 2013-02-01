@@ -28,4 +28,22 @@
 
     <include file="upgrades.zcml" /> 
 
+    <browser:menuItem
+        for="collective.roster.interfaces.IRoster"
+        menu="plone_displayviews"
+        title="A to Z listing"
+        action="@@alphaview"
+        description="List all persons"
+        i18n:attributes="title description"
+    />
+
+    <browser:menuItem
+        for="collective.roster.interfaces.IRoster"
+        menu="plone_displayviews"
+        title="Group listing"
+        action="@@view"
+        description="List all persons inside groups"
+        i18n:attributes="title description"
+    />
+
 </configure>
