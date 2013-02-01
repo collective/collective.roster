@@ -6,6 +6,7 @@ parts
 tags
 var
 dist
+omelette
 
 *.pyc
 *.mo
