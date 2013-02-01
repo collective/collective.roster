@@ -32,8 +32,9 @@
     <!-- View information -->
     <property name="default_view">view</property>
     <property name="default_view_fallback">False</property>
-    <property name="view_methods">
+    <property name="view_methods" purge="false">§
         <element value="view" />
+        <element value="alphaview" />
     </property>
 
     <!-- Method aliases -->

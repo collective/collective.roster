@@ -169,7 +169,7 @@ class AlphaView(grok.View):
         output = ""
         for alpha in self.table.alpha:
             output += """<a class="alpha-anchor"
-                        href="#%s">%s</a>""" % (alpha, alpha)
+                       href="#%s">%s</a>""" % (alpha, alpha)
         return output
 
 
