@@ -16,6 +16,7 @@
              <!--<tal:replace replace="structure table/renderBatch" />-->
              <!--</tal:repeat>-->
 
+        <tal:replace replace="structure view/atoz" />
         <tal:replace replace="structure view/table/renderTable" />
     </div>
     </metal:content-core>
