@@ -162,12 +162,12 @@ class AlphaView(grok.View):
         super(AlphaView, self).update()
         self.table.update()
 
-    #def render(self):
-        #table = self.table.render()
-        #output = ""
-        #for alpha in self.table.alpha:
-            #output += """<a href="#%s">%s</a>""" % (alpha, alpha)
-        #return output + table
+    def atoz(self):
+        self.table.render()
+        output = ""
+        for alpha in self.table.alpha:
+            output += """<a href="#%s">%s</a>""" % (alpha, alpha)
+        return output
 
 
 class PersonnelListing(table.Table):
@@ -263,7 +263,7 @@ class PersonnelGroupListing(PersonnelListing):
         term = vocabulary.getTerm(self.group)
         return term.title
 
-    """ Personnel values adapter, which provides catalog brains for all the
+    """ Personnel values property, which provides catalog brains for all the
     persons with the same group as the currently rendered personnel listing
     table under the current personnel roster """
     @property
