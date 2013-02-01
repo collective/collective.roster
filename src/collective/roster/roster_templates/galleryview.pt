@@ -26,13 +26,17 @@
         <td>
             <dl class="gallery_person">
               <dd tal:condition="nocall:person/title|nothing"
-                  tal:content="person/title" />
+                tal:content="person/title" />
               
-              <dd tal:condition="nocall:person/email|nothing"
-              tal:content="person/email" />
+              <dd tal:condition="nocall:person/email|nothing">
+                <a tal:attributes="href python: 'mailto:' + person.email"
+                  tal:content="person/email" />
+              </dd>
 
-              <dd tal:condition="nocall:person/phone_number|nothing"
-                  tal:content="person/phone_number" />
+              <dd tal:condition="nocall:person/phone_number|nothing">
+                <a tal:attributes="href python: 'tel:' + person.phone_number"
+                  tal:content="person/phone_number"  />
+              </dd>
 
               <dd tal:condition="nocall:person/room|nothing"
                   tal:content="person/room" />
