@@ -263,7 +263,6 @@ class PersonnelGroupListing(PersonnelListing):
     persons with the same group as the currently rendered personnel listing
     table under the current personnel roster """
     @property
-    @view.memoize
     def values(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
                                         name="collective.roster.localgroups")
