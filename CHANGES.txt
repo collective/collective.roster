@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.9.8 (2013-01-05)
+------------------
+- Fixed bug where roster multiplies first group
+
 0.9.7 (2013-01-04)
 ------------------
 - Gallery view 
