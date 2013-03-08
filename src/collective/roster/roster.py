@@ -202,7 +202,7 @@ class PersonnelListing(table.Table):
     # Batching
     batchProviderName = "plonebatch"
     batchSize = 10
-    startBatchingAt = 10
+    startBatchingAt = 99999
 
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
