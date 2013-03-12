@@ -308,7 +308,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
     weight = 99
 
-    header = _(u"Title")
+    header = _(u"Name")
 
     def getLinkURL(self, obj):
         return obj.absolute_url()
