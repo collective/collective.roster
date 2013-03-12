@@ -1,29 +1,21 @@
-# -*- coding: utf-8 -*-
-""" Test layer """
+from plone.app.testing import (
+    PloneSandboxLayer,
+    PLONE_FIXTURE,
+    IntegrationTesting,
+    FunctionalTesting,
+    applyProfile
+)
+from plone.testing import z2
 
+from Products.MailHost.interfaces import IMailHost
+from Products.CMFPlone.tests.utils import MockMailHost
 from Acquisition import aq_base
-from ZODB.POSException import ConflictError
 
 from zope.component import getSiteManager
 from OFS.SimpleItem import SimpleItem
 
-from plone.app.testing import (
-    PloneSandboxLayer,
-    PLONE_FIXTURE,
 
-    applyProfile,
-
-    IntegrationTesting,
-    FunctionalTesting,
-)
-
-from plone.testing.z2 import ZSERVER_FIXTURE
-
-from Products.MailHost.interfaces import IMailHost
-from Products.CMFPlone.tests.utils import MockMailHost
-
-
-class RosterLayer(PloneSandboxLayer):
+class Layer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -53,20 +45,6 @@ class RosterLayer(PloneSandboxLayer):
         sm.unregisterUtility(provided=IMailHost)
         sm.registerUtility(aq_base(portal._original_MailHost),
                            provided=IMailHost)
-
-ROSTER_FIXTURE = RosterLayer()
-
-ROSTER_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(ROSTER_FIXTURE, ),
-    name="Functional")
-
-ROSTER_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(ROSTER_FIXTURE, ),
-    name="Functional")
-
-ROSTER_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(ROSTER_FIXTURE, ZSERVER_FIXTURE),
-    name="Acceptance")
 
 
 class RemoteLibrary(SimpleItem):
@@ -103,3 +81,28 @@ class Keywords(object):
         quickinstaller = getToolByName(getSite(), "portal_quickinstaller")
 
         assert quickinstaller.isProductInstalled(product_name)
+
+ROSTER_FIXTURE = Layer()
+
+ROSTER_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(ROSTER_FIXTURE,), name="Integration")
+
+ROSTER_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(ROSTER_FIXTURE,), name="Functional")
+
+
+class RobotLayer(PloneSandboxLayer):
+    defaultBases = (ROSTER_FIXTURE,)
+
+    def setUpPloneSite(self, portal):
+        from collective.roster.testing_robot import RemoteKeywordsLibrary
+        portal._setObject("RemoteKeywordsLibrary", RemoteKeywordsLibrary())
+
+    def tearDownPloneSite(self, portal):
+        portal._delObject("RemoteKeywordsLibrary")
+
+
+ROBOT_FIXTURE = RobotLayer()
+
+ROBOT_TESTING = FunctionalTesting(
+    bases=(ROBOT_FIXTURE, z2.ZSERVER_FIXTURE), name="Robot")
