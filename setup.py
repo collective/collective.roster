@@ -36,6 +36,7 @@ setup(
         "plone.namedfile[blobs]",
         "plone.formwidget.namedfile",
         "plone.z3ctable",
+        "plone.api",
     ],
     extras_require={"test": [
         "Pillow",
