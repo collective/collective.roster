@@ -1,16 +1,20 @@
-#content .personView dl {
-  clear: left;
+
+#content .personContactInfo dd {
+  float: left;
+  margin: 0;
 }
 
-#content .personView dd {
-  float: left;
-  margin-left: 0.5em;
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-#content .personView dt {
+#content .personContactInfo dt {
   clear: left;
   float: left;
+  min-width:10em;
+  margin: 0;
+}
+
+#content .personContactInfo {
+  overflow: hidden;
+  display: block;
+  margin: 1em 0;
 }
 
 .personPortrait{
@@ -20,7 +24,6 @@
 }
 
 #content .personBiography dd {
-  clear: left;
   margin-top: 1em;
   margin-left: 0;
 }
