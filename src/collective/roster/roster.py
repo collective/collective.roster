@@ -366,7 +366,8 @@ class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
 
     def getLinkURL(self, obj):
         adapter = IContactInfo(obj, None)
-        return "tel:" + getattr(adapter, "phone_number", u"")
+        phone = getattr(adapter, "phone_number") or u""
+        return u"tel: %s", phone
 
     def getLinkContent(self, obj):
         adapter = IContactInfo(obj, None)
@@ -388,7 +389,8 @@ class EmailColumn(grok.MultiAdapter, column.LinkColumn):
 
     def getLinkURL(self, obj):
         adapter = IContactInfo(obj, None)
-        return "mailto:" + getattr(adapter, "email", u"")
+        email = getattr(adapter, "email") or u""
+        return "mailto: %s", email
 
     def getLinkContent(self, obj):
         adapter = IContactInfo(obj, None)
