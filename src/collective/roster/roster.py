@@ -366,13 +366,40 @@ class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
 
     def getLinkURL(self, obj):
         adapter = IContactInfo(obj, None)
-        phone = getattr(adapter, "phone_number") or u""
-        return u"tel: %s", phone
+        phone = getattr(adapter, "phone_number", None)
+        if phone:
+            return "tel:" + phone
+        return ""
 
     def getLinkContent(self, obj):
         adapter = IContactInfo(obj, None)
         if adapter:
             return getattr(adapter, "phone_number", u"")
+        return u""
+
+
+class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
+    """ Column, which renders person's short number """
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.short_number")
+
+    weight = 103
+
+    header = _(u"Short number")
+
+    def getLinkURL(self, obj):
+        adapter = IContactInfo(obj, None)
+        short_number = getattr(adapter, "short_number", None)
+        if short_number:
+            return "tel:" + short_number
+        return ""
+
+    def getLinkContent(self, obj):
+        adapter = IContactInfo(obj, None)
+        if adapter:
+            return getattr(adapter, "short_number", u"")
         return u""
 
 
@@ -383,14 +410,16 @@ class EmailColumn(grok.MultiAdapter, column.LinkColumn):
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
     grok.name("collective.roster.personnellisting.email")
 
-    weight = 103
+    weight = 104
 
     header = _(u"Email")
 
     def getLinkURL(self, obj):
         adapter = IContactInfo(obj, None)
-        email = getattr(adapter, "email") or u""
-        return "mailto: %s", email
+        email = getattr(adapter, "email", None)
+        if email:
+            return "mailto:" + email
+        return ""
 
     def getLinkContent(self, obj):
         adapter = IContactInfo(obj, None)
