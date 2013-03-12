@@ -1,5 +1,5 @@
 <dl class="personContactInfo" i18n:domain="collective.roster">
-    <dt i18n:translate="email">email:</dt>
+    <dt i18n:translate="email">Email:</dt>
     <dd><a tal:attributes="href string:mailto:${view/w/IContactInfo.email/value}"
       tal:content="structure view/w/IContactInfo.email/render" />
     </dd>
