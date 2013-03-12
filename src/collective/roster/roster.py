@@ -228,7 +228,7 @@ class PersonnelListing(table.Table):
 
 class PersonnelAlphaListing(PersonnelListing):
 
-    cssClasses = {'table': u"listing", 'td': u"nosort notDraggable"}
+    cssClasses = {'table': u"listing roster", 'td': u"nosort notDraggable"}
 
     alpha = []
 
