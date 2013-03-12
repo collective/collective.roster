@@ -196,7 +196,7 @@ class PersonnelListing(table.Table):
     cssClassOdd = u"odd"
 
     # Sort
-    sortOn = None  # (z3c.table expects sortOn to be either None, 0 or column
+    sortOn = 1  # (z3c.table expects sortOn to be either None, 0 or column
                    # order aware id[table-column-idx])
 
     # Batching
