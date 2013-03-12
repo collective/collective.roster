@@ -2,3 +2,4 @@
      tal:condition="context/image"
      tal:attributes="src string:${context/absolute_url}/@@images/image/mini"
      />
+
