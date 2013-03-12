@@ -18,15 +18,19 @@
         <tr>
           <td>
           <div class="gallery_portrait">
-            <img tal:replace="structure person/@@images/image/thumb"
-            tal:condition="nocall:person/image|nothing"/>
+            <a tal:attributes="href person/absolute_url">
+              <img tal:replace="structure person/@@images/image/thumb"
+              tal:condition="nocall:person/image|nothing"/>
+            </a>
             </div>
 
           </td>
         <td>
-            <dl class="gallery_person">
-              <dd tal:condition="nocall:person/title|nothing"
-                tal:content="person/title" />
+          <dl class="gallery_person">
+              <dd tal:condition="nocall:person/title|nothing">
+                <a tal:attributes="href person/absolute_url"
+                  tal:content="person/title" />
+              </dd>
               
               <dd tal:condition="nocall:person/email|nothing">
                 <a tal:attributes="href python: 'mailto:' + person.email"
