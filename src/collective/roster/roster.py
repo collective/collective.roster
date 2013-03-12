@@ -191,7 +191,7 @@ class PersonnelListing(table.Table):
     title = u""
 
     # CSS
-    cssClasses = {'table': u"listing", 'td': u"notDraggable"}
+    cssClasses = {'table': u"listing roster", 'td': u"notDraggable"}
     cssClassEven = u"even"
     cssClassOdd = u"odd"
 

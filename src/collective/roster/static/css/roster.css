@@ -17,3 +17,6 @@
   border: 1px solid #ccc;
 }
 
+#content table.roster{
+  width: 100%;
+}
