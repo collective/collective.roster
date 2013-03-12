@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-04 09:24+0000\n"
+"POT-Creation-Date: 2013-03-12 12:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:291
+#: collective/roster/roster.py:290
 msgid "#"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:69
+#: collective/roster/behaviors/interfaces.py:74
 msgid "Contact information"
 msgstr ""
 
@@ -51,12 +51,8 @@ msgid "Display only the selected person information columns on supporting views.
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:57
-#: collective/roster/roster.py:388
+#: collective/roster/roster.py:415
 msgid "Email"
-msgstr ""
-
-#: collective/roster/behaviors/interfaces.py:58
-msgid "Email address"
 msgstr ""
 
 #: collective/roster/interfaces.py:68
@@ -75,6 +71,10 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
+#: collective/roster/roster.py:311
+msgid "Name"
+msgstr ""
+
 #: collective/roster/behaviors/interfaces.py:46
 msgid "Office information"
 msgstr ""
@@ -87,8 +87,7 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:64
-#: collective/roster/roster.py:366
+#: collective/roster/roster.py:365
 msgid "Phone number"
 msgstr ""
 
@@ -102,7 +101,7 @@ msgstr ""
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:40
-#: collective/roster/roster.py:348
+#: collective/roster/roster.py:347
 msgid "Room"
 msgstr ""
 
@@ -114,12 +113,16 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/roster.py:333
+#: collective/roster/roster.py:332
 msgid "Salutation"
 msgstr ""
 
+#: collective/roster/behaviors/interfaces.py:68
+#: collective/roster/roster.py:390
+msgid "Short number"
+msgstr ""
+
 #: collective/roster/interfaces.py:63
-#: collective/roster/roster.py:312
 msgid "Title"
 msgstr ""
 
@@ -142,13 +145,18 @@ msgstr ""
 msgid "groups"
 msgstr ""
 
-#. Default: "Phone number:"
-#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:5
+#. Default: "Phone:"
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:7
 msgid "phone"
 msgstr ""
 
 #. Default: "Room:"
 #: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:2
 msgid "room"
+msgstr ""
+
+#. Default: "Short number:"
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:12
+msgid "short_number"
 msgstr ""
 

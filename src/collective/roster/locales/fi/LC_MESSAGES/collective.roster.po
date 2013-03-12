@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-04 09:24+0000\n"
+"POT-Creation-Date: 2013-03-12 12:57+0000\n"
 "PO-Revision-Date: 2013-01-28 06:57+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:291
+#: collective/roster/roster.py:290
 msgid "#"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr "Taustatiedot"
 msgid "Column"
 msgstr "Sarake"
 
-#: collective/roster/behaviors/interfaces.py:69
+#: collective/roster/behaviors/interfaces.py:74
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
@@ -51,13 +51,9 @@ msgid "Display only the selected person information columns on supporting views.
 msgstr "Näytä vain valitut sarakkeet (niitä tukevissa näkyvissä)."
 
 #: collective/roster/behaviors/interfaces.py:57
-#: collective/roster/roster.py:388
+#: collective/roster/roster.py:415
 msgid "Email"
 msgstr "Sähköposti"
-
-#: collective/roster/behaviors/interfaces.py:58
-msgid "Email address"
-msgstr "Sähköpostiosoite"
 
 #: collective/roster/interfaces.py:68
 msgid "First name"
@@ -75,6 +71,10 @@ msgstr "Ryhmät"
 msgid "Last name"
 msgstr "Sukunimi"
 
+#: collective/roster/roster.py:311
+msgid "Name"
+msgstr ""
+
 #: collective/roster/behaviors/interfaces.py:46
 msgid "Office information"
 msgstr ""
@@ -87,8 +87,7 @@ msgstr "Henkilö"
 msgid "Phone"
 msgstr "Puhelin"
 
-#: collective/roster/behaviors/interfaces.py:64
-#: collective/roster/roster.py:366
+#: collective/roster/roster.py:365
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
@@ -102,7 +101,7 @@ msgstr "Henkilöön liittyvä sisältö"
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:40
-#: collective/roster/roster.py:348
+#: collective/roster/roster.py:347
 msgid "Room"
 msgstr "Huone"
 
@@ -114,12 +113,16 @@ msgstr "Huone"
 msgid "Roster"
 msgstr "Henkilöluettelo"
 
-#: collective/roster/roster.py:333
+#: collective/roster/roster.py:332
 msgid "Salutation"
 msgstr "Titteli"
 
+#: collective/roster/behaviors/interfaces.py:68
+#: collective/roster/roster.py:390
+msgid "Short number"
+msgstr ""
+
 #: collective/roster/interfaces.py:63
-#: collective/roster/roster.py:312
 msgid "Title"
 msgstr "Nimi"
 
@@ -142,8 +145,9 @@ msgstr "Sähköposti:"
 msgid "groups"
 msgstr "Ryhmät:"
 
-#. Default: "Phone number:"
-#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:5
+#. Default: "Phone:"
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:7
+#, fuzzy
 msgid "phone"
 msgstr "Puhelinnumero:"
 
@@ -151,4 +155,9 @@ msgstr "Puhelinnumero:"
 #: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:2
 msgid "room"
 msgstr "Huone:"
+
+#. Default: "Short number:"
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:12
+msgid "short_number"
+msgstr ""
 
