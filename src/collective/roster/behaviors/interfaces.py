@@ -56,18 +56,26 @@ class IContactInfo(form.Schema):
     email = schema.TextLine(
         title=_(u"Email"),
         description=_(u"Email address"),
-        constraint=isEmailAddress
+        constraint=isEmailAddress,
+        required=False
     )
 
     phone_number = schema.TextLine(
         title=_(u"Phone"),
         description=_(u"Phone number"),
+        required=False
+    )
+
+    short_number = schema.TextLine(
+        title=_(u"Short number"),
+        description=_(u"Short number"),
+        required=False
     )
 
     form.fieldset(
         'Contact information',
         label=_(u"Contact information"),
-        fields=['email', 'phone_number']
+        fields=['email', 'phone_number', 'short_number']
     )
 
 alsoProvides(IContactInfo, form.IFormFieldProvider)

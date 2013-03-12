@@ -2,6 +2,9 @@
     <dt i18n:translate="email">Email:</dt>
     <dd tal:content="structure view/w/IContactInfo.email/render" />
 
-    <dt i18n:translate="phone">Phone number:</dt>
+    <dt i18n:translate="phone">Phone:</dt>
     <dd tal:content="structure view/w/IContactInfo.phone_number/render" />
+
+    <dt i18n:translate="short_number">Short number:</dt>
+    <dd tal:content="structure view/w/IContactInfo.short_number/render" />
 </dl>
