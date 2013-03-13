@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="collective.roster",
-    version="0.9.8",
+    version="0.9.9",
     description="Extendable Personnel Roster",
     long_description=open("README.txt").read() + "\n" +
                 open("CHANGES.txt").read(),
