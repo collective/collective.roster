@@ -1,7 +1,7 @@
 
 #content .personContactInfo dd {
   float: left;
-  margin: 0;
+  margin: 0 0 0 1em;
 }
 
 #content .personContactInfo dt {
