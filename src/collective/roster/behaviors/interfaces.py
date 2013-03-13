@@ -39,6 +39,7 @@ class IOfficeInfo(form.Schema):
     room = schema.TextLine(
         title=_(u"Room"),
         description=_(u"Room Info"),
+        required=False
     )
 
     form.fieldset(
