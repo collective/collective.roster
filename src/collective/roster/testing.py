@@ -7,13 +7,17 @@ from plone.app.testing import (
     PLONE_FIXTURE,
     IntegrationTesting,
     FunctionalTesting,
-    applyProfile
+    applyProfile,
+    ploneSite
 )
-from plone.testing import z2
+from plone.testing import (
+    z2,
+    Layer
+)
 from zope.component import getSiteManager
 
 
-class Layer(PloneSandboxLayer):
+class RosterLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -38,7 +42,7 @@ class Layer(PloneSandboxLayer):
         sm.registerUtility(aq_base(portal._original_MailHost),
                            provided=IMailHost)
 
-ROSTER_FIXTURE = Layer()
+ROSTER_FIXTURE = RosterLayer()
 
 ROSTER_INTEGRATION_TESTING = IntegrationTesting(
     bases=(ROSTER_FIXTURE,), name="Integration")
@@ -47,16 +51,17 @@ ROSTER_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(ROSTER_FIXTURE,), name="Functional")
 
 
-class RobotLayer(PloneSandboxLayer):
+class RobotLayer(Layer):
     defaultBases = (ROSTER_FIXTURE,)
 
-    def setUpPloneSite(self, portal):
+    def setUp(self):
         from collective.roster.testing_robot import RemoteKeywordsLibrary
-        portal._setObject("RemoteKeywordsLibrary", RemoteKeywordsLibrary())
+        with ploneSite() as portal:
+            portal._setObject("RemoteKeywordsLibrary", RemoteKeywordsLibrary())
 
-    def tearDownPloneSite(self, portal):
-        portal._delObject("RemoteKeywordsLibrary")
-
+    def tearDown(self):
+        with ploneSite() as portal:
+            portal._delObject("RemoteKeywordsLibrary")
 
 ROSTER_ROBOT_FIXTURE = RobotLayer()
 
