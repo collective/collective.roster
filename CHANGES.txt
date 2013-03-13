@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.9.9 (2013-03-13)
+------------------
+- translations updated
+- pagination removd from roster
+- short number added
+- portrait size changed to 3:4
+- phone, email and name are now links
+- roster table size is now 100%
+- grouplisting ordered by alpha
+- float-issue fixed in person view
+
 0.9.8 (2013-01-05)
 ------------------
 - Fixed bug where roster multiplies first group
