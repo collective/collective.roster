@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
 from OFS.SimpleItem import SimpleItem
 
-from plone import api
 from Products.PluggableAuthService.plugins import DomainAuthHelper
 from Products.PlonePAS.Extensions.Install import activatePluginInterfaces
 
 
-class KeywordsLibrary(object):
-
-    def download_file(self, url):
-        import urllib
-        return urllib.urlopen(url).read()
-
-
 class RemoteKeywordsLibrary(SimpleItem):
-    """Robot Framework Remote Library Tool for Plone"""
+    """Robot Framework Remote Library Tool for Plone
+    """
 
     def get_keyword_names(self):
         """Return names of the implemented keywords
@@ -90,26 +83,3 @@ class RemoteKeywordsLibrary(SimpleItem):
         """
         if "robot_login" in self.acl_users.objectIds():
             self.acl_users.robot_login._domain_map.clear()
-
-    def add_user(self, email, fullname):
-        """Add new user and add it to associate editors group."""
-        properties = dict(fullname=fullname)
-        user = api.user.create(email=email, properties=properties)
-        api.group.add_user(groupname='associate-editors', user=user)
-
-    def get_the_last_sent_email(self):
-        """Return the last sent email"""
-        return self.MailHost.messages[-1]
-
-    def create_discussion_submission(self):
-        """Create new discussion submission."""
-        container = self.get('under-review')
-        submission = api.content.create(
-            type="jyu.simplejournalsystem.publication",
-            title="Simplejournal publication",
-            container=container)
-        api.content.transition(obj=submission,
-                               transition='accept_to_discussion_paper')
-
-    def get_associate_editor(self):
-        """Return associate editor info."""

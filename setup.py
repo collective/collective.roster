@@ -40,11 +40,7 @@ setup(
     ],
     extras_require={"test": [
         "Pillow",
-        "robotframework-selenium2library",
-        "selenium",  # Python 2.6
-        "decorator",  # Python 2.6
-        "plone.act",
-        "robotsuite",
+        "plone.app.testing[robot]",
         "corejet.pivotal",
         "corejet.robot",
     ]},
@@ -52,5 +48,5 @@ setup(
     # -*- Entry points: -*-
     [z3c.autoinclude.plugin]
     target = plone
-     """
+    """
 )

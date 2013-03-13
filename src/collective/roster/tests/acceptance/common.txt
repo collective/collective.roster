@@ -1,21 +1,40 @@
 *** Settings ***
 
 Library  Selenium2Library  timeout=10  implicit_wait=0.5
+Library  Remote  ${PLONE_URL}/RemoteKeywordsLibrary
 
-Resource  plone/act/keywords.txt
+*** Variables ***
 
-Library  Remote  ${PLONE_URL}/RosterRemoteLibrary
+${ZOPE_HOST} =  localhost
+${ZOPE_PORT} =  55001
+${ZOPE_URL} =  http://${ZOPE_HOST}:${ZOPE_PORT}
+
+${PLONE_SITE_ID} =  plone
+${PLONE_URL} =  ${ZOPE_URL}/${PLONE_SITE_ID}
+
+${BROWSER} =  Firefox
+${REMOTE_URL} =
+${DESIRED_CAPABILITIES} =  platform:Linux
 
 *** Keywords ***
 
-The personnel roster product is activated
-    Product has been activated  collective.roster
+Start browser
+    [Documentation]  Open browser in a Selenium grid compatible way.
+    Open browser  ${PLONE_URL}  ${BROWSER}
+    ...           remote_url=${REMOTE_URL}
+    ...           desired_capabilities=${DESIRED_CAPABILITIES}
+    ${SESSION_ID} =  Get session id
+    Set test variable  ${SESSION_ID}  ${SESSION_ID}
+
+Open Menu
+    [Arguments]  ${elementId}
+    Element Should Be Visible  css=dl#${elementId} span
+    Element Should Not Be Visible  css=dl#${elementId} dd.actionMenuContent
+    Click link  css=dl#${elementId} dt.actionMenuHeader a
+    Wait until keyword succeeds  1  5  Element Should Be Visible  css=dl#${elementId} dd.actionMenuContent
 
 I'm logged in as a site manager
-    Log in admin
+    Enable autologin as  Site Administrator
 
-Log in admin
-    Log in  ${SITE_OWNER_NAME}  ${SITE_OWNER_PASSWORD}
-
-Log in user
-    Log in  ${TEST_USER_NAME}  ${TEST_USER_PASSWORD}
+Log out
+    Disable autologin
