@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.0 (2013-03-13)
+------------------
+- room isn't required 
+- css fixes
+
 0.9.9 (2013-03-13)
 ------------------
 - translations updated
