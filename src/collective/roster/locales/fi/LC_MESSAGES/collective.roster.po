@@ -120,7 +120,7 @@ msgstr "Titteli"
 #: collective/roster/behaviors/interfaces.py:68
 #: collective/roster/roster.py:390
 msgid "Short number"
-msgstr ""
+msgstr "Lyhytnumero"
 
 #: collective/roster/interfaces.py:63
 msgid "Title"
