@@ -73,11 +73,11 @@ msgstr "Sukunimi"
 
 #: collective/roster/roster.py:311
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #: collective/roster/behaviors/interfaces.py:46
 msgid "Office information"
-msgstr ""
+msgstr "Toimisto info"
 
 #: collective/roster/profiles/default/types/collective.roster.person.xml
 msgid "Person"
@@ -93,7 +93,7 @@ msgstr "Puhelinnumero"
 
 #: collective/roster/interfaces.py:76
 msgid "Preferred salutation"
-msgstr "Titteli"
+msgstr "Nimike"
 
 #: collective/roster/person_templates/relatedcontentviewlet.pt:3
 msgid "Related content"
@@ -115,7 +115,7 @@ msgstr "Henkilöluettelo"
 
 #: collective/roster/roster.py:332
 msgid "Salutation"
-msgstr "Titteli"
+msgstr "Nimike"
 
 #: collective/roster/behaviors/interfaces.py:68
 #: collective/roster/roster.py:390
@@ -147,7 +147,6 @@ msgstr "Ryhmät:"
 
 #. Default: "Phone:"
 #: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:7
-#, fuzzy
 msgid "phone"
 msgstr "Puhelinnumero:"
 
@@ -159,5 +158,5 @@ msgstr "Huone:"
 #. Default: "Short number:"
 #: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:12
 msgid "short_number"
-msgstr ""
+msgstr "Lyhytnumero:"
 
