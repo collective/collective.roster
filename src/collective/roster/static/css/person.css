@@ -1,6 +1,4 @@
-
 #content .personContactInfo dd {
-  float: left;
   margin: 0 0 0 1em;
 }
 
@@ -11,10 +9,21 @@
   margin: 0;
 }
 
+#content .personOfficeInfo dd {
+  margin: 0 0 0 1em;
+}
+
+#content .personOfficeInfo dt {
+  clear: left;
+  float: left;
+  min-width:8em;
+  margin: 0;
+}
+
 #content .personContactInfo {
   overflow: hidden;
   display: block;
-  margin: 1em 0;
+  margin: 1em 0 0 0;
 }
 
 .personPortrait{

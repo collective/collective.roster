@@ -1,4 +1,0 @@
-<dl class="personGroups" tal:condition="nocall:context/groups">
-    <dt i18n:domain="collective.roster" i18n:translate="groups">Groups:</dt>
-    <dd tal:content="structure view/w/groups/render" />
-</dl>
