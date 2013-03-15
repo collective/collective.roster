@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.1 (2013-03-14)
+------------------
+- OfficeInfo added as default behavior
+- room isn't required 
+- css fixes
+
 1.0.0 (2013-03-13)
 ------------------
 - room isn't required 

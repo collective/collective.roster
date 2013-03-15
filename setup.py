@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="collective.roster",
-    version="1.0.0",
+    version="1.0.1",
     description="Extendable Personnel Roster",
     long_description=open("README.txt").read() + "\n" +
                 open("CHANGES.txt").read(),
@@ -12,8 +12,8 @@ setup(
         "Programming Language :: Python",
     ],
     keywords="",
-    author="Asko Soukka",
-    author_email="asko.soukka@iki.fi",
+    author="Asko Soukka, Toni Haka-Risku",
+    author_email="asko.soukka@iki.fi, toni.haka-risku@jyu.fi",
     url="",
     license="GPL",
     packages=find_packages("src", exclude=["ez_setup"]),
