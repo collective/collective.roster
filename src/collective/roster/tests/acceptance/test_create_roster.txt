@@ -62,12 +62,16 @@ I create person
     Go to  ${PLONE_URL}/roster
     Open menu  plone-contentmenu-factories
     Click link  collective-roster-person
-    Click link  Edit without visual editor
 
 I fill the necessary information for person
     Input text  form.widgets.first_name  Foo
     Input text  form.widgets.last_name  Bar
     Input text  form.widgets.salutation  Foobar
+
+#    Select frame  text_ifr
+#    Input text  content  ${TEXT}
+#    Unselect Frame
+#    Input text  xpath=//textarea[@id="text"]  ${TEXT}
 
 New person is created
     Page should contain  Item created
