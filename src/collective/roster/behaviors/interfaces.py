@@ -18,10 +18,24 @@ from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 
 from collective.roster import _
 
+from collective.roster.behaviors.widgets import ShortNumberFieldWidget
+import re
+
 
 class InvalidEmailAddress(ValidationError):
     """Invalid email address.
     """
+
+
+class InvalidShortNumber(ValidationError):
+    """Invalid short number.
+    """
+
+
+def checkShortNumber(value):
+    if value < 999 or value > 9999:
+        raise InvalidShortNumber(value)
+    return True
 
 
 def isEmailAddress(value):
@@ -62,12 +76,14 @@ class IContactInfo(form.Schema):
 
     phone_number = schema.TextLine(
         title=_(u"Phone"),
-        required=False
+        required=False,
     )
 
-    short_number = schema.TextLine(
+    form.widget(short_number=ShortNumberFieldWidget)
+    short_number = schema.Int(
         title=_(u"Short number"),
-        required=False
+        required=False,
+        constraint=checkShortNumber
     )
 
     form.fieldset(

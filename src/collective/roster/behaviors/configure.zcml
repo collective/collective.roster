@@ -9,6 +9,7 @@
     <grok:grok package=".indexers" />
     <grok:grok package=".viewlets" />
     <grok:grok package=".adapters" />
+    <grok:grok package=".widgets" />
 
     <plone:behavior
         title="Related persons"
