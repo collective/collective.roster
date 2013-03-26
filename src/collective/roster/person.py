@@ -62,8 +62,10 @@ def subject(context):
     vocabulary_factory = getUtility(IVocabularyFactory,
                                     name="collective.roster.localgroups")
     vocabulary = vocabulary_factory(context)
+    group_terms_filter = lambda term: term.value in context.groups)
 
-    terms = filter(lambda term: term.value in context.groups, vocabulary)
+    terms = filter(group_terms_filter, vocabulary)
+
     groups = map(lambda term: term.title.encode("utf-8"), terms)
 
     return context.subject + tuple(groups)
