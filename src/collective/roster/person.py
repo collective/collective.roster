@@ -62,7 +62,7 @@ def subject(context):
     vocabulary_factory = getUtility(IVocabularyFactory,
                                     name="collective.roster.localgroups")
     vocabulary = vocabulary_factory(context)
-    group_terms_filter = lambda term: term.value in context.groups)
+    group_terms_filter = lambda term: term.value in context.groups
 
     terms = filter(group_terms_filter, vocabulary)
 
