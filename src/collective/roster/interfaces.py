@@ -102,5 +102,6 @@ class IPerson(form.Schema):
             vocabulary="collective.roster.localgroups"
         ),
         # min_length=1,
+        missing_value=[],
         required=False
     )
