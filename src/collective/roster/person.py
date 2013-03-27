@@ -5,9 +5,9 @@
 from five import grok
 from plone.directives import dexterity
 
-from zope.lifecycleevent import (
-    ObjectModifiedEvent,
-    ObjectCreatedEvent
+from zope.lifecycleevent.interfaces import (
+    IObjectModifiedEvent,
+    IObjectCreatedEvent
 )
 
 from zope.component import getUtility
@@ -38,8 +38,8 @@ class NameFromTitle(grok.Adapter):
                            self.context.first_name)
 
 
-@grok.subscribe(IPerson, ObjectCreatedEvent)
-@grok.subscribe(IPerson, ObjectModifiedEvent)
+@grok.subscribe(IPerson, IObjectCreatedEvent)
+@grok.subscribe(IPerson, IObjectModifiedEvent)
 def updatePersonTitle(context, event):
     title = INameFromTitle(context).title
     adapted = IPerson(context, None)
