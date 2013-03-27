@@ -5,6 +5,11 @@
 from five import grok
 from plone.directives import dexterity
 
+from zope.lifecycleevent import (
+    ObjectModifiedEvent,
+    ObjectCreatedEvent
+)
+
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -33,28 +38,19 @@ class NameFromTitle(grok.Adapter):
                            self.context.first_name)
 
 
-@indexer(IPerson)
-def title(context):
-
+@grok.subscribe(IPerson, ObjectCreatedEvent)
+@grok.subscribe(IPerson, ObjectModifiedEvent)
+def updatePersonTitle(context, event):
     title = INameFromTitle(context).title
-
     adapted = IPerson(context, None)
-
     if adapted:
         bound = IPerson["salutation"].bind(adapted)
         salutation = bound.get(adapted)
         if salutation:
             title = u"%s, %s" % (title, salutation)
-
-    # XXX: We are mutating object during indexing... by purpose.
-    context.title = title
-    # Note: If binding and setting through the schema is so cool, why not here?
-    # Because the field to be set is meant to be readonly on forms and setting
-    # through the schema would explicitly prevent setting readonly fields.
-
-    return title.encode("utf-8")  # XXX: unicode could crash the indexing
-
-grok.global_adapter(title, name="Title")
+    context.title = title  # Cannot used the field adaptation pattern used
+                           # above, because the field is defined readonly.
+    context.reindexObject(idxs=('Title',))
 
 
 @indexer(IPerson)
