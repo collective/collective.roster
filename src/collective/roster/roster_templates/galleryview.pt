@@ -10,6 +10,7 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
   <div class="rosterView">
+    <tal:block replace="structure provider:collective.roster.rosterviewlets" />
     <tal:repeat repeat="group view/tables">
     <h2 tal:content="group/title">Title</h2>
       <tal:repeat repeat="person group/values">

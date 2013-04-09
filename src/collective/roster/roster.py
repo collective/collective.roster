@@ -138,16 +138,16 @@ class RosterDataManager(grok.MultiAdapter, AttributeField):
         return super(RosterDataManager, self).set(value)
 
 
-class View(grok.View):
+class GroupView(grok.View):
     """ Personnel listing view, which is composed using its own viewlet manager
     to make it extensible and configurable """
 
     grok.context(IRoster)
     grok.require("zope2.View")
-    grok.name("view")
+    grok.name("groupview")
 
     def __init__(self, context, request):
-        super(View, self).__init__(context, request)
+        super(GroupView, self).__init__(context, request)
 
         vocabulary_factory = getUtility(IVocabularyFactory,
                                         name="collective.roster.localgroups")
@@ -159,7 +159,7 @@ class View(grok.View):
         )
 
     def update(self):
-        super(View, self).update()
+        super(GroupView, self).update()
         for table in self.tables:
             table.update()
 
@@ -188,7 +188,7 @@ class AlphaView(grok.View):
         return output
 
 
-class GalleryView(View):
+class GalleryView(GroupView):
     """ Gallery view for persons """
     grok.context(IRoster)
     grok.require("zope2.View")
@@ -252,6 +252,10 @@ class PersonnelAlphaListing(PersonnelListing):
         sorted_values = sorted(values, key=sort_by_title)
         return sorted_values
 
+    def update(self):
+        super(PersonnelAlphaListing, self).update()
+        self.alpha = []
+
 
 class PersonnelGroupListing(PersonnelListing):
 
@@ -300,9 +304,9 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
     def renderCell(self, obj):
         if not obj.last_name:
             return u""
-        alpha = obj.last_name[0] if len(obj.last_name) else None
-        if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
-            alpha = alpha.upper()
+        alpha = obj.last_name[0].upper()
+
+        if not self.table.alpha or alpha != self.table.alpha[-1]:
             self.table.alpha.append(alpha)
             return u"""<a name="%s">%s</a>""" % (alpha, alpha)
         else:

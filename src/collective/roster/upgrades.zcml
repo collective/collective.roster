@@ -99,4 +99,14 @@
         purge="False"
         run_deps="false"
         />
+
+    <genericsetup:upgradeDepends
+        source="11" destination="12" sortkey="11"
+        title="Upgrade collective.roster 11 to 12"
+        description="Set groupview as default"
+        profile="collective.roster:default"
+        import_steps="typeinfo"
+        purge="False"
+        run_deps="false"
+        />
 </configure>

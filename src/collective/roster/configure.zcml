@@ -43,7 +43,7 @@
         for="collective.roster.interfaces.IRoster"
         menu="plone_displayviews"
         title="Group listing"
-        action="@@view"
+        action="@@groupview"
         description="List all persons inside groups"
         i18n:attributes="title description"
     />
