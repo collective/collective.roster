@@ -8,9 +8,4 @@
     <dd><a tal:attributes="href string:tel:${view/w/IContactInfo.phone_number/value}"
       tal:content="structure view/w/IContactInfo.phone_number/render" />
     </dd>
-
-    <dt i18n:translate="short_number">Short number:</dt>
-    <dd><a tal:attributes="href string:tel:${view/w/IContactInfo.short_number/value}"
-      tal:content="structure view/w/IContactInfo.short_number/render" />
-    </dd>
 </dl>
