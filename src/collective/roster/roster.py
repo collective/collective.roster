@@ -9,6 +9,8 @@ from zope.component import (
     getUtility
 )
 
+from plone.app.viewletmanager.manager import OrderedViewletManager
+
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 from zope.schema.interfaces import (
@@ -46,6 +48,18 @@ from collective.roster.utils import getFirstParent
 
 from zope.i18nmessageid import MessageFactory as ZopeMessageFactory
 _ = ZopeMessageFactory("collective.roster")
+
+
+class RosterViewlets(OrderedViewletManager, grok.ViewletManager):
+    """ Roster viewlet manager, which manages all roster related viewlets """
+    grok.context(IRoster)
+    grok.name("collective.roster.rosterviewlets")
+
+
+class LinkViewlet(grok.Viewlet):
+    grok.viewletmanager(RosterViewlets)
+    grok.context(IRoster)
+    grok.name("collective.roster.rosterviewlets.linkviewlet")
 
 
 class LocalGroupsVocabulary(grok.GlobalUtility):
