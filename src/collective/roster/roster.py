@@ -228,21 +228,15 @@ class PersonnelListing(table.Table):
 
 class PersonnelAlphaListing(PersonnelListing):
 
-    cssClasses = {'table': u"listing roster", 'td': u"nosort notDraggable"}
-
     alpha = []
+    sortOn = None
 
     @property
-    @view.memoize
     def values(self):
         values = super(PersonnelAlphaListing, self).values
-        sort_by_title = lambda x, y: cmp(x.title.lower(), y.title.lower())
-        sorted_values = sorted(values, cmp=sort_by_title)
+        sort_by_title = lambda x: x.title.lower()
+        sorted_values = sorted(values, key=sort_by_title)
         return sorted_values
-
-    def update(self):
-        super(PersonnelAlphaListing, self).update()
-        self.alpha = []
 
 
 class PersonnelGroupListing(PersonnelListing):
@@ -290,6 +284,8 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
     header = _(u"#")
 
     def renderCell(self, obj):
+        if not obj.last_name:
+            return u""
         alpha = obj.last_name[0] if len(obj.last_name) else None
         if not self.table.alpha or alpha.upper() != self.table.alpha[-1]:
             alpha = alpha.upper()

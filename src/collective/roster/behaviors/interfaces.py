@@ -19,7 +19,6 @@ from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 from collective.roster import _
 
 from collective.roster.behaviors.widgets import ShortNumberFieldWidget
-import re
 
 
 class InvalidEmailAddress(ValidationError):
