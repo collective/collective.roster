@@ -30,10 +30,10 @@
     </property>
 
     <!-- View information -->
-    <property name="default_view">view</property>
+    <property name="default_view">groupview</property>
     <property name="default_view_fallback">False</property>
     <property name="view_methods" purge="false">
-        <element value="view" />
+        <element value="groupview" />
         <element value="alphaview" />
         <element value="galleryview" />
     </property>
