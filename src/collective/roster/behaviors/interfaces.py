@@ -19,7 +19,6 @@ from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 from collective.roster import _
 
 from collective.roster.behaviors.widgets import ShortNumberFieldWidget
-import re
 
 
 class InvalidEmailAddress(ValidationError):
@@ -46,24 +45,6 @@ def isEmailAddress(value):
     return True
 
 
-class IOfficeInfo(form.Schema):
-    """Behavior interface for providing office info.
-    """
-
-    room = schema.TextLine(
-        title=_(u"Room"),
-        description=_(u"Room Info"),
-        required=False
-    )
-
-    form.fieldset(
-        'Contact information',
-        label=_(u"Office information"),
-        fields=['room']
-    )
-alsoProvides(IOfficeInfo, form.IFormFieldProvider)
-
-
 class IContactInfo(form.Schema):
     """Behavior interface for providing contact info.
     """
@@ -79,6 +60,27 @@ class IContactInfo(form.Schema):
         required=False,
     )
 
+    form.fieldset(
+        'Contact information',
+        label=_(u"Contact information"),
+        fields=['email', 'phone_number']
+    )
+
+alsoProvides(IContactInfo, form.IFormFieldProvider)
+
+
+class IOfficeInfo(form.Schema):
+    """Behavior interface for providing office info.
+    """
+
+    form.order_after(room="IContactInfo.phone_number")
+    room = schema.TextLine(
+        title=_(u"Room"),
+        # description=_(u"Room Info"),
+        required=False
+    )
+
+    form.order_after(short_number="IContactInfo.phone_number")
     form.widget(short_number=ShortNumberFieldWidget)
     short_number = schema.Int(
         title=_(u"Short number"),
@@ -86,13 +88,7 @@ class IContactInfo(form.Schema):
         constraint=checkShortNumber
     )
 
-    form.fieldset(
-        'Contact information',
-        label=_(u"Contact information"),
-        fields=['email', 'phone_number', 'short_number']
-    )
-
-alsoProvides(IContactInfo, form.IFormFieldProvider)
+alsoProvides(IOfficeInfo, form.IFormFieldProvider)
 
 
 class IAutoRoles(Interface):

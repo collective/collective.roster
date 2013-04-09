@@ -390,14 +390,14 @@ class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Short number")
 
     def getLinkURL(self, obj):
-        adapter = IContactInfo(obj, None)
+        adapter = IOfficeInfo(obj, None)
         short_number = getattr(adapter, "short_number", None)
         if short_number:
             return "tel:" + short_number
         return ""
 
     def getLinkContent(self, obj):
-        adapter = IContactInfo(obj, None)
+        adapter = IOfficeInfo(obj, None)
         if adapter:
             return getattr(adapter, "short_number", u"")
         return u""
