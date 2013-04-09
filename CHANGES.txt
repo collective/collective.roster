@@ -3,13 +3,25 @@ Changelog
 
 1.1.0 (2013-04-09)
 ------------------
+
+- Move short_number into IOfficeInfo
+  [Asko Soukka]
+- Fixed problem with automatically created persons not having any groups
+  [Teppo Naakka]
+- Short number type changed to int, added validation and widget for displaying
+  the information
+  [Teppo Naakka]
+
+1.0.1 (2013-03-14)
+------------------
+
 - OfficeInfo added as default behavior
-- room isn't required 
+- room isn't required
 - css fixes
 
 1.0.0 (2013-03-13)
 ------------------
-- room isn't required 
+- room isn't required
 - css fixes
 
 0.9.9 (2013-03-13)
@@ -29,7 +41,7 @@ Changelog
 
 0.9.7 (2013-01-04)
 ------------------
-- Gallery view 
+- Gallery view
 - A-to-Z view
 
 0.9.6 (2013-01-31)
