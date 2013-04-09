@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.1 (2013-03-14)
+1.1.0 (2013-04-09)
 ------------------
 - OfficeInfo added as default behavior
 - room isn't required 
