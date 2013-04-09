@@ -89,4 +89,14 @@
         purge="False"
         run_deps="false"
         />
+
+    <genericsetup:upgradeDepends
+        source="10" destination="11" sortkey="10"
+        title="Upgrade collective.roster 10 to 11"
+        description="add roster viewlets"
+        profile="collective.roster:default"
+        import_steps="viewlets"
+        purge="False"
+        run_deps="false"
+        />
 </configure>

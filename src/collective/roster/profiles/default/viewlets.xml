@@ -7,4 +7,7 @@
     <viewlet name="collective.roster.personviewlets.officeinfo" />
     <viewlet name="collective.roster.personviewlets.person" />
   </order>
+  <order manager="collective.roster.rosterviewlets" skinname="*">
+    <viewlet name="collective.roster.rosterviewlets.linkviewlet" />
+  </order>
 </object>
