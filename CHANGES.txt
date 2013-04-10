@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.2 (unreleased)
+------------------
+- fixed bug where linkviewlet renders the whole page again
+
 1.2.1 (unreleased)
 ------------------
 - Translations updated
