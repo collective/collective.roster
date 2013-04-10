@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2.1 (unreleased)
+------------------
+- Translations updated
+- fixed bug in room link url
+
 1.2.0 (unreleased)
 ------------------
 - User can now change views in roster
