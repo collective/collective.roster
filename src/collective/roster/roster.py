@@ -407,7 +407,7 @@ class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
         adapter = IOfficeInfo(obj, None)
         short_number = getattr(adapter, "short_number", None)
         if short_number:
-            return "tel:" + short_number
+            return "tel: %s" % (short_number,)
         return ""
 
     def getLinkContent(self, obj):

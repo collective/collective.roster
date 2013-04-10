@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-12 12:57+0000\n"
+"POT-Creation-Date: 2013-04-10 09:40+0000\n"
 "PO-Revision-Date: 2013-01-28 06:57+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:290
+#: collective/roster/roster.py:302
 msgid "#"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr "Taustatiedot"
 msgid "Column"
 msgstr "Sarake"
 
-#: collective/roster/behaviors/interfaces.py:74
+#: collective/roster/behaviors/interfaces.py:65
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
@@ -50,8 +50,8 @@ msgstr "Näkyvät sarakkeet"
 msgid "Display only the selected person information columns on supporting views."
 msgstr "Näytä vain valitut sarakkeet (niitä tukevissa näkyvissä)."
 
-#: collective/roster/behaviors/interfaces.py:57
-#: collective/roster/roster.py:415
+#: collective/roster/behaviors/interfaces.py:53
+#: collective/roster/roster.py:429
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -71,23 +71,19 @@ msgstr "Ryhmät"
 msgid "Last name"
 msgstr "Sukunimi"
 
-#: collective/roster/roster.py:311
+#: collective/roster/roster.py:325
 msgid "Name"
 msgstr "Nimi"
-
-#: collective/roster/behaviors/interfaces.py:46
-msgid "Office information"
-msgstr "Toimisto info"
 
 #: collective/roster/profiles/default/types/collective.roster.person.xml
 msgid "Person"
 msgstr "Henkilö"
 
-#: collective/roster/behaviors/interfaces.py:63
+#: collective/roster/behaviors/interfaces.py:59
 msgid "Phone"
 msgstr "Puhelin"
 
-#: collective/roster/roster.py:365
+#: collective/roster/roster.py:379
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
@@ -100,25 +96,21 @@ msgid "Related content"
 msgstr "Henkilöön liittyvä sisältö"
 
 #. Default: "Room:"
-#: collective/roster/behaviors/interfaces.py:40
-#: collective/roster/roster.py:347
+#: collective/roster/behaviors/interfaces.py:78
+#: collective/roster/roster.py:361
 msgid "Room"
-msgstr "Huone"
-
-#: collective/roster/behaviors/interfaces.py:41
-msgid "Room Info"
 msgstr "Huone"
 
 #: collective/roster/profiles/default/types/collective.roster.roster.xml
 msgid "Roster"
 msgstr "Henkilöluettelo"
 
-#: collective/roster/roster.py:332
+#: collective/roster/roster.py:346
 msgid "Salutation"
 msgstr "Nimike"
 
-#: collective/roster/behaviors/interfaces.py:68
-#: collective/roster/roster.py:390
+#: collective/roster/behaviors/interfaces.py:86
+#: collective/roster/roster.py:404
 msgid "Short number"
 msgstr "Lyhytnumero"
 
@@ -130,20 +122,35 @@ msgstr "Nimi"
 msgid "Upload an image"
 msgstr "Siirrä kuva"
 
+#. Default: "Alphabetical"
+#: collective/roster/roster_templates/linkviewlet.pt:13
+msgid "alphaview"
+msgstr "Aakkosellinen"
+
 #. Default: "Biography"
 #: collective/roster/person_templates/personviewlet.pt:2
 msgid "biography"
 msgstr "Taustatiedot"
+
+#. Default: "Change view:"
+#: collective/roster/roster_templates/linkviewlet.pt:10
+msgid "change_views"
+msgstr "Vaihda näkymä:"
 
 #. Default: "Email:"
 #: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:2
 msgid "email"
 msgstr "Sähköposti:"
 
-#. Default: "Groups:"
-#: collective/roster/person_templates/groupsviewlet.pt:2
-msgid "groups"
-msgstr "Ryhmät:"
+#. Default: "Gallery"
+#: collective/roster/roster_templates/linkviewlet.pt:15
+msgid "galleryview"
+msgstr "Galleria"
+
+#. Default: "Group"
+#: collective/roster/roster_templates/linkviewlet.pt:11
+msgid "groupview"
+msgstr "Ryhmitelty"
 
 #. Default: "Phone:"
 #: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:7
@@ -151,12 +158,12 @@ msgid "phone"
 msgstr "Puhelinnumero:"
 
 #. Default: "Room:"
-#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:2
+#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:7
 msgid "room"
 msgstr "Huone:"
 
 #. Default: "Short number:"
-#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:12
+#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:2
 msgid "short_number"
 msgstr "Lyhytnumero:"
 

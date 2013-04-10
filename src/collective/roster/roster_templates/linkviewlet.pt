@@ -1,9 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.roster">
+
 <div style="float: right;">
   <span i18n:translate="change_views">Change view: </span>
-  <a i18n:translate="groupview" 
-      tal:attributes="href string: ${context/absolute_url}/groupview">Group</a> |
   <a i18n:translate="alphaview" tal:attributes="href string:
     ${context/absolute_url}/alphaview">Alphabetical</a> |
   <a i18n:translate="galleryview" tal:attributes="href string:
-    ${context/absolute_url}/galleryview">Gallery</a> 
+    ${context/absolute_url}/galleryview">Gallery</a> |
+  <a i18n:translate="groupview" 
+      tal:attributes="href string: ${context/absolute_url}/groupview">Group</a> 
 </div>
+
+</html>
