@@ -1,26 +1,17 @@
 Changelog
 =========
 
-1.2.2 (unreleased)
+1.2.2 (2013-04-10)
 ------------------
-- fixed bug where linkviewlet renders the whole page again
 
-1.2.1 (unreleased)
-------------------
+- fixed bug where linkviewlet renders the whole page again
 - Translations updated
 - fixed bug in room link url
 
-1.2.0 (unreleased)
+1.2.0 (2013-04-10)
 ------------------
 - User can now change views in roster
 - Alphabetical view order fixed
-
-
-1.1.1 (unreleased)
-------------------
-
-- Nothing changed yet.
-
 
 1.1.0 (2013-04-09)
 ------------------
