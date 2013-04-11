@@ -3,6 +3,7 @@
 """
 
 from five import grok
+from plone import api
 
 from zope.component import (
     getGlobalSiteManager,
@@ -180,11 +181,13 @@ class AlphaView(grok.View):
 
     def atoz(self):
         """ Render A to Z links for template """
+        # get current url for alphalinks
+        url = api.portal.getRequest().getURL()
         self.table.render()
         output = ""
         for alpha in self.table.alpha:
             output += """<a class="alpha-anchor"
-                       href="#%s">%s</a>""" % (alpha, alpha)
+                       href="%s#%s">%s</a>""" % (url, alpha, alpha)
         return output
 
 
