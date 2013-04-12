@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2.3 (2013-04-12)
+------------------
+- fixed bug where empty cells inside 
+- fixed bug where anchor in atoz fails
+
 1.2.2 (2013-04-10)
 ------------------
 
