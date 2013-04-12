@@ -366,7 +366,7 @@ class RoomColumn(grok.MultiAdapter, column.Column):
     def renderCell(self, obj):
         adapter = IOfficeInfo(obj, None)
         if adapter:
-            return getattr(adapter, "room", u"")
+            return getattr(adapter, "room", None) or u""
         return u""
 
 
@@ -386,7 +386,7 @@ class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
         phone = getattr(adapter, "phone_number", None)
         if phone:
             return "tel:" + phone
-        return ""
+        return u""
 
     def getLinkContent(self, obj):
         adapter = IContactInfo(obj, None)
@@ -416,8 +416,9 @@ class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
     def getLinkContent(self, obj):
         adapter = IOfficeInfo(obj, None)
         if adapter:
-            return getattr(adapter, "short_number", u"")
+            return getattr(adapter, "short_number", None) or u""
         return u""
+
 
 
 class EmailColumn(grok.MultiAdapter, column.LinkColumn):
