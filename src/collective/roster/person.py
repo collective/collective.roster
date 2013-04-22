@@ -27,6 +27,10 @@ from plone.app.content.interfaces import INameFromTitle
 
 from collective.roster.interfaces import IPerson
 
+from collective.roster.behaviors.interfaces import (
+    IOfficeInfo
+)
+
 
 class NameFromTitle(grok.Adapter):
     grok.provides(INameFromTitle)
@@ -74,6 +78,13 @@ class View(dexterity.DisplayForm):
     grok.context(IPerson)
     grok.require("zope2.View")
     grok.name("view")
+
+    #@property
+    #def room(self):
+        #adapter = IOfficeInfo(obj, None)
+        #if adapter:
+            #return getattr(adapter, "room", None) or u""
+        #return u""
 
 
 class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
