@@ -22,6 +22,7 @@
             <a tal:attributes="href person/absolute_url">
               <img tal:replace="structure person/@@images/image/thumb"
               tal:condition="nocall:person/image|nothing"/>
+              <div class="placeholder" tal:condition="not: nocall:person/image|nothing" />
             </a>
             </div>
 

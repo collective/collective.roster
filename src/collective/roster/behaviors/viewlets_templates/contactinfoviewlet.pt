@@ -1,11 +1,15 @@
 <dl class="personContactInfo" i18n:domain="collective.roster">
-    <dt i18n:translate="email">Email:</dt>
-    <dd><a tal:attributes="href string:mailto:${view/w/IContactInfo.email/value}"
-      tal:content="structure view/w/IContactInfo.email/render" />
-    </dd>
+    <div tal:condition="view/w/IContactInfo.email/value" >
+      <dt i18n:translate="email">Email:</dt>
+      <dd><a tal:attributes="href string:mailto:${view/w/IContactInfo.email/value}"
+        tal:content="structure view/w/IContactInfo.email/render" />
+      </dd>
+    </div>
 
-    <dt i18n:translate="phone">Phone:</dt>
-    <dd><a tal:attributes="href string:tel:${view/w/IContactInfo.phone_number/value}"
-      tal:content="structure view/w/IContactInfo.phone_number/render" />
-    </dd>
+    <div tal:condition="view/w/IContactInfo.phone_number/value" >
+      <dt i18n:translate="phone">Phone:</dt>
+      <dd><a tal:attributes="href string:tel:${view/w/IContactInfo.phone_number/value}"
+        tal:content="structure view/w/IContactInfo.phone_number/render" />
+      </dd>
+    </div>
 </dl>
