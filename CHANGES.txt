@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2.4 (2013-04-22)
+------------------
+- fix bug where person fields were displayed wrong
+- placeholder shown only when there is no image
+
 1.2.3 (2013-04-12)
 ------------------
 - fixed bug where empty cells inside 
