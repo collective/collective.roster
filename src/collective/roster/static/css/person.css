@@ -5,7 +5,7 @@
 #content .personContactInfo dt {
   clear: left;
   float: left;
-  min-width:8em;
+  width: 8.5em;
   margin: 0;
 }
 
@@ -16,7 +16,7 @@
 #content .personOfficeInfo dt {
   clear: left;
   float: left;
-  min-width:8em;
+  width:8.5em;
   margin: 0;
 }
 
