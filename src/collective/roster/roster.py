@@ -41,7 +41,8 @@ from collective.roster.interfaces import (
 )
 from collective.roster.behaviors.interfaces import (
     IContactInfo,
-    IOfficeInfo
+    IOfficeInfo,
+    ISubjectInfo
 
 )
 from collective.roster.utils import getFirstParent
@@ -316,6 +317,24 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
             return u""
 
 
+class SubjectColumn(grok.MultiAdapter, column.LinkColumn):
+    """ Column, which renders person's subject"""
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.subject")
+
+    weight = 105
+
+    header = _(u"Subject")
+
+    def renderCell(self, obj):
+        adapter = ISubjectInfo(obj, None)
+        if adapter:
+            return getattr(adapter, "room", None) or u""
+        return u""
+
+
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
     """ Column, which renders person's full name with salutation """
 
@@ -418,7 +437,6 @@ class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
         if adapter:
             return getattr(adapter, "short_number", None) or u""
         return u""
-
 
 
 class EmailColumn(grok.MultiAdapter, column.LinkColumn):

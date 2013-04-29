@@ -45,6 +45,23 @@ def isEmailAddress(value):
     return True
 
 
+class ISubjectInfo(form.Schema):
+    """Behavior interface for providing contact info.
+    """
+    studysubject = schema.TextLine(
+        title=_(u"Subject"),
+        required=False
+    )
+
+    form.fieldset(
+        'Contact information',
+        label=_(u"Contact information"),
+        fields=['studysubject']
+    )
+
+alsoProvides(ISubjectInfo, form.IFormFieldProvider)
+
+
 class IContactInfo(form.Schema):
     """Behavior interface for providing contact info.
     """
