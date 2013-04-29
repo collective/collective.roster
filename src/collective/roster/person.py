@@ -27,10 +27,6 @@ from plone.app.content.interfaces import INameFromTitle
 
 from collective.roster.interfaces import IPerson
 
-from collective.roster.behaviors.interfaces import (
-    IOfficeInfo
-)
-
 
 class NameFromTitle(grok.Adapter):
     grok.provides(INameFromTitle)
