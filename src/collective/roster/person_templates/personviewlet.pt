@@ -1,4 +1,3 @@
 <div class="personBiography" tal:condition="nocall:context/biography">
-    <h2 i18n:domain="collective.roster" i18n:translate="biography">Biography</h2>
     <tal:text tal:content="structure view/w/biography/render" />
 </div>
