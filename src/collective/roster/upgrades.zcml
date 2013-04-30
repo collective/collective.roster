@@ -109,4 +109,15 @@
         purge="False"
         run_deps="false"
         />
+
+    <genericsetup:upgradeDepends
+        source="12" destination="13" sortkey="12"
+        title="Upgrade collective.roster 12 to 13"
+        description="change order in person viewlets"
+        profile="collective.roster:default"
+        import_steps="viewlets"
+        purge="False"
+        run_deps="false"
+        />
+
 </configure>

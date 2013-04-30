@@ -6,8 +6,16 @@ from collective.roster.person import PersonViewlets
 
 from collective.roster.behaviors.interfaces import (
     IContactInfo,
-    IOfficeInfo
+    IOfficeInfo,
+    ISubjectInfo
 )
+
+
+class SubjectInfoViewlet(grok.Viewlet):
+    """Viewlet for rendering the subject info."""
+    grok.viewletmanager(PersonViewlets)
+    grok.context(ISubjectInfo)
+    grok.name("collective.roster.personviewlets.subjectinfo")
 
 
 class ContactInfoViewlet(grok.Viewlet):
