@@ -73,7 +73,8 @@ class IPerson(form.Schema):
     )
 
     salutation = schema.TextLine(
-        title=_(u"Preferred salutation"),
+        title=_(u"Title"),
+        description=_("example: 'doctor' or 'designer'"),
         missing_value=u"",
         required=False
     )
