@@ -263,6 +263,8 @@ class PersonnelAlphaListing(PersonnelListing):
 
 class PersonnelGroupListing(PersonnelListing):
 
+    sortOn = None
+
     def __init__(self, context, request, group):
         super(PersonnelGroupListing, self).__init__(context, request)
         self.group = group
@@ -292,7 +294,9 @@ class PersonnelGroupListing(PersonnelListing):
             Subject=(term.title.encode("utf-8"),)  # are indexed by titles
         )
         values = map(lambda x: x.getObject(), brains)
-        return values
+        sort_by_title = lambda x: x.title.lower()
+        sorted_values = sorted(values, key=sort_by_title)
+        return sorted_values
 
 
 class AlphaColumn(grok.MultiAdapter, column.Column):
