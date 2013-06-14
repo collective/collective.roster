@@ -25,7 +25,7 @@ from plone.app.viewletmanager.manager import (
 
 from plone.app.content.interfaces import INameFromTitle
 
-from collective.roster.interfaces import IPerson
+from collective.roster.interfaces import IPerson, IPersonTitle
 
 
 class NameFromTitle(grok.Adapter):
@@ -38,9 +38,11 @@ class NameFromTitle(grok.Adapter):
                            self.context.first_name)
 
 
-@grok.subscribe(IPerson, IObjectCreatedEvent)
-@grok.subscribe(IPerson, IObjectModifiedEvent)
-def updatePersonTitle(context, event):
+@grok.implementer(IPersonTitle)
+@grok.adapter(IPerson)
+def personTitle(context):
+    """Generates formatted titles for persons."""
+
     title = INameFromTitle(context).title
     adapted = IPerson(context, None)
     if adapted:
@@ -48,8 +50,13 @@ def updatePersonTitle(context, event):
         salutation = bound.get(adapted)
         if salutation:
             title = u"%s, %s" % (title, salutation)
-    context.title = title  # Cannot used the field adaptation pattern used
-                           # above, because the field is defined readonly.
+    return title
+
+
+@grok.subscribe(IPerson, IObjectCreatedEvent)
+@grok.subscribe(IPerson, IObjectModifiedEvent)
+def updatePersonTitle(context, event):
+    context.title = IPersonTitle(context)
     context.reindexObject(idxs=('Title',))
 
 
