@@ -24,6 +24,10 @@ class IHiddenColumnsField(Interface):
     """ Marker interface for roster hidden columns field """
 
 
+class IPersonTitle(Interface):
+    """ Implement to customize person title formatting """
+
+
 class IRoster(form.Schema):
     """ Personnel roster (to contain and display persons). Contained persons
     can be assigned into one ore more groups. """
