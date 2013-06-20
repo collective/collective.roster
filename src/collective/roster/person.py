@@ -38,8 +38,6 @@ class NameFromTitle(grok.Adapter):
                            self.context.first_name)
 
 
-@grok.implementer(IPersonTitle)
-@grok.adapter(IPerson)
 def personTitle(context):
     """Generates formatted titles for persons."""
 
@@ -56,7 +54,7 @@ def personTitle(context):
 @grok.subscribe(IPerson, IObjectCreatedEvent)
 @grok.subscribe(IPerson, IObjectModifiedEvent)
 def updatePersonTitle(context, event):
-    context.title = IPersonTitle(context)
+    context.title = IPersonTitle(context, None) or personTitle(context)
     context.reindexObject(idxs=('Title',))
 
 
