@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.3.3 (2013-07-10)
+------------------
+
+- Make Person title formatting customizable
+  To use this feature, define a function that adapts IPerson->IPersonTitle
+  and returns a formatted title.
+  [Tommi Teistela]
+
 1.3.2 (2013-06-10)
 ------------------
 - alpha-ordering fixed in grouplisting
