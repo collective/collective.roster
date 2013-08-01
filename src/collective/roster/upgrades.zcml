@@ -120,4 +120,14 @@
         run_deps="false"
         />
 
+    <genericsetup:upgradeDepends
+        source="13" destination="14" sortkey="13"
+        title="Upgrade collective.roster 13 to 14"
+        description="Re-import type info to re-enable the 'groups as subjects' behavior (now an actual behavior)."
+        profile="collective.roster:default"
+        import_steps="typeinfo"
+        purge="False"
+        run_deps="false"
+        />
+
 </configure>

@@ -27,6 +27,7 @@
         <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
         <element value="collective.roster.behaviors.interfaces.IContactInfo" />
         <element value="collective.roster.behaviors.interfaces.IOfficeInfo" />
+        <element value="collective.roster.behaviors.interfaces.IGroupsAsSubjects" />
     </property>
 
     <!-- View information -->
