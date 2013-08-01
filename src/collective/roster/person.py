@@ -59,18 +59,9 @@ def updatePersonTitle(context, event):
 
 
 @indexer(IPerson)
-def subject(context):
-    vocabulary_factory = getUtility(IVocabularyFactory,
-                                    name="collective.roster.localgroups")
-    vocabulary = vocabulary_factory(context)
-    group_terms_filter = lambda term: term.value in context.groups
-
-    terms = filter(group_terms_filter, vocabulary)
-
-    groups = map(lambda term: term.title.encode("utf-8"), terms)
-
-    return context.subject + tuple(groups)
-grok.global_adapter(subject, name="Subject")
+def title(context):
+    return IPersonTitle(context, None) or personTitle(context)
+grok.global_adapter(title, name="Title")
 
 
 class View(dexterity.DisplayForm):

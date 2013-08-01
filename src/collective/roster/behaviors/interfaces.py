@@ -62,6 +62,10 @@ class ISubjectInfo(form.Schema):
 alsoProvides(ISubjectInfo, form.IFormFieldProvider)
 
 
+class IGroupsAsSubjects(form.Schema):
+    """Marker interface for evil magic behavior."""
+
+
 class IContactInfo(form.Schema):
     """Behavior interface for providing contact info.
     """
