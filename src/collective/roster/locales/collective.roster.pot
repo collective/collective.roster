@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-10 09:40+0000\n"
+"POT-Creation-Date: 2013-08-02 06:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.roster\n"
 
-#: collective/roster/roster.py:302
+#: collective/roster/roster.py:310
 msgid "#"
 msgstr ""
 
@@ -29,52 +29,52 @@ msgstr ""
 msgid "A personnel roster"
 msgstr ""
 
-#: collective/roster/interfaces.py:87
+#: collective/roster/interfaces.py:92
 msgid "Biography"
 msgstr ""
 
-#: collective/roster/interfaces.py:50
+#: collective/roster/interfaces.py:54
 msgid "Column"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:65
+#: collective/roster/behaviors/interfaces.py:58
 msgid "Contact information"
 msgstr ""
 
-#: collective/roster/interfaces.py:82
+#: collective/roster/interfaces.py:87
 msgid "Description"
 msgstr ""
 
-#: collective/roster/interfaces.py:46
+#: collective/roster/interfaces.py:50
 msgid "Display columns"
 msgstr ""
 
-#: collective/roster/interfaces.py:47
+#: collective/roster/interfaces.py:51
 msgid "Display only the selected person information columns on supporting views."
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:53
-#: collective/roster/roster.py:429
+#: collective/roster/behaviors/interfaces.py:74
+#: collective/roster/roster.py:455
 msgid "Email"
 msgstr ""
 
-#: collective/roster/interfaces.py:68
+#: collective/roster/interfaces.py:72
 msgid "First name"
 msgstr ""
 
-#: collective/roster/interfaces.py:34
+#: collective/roster/interfaces.py:38
 msgid "Group"
 msgstr ""
 
-#: collective/roster/interfaces.py:32
+#: collective/roster/interfaces.py:36
 msgid "Groups"
 msgstr ""
 
-#: collective/roster/interfaces.py:72
+#: collective/roster/interfaces.py:76
 msgid "Last name"
 msgstr ""
 
-#: collective/roster/roster.py:325
+#: collective/roster/roster.py:351
 msgid "Name"
 msgstr ""
 
@@ -82,24 +82,20 @@ msgstr ""
 msgid "Person"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:59
+#: collective/roster/behaviors/interfaces.py:80
 msgid "Phone"
 msgstr ""
 
-#: collective/roster/roster.py:379
+#: collective/roster/roster.py:405
 msgid "Phone number"
-msgstr ""
-
-#: collective/roster/interfaces.py:76
-msgid "Preferred salutation"
 msgstr ""
 
 #: collective/roster/person_templates/relatedcontentviewlet.pt:3
 msgid "Related content"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:78
-#: collective/roster/roster.py:361
+#: collective/roster/behaviors/interfaces.py:99
+#: collective/roster/roster.py:387
 msgid "Room"
 msgstr ""
 
@@ -107,65 +103,77 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/roster.py:346
+#: collective/roster/roster.py:372
 msgid "Salutation"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:86
-#: collective/roster/roster.py:404
+#: collective/roster/behaviors/interfaces.py:107
+#: collective/roster/roster.py:430
 msgid "Short number"
 msgstr ""
 
-#: collective/roster/interfaces.py:63
+#: collective/roster/behaviors/interfaces.py:52
+msgid "Studysubject"
+msgstr ""
+
+#: collective/roster/roster.py:333
+msgid "Subject"
+msgstr ""
+
+#: collective/roster/interfaces.py:67
 msgid "Title"
 msgstr ""
 
-#: collective/roster/interfaces.py:93
+#: collective/roster/interfaces.py:98
 msgid "Upload an image"
 msgstr ""
 
 #. Default: "Alphabetical"
-#: collective/roster/roster_templates/linkviewlet.pt:13
+#: collective/roster/roster_templates/linkviewlet.pt:10
 msgid "alphaview"
 msgstr ""
 
-#. Default: "Biography"
-#: collective/roster/person_templates/personviewlet.pt:2
-msgid "biography"
-msgstr ""
-
 #. Default: "Change view:"
-#: collective/roster/roster_templates/linkviewlet.pt:10
+#: collective/roster/roster_templates/linkviewlet.pt:9
 msgid "change_views"
 msgstr ""
 
 #. Default: "Email:"
-#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:2
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:3
 msgid "email"
 msgstr ""
 
+#: collective/roster/interfaces.py:81
+msgid "example: 'doctor' or 'designer'"
+msgstr ""
+
 #. Default: "Gallery"
-#: collective/roster/roster_templates/linkviewlet.pt:15
+#: collective/roster/roster_templates/linkviewlet.pt:12
 msgid "galleryview"
 msgstr ""
 
 #. Default: "Group"
-#: collective/roster/roster_templates/linkviewlet.pt:11
+#: collective/roster/roster_templates/linkviewlet.pt:14
 msgid "groupview"
 msgstr ""
 
 #. Default: "Phone:"
-#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:7
+#: collective/roster/behaviors/viewlets_templates/contactinfoviewlet.pt:10
 msgid "phone"
 msgstr ""
 
 #. Default: "Room:"
-#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:7
+#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:12
 msgid "room"
 msgstr ""
 
 #. Default: "Short number:"
-#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:2
+#: collective/roster/behaviors/viewlets_templates/officeinfoviewlet.pt:4
 msgid "short_number"
+msgstr ""
+
+#. Default: "Subject:"
+#: collective/roster/behaviors/viewlets_templates/subjectinfoviewlet.pt:3
+msgid "subject"
 msgstr ""
 
