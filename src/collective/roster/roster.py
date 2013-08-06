@@ -335,7 +335,7 @@ class SubjectColumn(grok.MultiAdapter, column.LinkColumn):
     def renderCell(self, obj):
         adapter = ISubjectInfo(obj, None)
         if adapter:
-            return getattr(adapter, "room", None) or u""
+            return getattr(adapter, "studysubject", None) or u""
         return u""
 
 
