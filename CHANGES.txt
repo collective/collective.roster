@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.5 (2013-08-06)
+------------------
+- Tableview renders studysubject correctly now
+
 1.3.4 (2013-08-02)
 ------------------
 - Translations updated 
