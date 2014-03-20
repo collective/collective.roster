@@ -75,7 +75,7 @@ I fill the necessary information for person
 
 New person is created
     Page should contain  Item created
-    
+
 
 New roster is created
     Page should contain  Item created
