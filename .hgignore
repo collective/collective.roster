@@ -1,25 +1,16 @@
 syntax: glob
-
-plone.act
-bin
-develop-eggs
-parts
-tags
-var
-dist
-omelette
-
+*.DS_Store
+*.egg-info
 *.pyc
 *.mo
-*.egg-info
-
-develop-custom.cfg
-
 .installed.cfg
 .mr.developer.cfg
-.ropeproject
 
-log.html
-output.xml
-report.html
-selenium-screenshot-*.png
+syntax: regexp
+^bin$
+^develop-eggs$
+^dist$
+^eggs$
+^parts$
+^var$
+~$

@@ -29,11 +29,11 @@ setup(
         "zope.i18nmessageid",
         "plone.indexer",
         "plone.directives.form",
-        "plone.app.dexterity",
+        "plone.app.dexterity [grok]",
         "plone.formwidget.contenttree",
         "plone.app.referenceablebehavior",
         "plone.app.viewletmanager",
-        "plone.namedfile[blobs]",
+        "plone.namedfile [blobs]",
         "plone.formwidget.namedfile",
         "plone.z3ctable",
         "plone.api",
@@ -41,8 +41,7 @@ setup(
     extras_require={"test": [
         "Pillow",
         "plone.app.testing[robot]",
-        "corejet.pivotal",
-        "corejet.robot",
+        "corejet.core"
     ]},
     entry_points="""
     # -*- Entry points: -*-
