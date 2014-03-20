@@ -40,7 +40,8 @@ setup(
     ],
     extras_require={"test": [
         "Pillow",
-        "plone.app.testing[robot]",
+        "plone.app.testing",
+        "plone.app.robotframework",
         "corejet.core"
     ]},
     entry_points="""

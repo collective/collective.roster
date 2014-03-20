@@ -1,9 +1,9 @@
 *** Settings ***
 
-Resource  common.txt
-
 Meta: Id  38652139
 Meta: Title  As a ME, I Want to create personnel roster
+
+Resource  common.robot
 
 Suite Setup  Background
 
@@ -79,3 +79,16 @@ New person is created
 
 New roster is created
     Page should contain  Item created
+
+Open Menu
+    [Arguments]  ${elementId}
+    Element Should Be Visible  css=dl#${elementId} span
+    Element Should Not Be Visible  css=dl#${elementId} dd.actionMenuContent
+    Click link  css=dl#${elementId} dt.actionMenuHeader a
+    Wait until keyword succeeds  1  5  Element Should Be Visible  css=dl#${elementId} dd.actionMenuContent
+
+I'm logged in as a site manager
+    Enable autologin as  Site Administrator
+
+Log out
+    Disable autologin
