@@ -12,7 +12,9 @@
   <div class="rosterView">
     <tal:block replace="structure provider:collective.roster.rosterviewlets" />
     <tal:repeat repeat="group view/tables">
-    <h2 tal:content="group/title">Title</h2>
+    <h2><a tal:content="group/title"
+                 tal:attributes="name group/title;
+                                 href string:galleryview#${group/anchorTitle}">Title</a></h2>
       <tal:repeat repeat="person group/values">
 
       <table>
@@ -22,7 +24,7 @@
             <a tal:attributes="href person/absolute_url">
               <img tal:replace="structure person/@@images/image/thumb"
               tal:condition="nocall:person/image|nothing"/>
-              <div class="placeholder" tal:condition="not: nocall:person/image|nothing" />
+              <div class="placeholder" tal:condition="not: nocall:person/image|nothing"></div>
             </a>
             </div>
 
@@ -49,7 +51,7 @@
             </dl>
         </td>
         </tr>
-
+      </table>
       </tal:repeat>
     </tal:repeat>
   </div>

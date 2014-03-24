@@ -4,6 +4,7 @@
 
 from five import grok
 from plone import api
+from z3c.table.table import getWeight
 
 from zope.component import (
     getGlobalSiteManager,
@@ -108,36 +109,36 @@ class DisplayColumnsVocabulary(grok.GlobalUtility):
         return SimpleVocabulary(terms)
 
 
-class RosterDataManager(grok.MultiAdapter, AttributeField):
-    """ z3c.form datamanager, which reverts the behavior of display columns
-    field to store hidden columns instead """
-
-    grok.adapts(IRoster, IList)
-
-    def _isColumnAdapter(self, obj):
-        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
-            and obj.provided == IColumn
-
-    def _getAllColumns(self):
-        gsm = getGlobalSiteManager()
-        adapters = gsm.registeredAdapters()
-        columns = filter(self._isColumnAdapter, adapters)
-        return map(lambda x: x.name, columns)
-
-    def get(self):
-        value = super(RosterDataManager, self).get()
-        if self.field.__name__ == "columns_hidden" and value is not None:
-            columns = self._getAllColumns()  # XXX: could use vocab instead
-            selection = [] if value is None else value  # value can be None
-            value = filter(lambda x: x not in selection, columns)
-        return value
-
-    def set(self, value):
-        if self.field.__name__ == "columns_hidden":
-            columns = self._getAllColumns()  # XXX: could use vocab instead
-            selection = [] if value is None else value  # value can be None
-            value = filter(lambda x: x not in selection, columns)
-        return super(RosterDataManager, self).set(value)
+#class RosterDataManager(grok.MultiAdapter, AttributeField):
+#    """ z3c.form datamanager, which reverts the behavior of display columns
+#    field to store hidden columns instead """
+#
+#    grok.adapts(IRoster, IList)
+#
+#    def _isColumnAdapter(self, obj):
+#        return obj.required == (IRoster, IBrowserRequest, IPersonnelListing)\
+#            and obj.provided == IColumn
+#
+#    def _getAllColumns(self):
+#        gsm = getGlobalSiteManager()
+#        adapters = gsm.registeredAdapters()
+#        columns = filter(self._isColumnAdapter, adapters)
+#        return map(lambda x: x.name, columns)
+#
+#    def get(self):
+#        value = super(RosterDataManager, self).get()
+#        if self.field.__name__ == "columns_hidden" and value is not None:
+#            columns = self._getAllColumns()  # XXX: could use vocab instead
+#            selection = [] if value is None else value  # value can be None
+#            value = filter(lambda x: x not in selection, columns)
+#        return value
+#
+#    def set(self, value):
+#        if self.field.__name__ == "columns_hidden":
+#            columns = self._getAllColumns()  # XXX: could use vocab instead
+#            selection = [] if value is None else value  # value can be None
+#            value = filter(lambda x: x not in selection, columns)
+#        return super(RosterDataManager, self).set(value)
 
 
 class GroupView(grok.View):
@@ -227,10 +228,47 @@ class PersonnelListing(table.Table):
                                         self.batchSize)), 1)
 
     def setUpColumns(self):
-        bound = IRoster["columns_hidden"].bind(self.context)
-        hidden = bound.get(self.context) or []
         cols = super(PersonnelListing, self).setUpColumns()
-        return filter(lambda x: x.__name__ not in hidden, cols)
+
+        columns_display = getattr(self.context, "columns_display", [])
+
+        if columns_display:
+            cols_factory = getUtility(IVocabularyFactory,
+                                      name="collective.roster.columns")
+            cols_vocabulary = cols_factory(self.context)
+            cols_all = [col.value for col in cols_vocabulary]
+
+            cols_selected = [col for col in cols
+                             if col.__name__ in columns_display
+                             or col.__name__ not in cols_all]
+            return cols_selected
+
+        columns_hidden = getattr(self.context, "columns_hidden", [])
+
+        if columns_hidden:
+            return filter(lambda x: x.__name__ not in columns_hidden, cols)
+
+        return cols
+
+    def orderColumns(self):
+        columns_display = getattr(self.context, "columns_display", [])
+        if not columns_display:
+            super(PersonnelListing, self).orderColumns()
+        else:
+            def sortKey(col):
+                if col.__name__ in columns_display:
+                    return columns_display.index(col.__name__)
+                else:
+                    return getWeight(col)
+            self.columnCounter = 0
+            self.columns = sorted(
+                self.columns, key=sortKey)
+            for col in self.columns:
+                self.columnByName[col.__name__] = col
+                idx = self.columnCounter
+                col.id = '%s-%s-%s' % (self.prefix, col.__name__, idx)
+                self.columnIndexById[col.id] = idx
+                self.columnCounter += 1
 
     @property
     @view.memoize
@@ -277,6 +315,11 @@ class PersonnelGroupListing(PersonnelListing):
         term = vocabulary.getTerm(self.group)
         return term.title
 
+    @property
+    def anchorTitle(self):
+        normalizer = getUtility(IIDNormalizer)
+        return normalizer.normalize(self.title)
+
     """ Personnel values property, which provides catalog brains for all the
     persons with the same group as the currently rendered personnel listing
     table under the current personnel roster """
@@ -291,7 +334,7 @@ class PersonnelGroupListing(PersonnelListing):
         brains = pc(
             path="/".join(self.context.getPhysicalPath()),
             object_provides=IPerson.__identifier__,
-            Subject=(term.title.encode("utf-8"),)  # are indexed by titles
+            Subject=(term.title.encode('utf-8', errors='ignore'),)  # are indexed by titles
         )
         values = map(lambda x: x.getObject(), brains)
         sort_by_title = lambda x: x.title.lower()
@@ -305,7 +348,7 @@ class AlphaColumn(grok.MultiAdapter, column.Column):
     grok.adapts(IRoster, IBrowserRequest, PersonnelAlphaListing)
     grok.name("collective.roster.personnellisting.alpha")
 
-    weight = 0
+    weight = -1
 
     header = _(u"#")
 

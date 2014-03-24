@@ -12,7 +12,9 @@
     <div class="rosterView">
       <tal:block replace="structure provider:collective.roster.rosterviewlets" />
       <tal:repeat repeat="table view/tables">
-          <h2 tal:content="table/title">Title</h2>
+          <h2><a tal:content="table/title"
+                 tal:attributes="name table/title;
+                                 href string:#${table/anchorTitle}">Title</a></h2>
           <tal:replace replace="structure table/renderTable" />
           <tal:replace replace="structure table/renderBatch" />
       </tal:repeat>
