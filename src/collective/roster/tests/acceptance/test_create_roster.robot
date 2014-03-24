@@ -44,11 +44,11 @@ I fill the necessary information for roster
     Input text  form.widgets.IBasic.title  Roster
     Input text  form.widgets.IBasic.description  Personnel roster
     Input text  form.widgets.groups  Members
-    select from list  form.widgets.columns_hidden.from
+    select from list  form.widgets.columns_display.from
     ...               collective.roster.personnellisting.title
-    select from list  form.widgets.columns_hidden.from
+    select from list  form.widgets.columns_display.from
     ...               collective.roster.personnellisting.email
-    select from list  form.widgets.columns_hidden.from
+    select from list  form.widgets.columns_display.from
     ...               collective.roster.personnellisting.phone_number
     Click button  from2toButton
 
