@@ -3,7 +3,8 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      i18n:domain="collective.roster">
+      i18n:domain="collective.roster"
+      tal:omit-tag="">
 
 <div style="float: right;">
   <span i18n:translate="change_views">Change view: </span>

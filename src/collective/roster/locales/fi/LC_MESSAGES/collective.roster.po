@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-02 06:21+0000\n"
+"POT-Creation-Date: 2014-03-24 12:27+0000\n"
 "PO-Revision-Date: 2013-08-02 10:13+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:310
+#: collective/roster/roster.py:353
 msgid "#"
 msgstr ""
 
@@ -26,11 +26,11 @@ msgstr "Henkilö"
 msgid "A personnel roster"
 msgstr "Henkilöluettelo"
 
-#: collective/roster/interfaces.py:92
+#: collective/roster/interfaces.py:106
 msgid "Biography"
 msgstr "Taustatiedot"
 
-#: collective/roster/interfaces.py:54
+#: collective/roster/interfaces.py:69
 msgid "Column"
 msgstr "Sarake"
 
@@ -38,42 +38,50 @@ msgstr "Sarake"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
-#: collective/roster/interfaces.py:87
+#: collective/roster/interfaces.py:101
 msgid "Description"
 msgstr "Kuvaus"
 
-#: collective/roster/interfaces.py:50
+#: collective/roster/interfaces.py:65
 msgid "Display columns"
 msgstr "Näkyvät sarakkeet"
 
-#: collective/roster/interfaces.py:51
+#: collective/roster/interfaces.py:66
 msgid "Display only the selected person information columns on supporting views."
 msgstr "Näytä vain valitut sarakkeet (niitä tukevissa näkyvissä)."
 
+#: collective/roster/interfaces.py:136
+msgid "Duplicates in Groups"
+msgstr "Samannimisiä ryhmiä"
+
 #: collective/roster/behaviors/interfaces.py:74
-#: collective/roster/roster.py:455
+#: collective/roster/roster.py:498
 msgid "Email"
 msgstr "Sähköposti"
 
-#: collective/roster/interfaces.py:72
+#: collective/roster/interfaces.py:86
 msgid "First name"
 msgstr "Etunimi"
 
-#: collective/roster/interfaces.py:38
+#: collective/roster/interfaces.py:42
 msgid "Group"
 msgstr "Ryhmä"
 
-#: collective/roster/interfaces.py:36
+#: collective/roster/interfaces.py:40
 msgid "Groups"
 msgstr "Ryhmät"
 
-#: collective/roster/interfaces.py:76
+#: collective/roster/interfaces.py:90
 msgid "Last name"
 msgstr "Sukunimi"
 
-#: collective/roster/roster.py:351
+#: collective/roster/roster.py:394
 msgid "Name"
 msgstr "Nimi"
+
+#: collective/roster/interfaces.py:144
+msgid "No valid characters"
+msgstr "Ei tunnistettavia kirjaimia"
 
 #: collective/roster/profiles/default/types/collective.roster.person.xml
 msgid "Person"
@@ -83,7 +91,7 @@ msgstr "Henkilö"
 msgid "Phone"
 msgstr "Puhelin"
 
-#: collective/roster/roster.py:405
+#: collective/roster/roster.py:448
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
@@ -93,7 +101,7 @@ msgstr "Henkilöön liittyvä sisältö"
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:99
-#: collective/roster/roster.py:387
+#: collective/roster/roster.py:430
 msgid "Room"
 msgstr "Huone"
 
@@ -101,12 +109,12 @@ msgstr "Huone"
 msgid "Roster"
 msgstr "Henkilöluettelo"
 
-#: collective/roster/roster.py:372
+#: collective/roster/roster.py:415
 msgid "Salutation"
 msgstr "Nimike"
 
 #: collective/roster/behaviors/interfaces.py:107
-#: collective/roster/roster.py:430
+#: collective/roster/roster.py:473
 msgid "Short number"
 msgstr "Lyhytnumero"
 
@@ -114,25 +122,25 @@ msgstr "Lyhytnumero"
 msgid "Studysubject"
 msgstr "Oppiaine"
 
-#: collective/roster/roster.py:333
+#: collective/roster/roster.py:376
 msgid "Subject"
 msgstr "Oppiaine"
 
-#: collective/roster/interfaces.py:67
+#: collective/roster/interfaces.py:81
 msgid "Title"
 msgstr "Nimike"
 
-#: collective/roster/interfaces.py:98
+#: collective/roster/interfaces.py:112
 msgid "Upload an image"
 msgstr "Siirrä kuva"
 
 #. Default: "Alphabetical"
-#: collective/roster/roster_templates/linkviewlet.pt:10
+#: collective/roster/roster_templates/linkviewlet.pt:11
 msgid "alphaview"
 msgstr "Aakkosellinen"
 
 #. Default: "Change view:"
-#: collective/roster/roster_templates/linkviewlet.pt:9
+#: collective/roster/roster_templates/linkviewlet.pt:10
 msgid "change_views"
 msgstr "Vaihda näkymä:"
 
@@ -141,17 +149,17 @@ msgstr "Vaihda näkymä:"
 msgid "email"
 msgstr "Sähköposti:"
 
-#: collective/roster/interfaces.py:81
-msgid "example: 'Doctor' or 'Designer'"
-msgstr "Esimerkiksi: 'Tohtori' tai 'Suunnittelija'"
+#: collective/roster/interfaces.py:95
+msgid "example: 'doctor' or 'designer'"
+msgstr ""
 
 #. Default: "Gallery"
-#: collective/roster/roster_templates/linkviewlet.pt:12
+#: collective/roster/roster_templates/linkviewlet.pt:13
 msgid "galleryview"
 msgstr "Galleria"
 
 #. Default: "Group"
-#: collective/roster/roster_templates/linkviewlet.pt:14
+#: collective/roster/roster_templates/linkviewlet.pt:15
 msgid "groupview"
 msgstr "Ryhmitelty"
 
@@ -170,8 +178,9 @@ msgstr "Huone:"
 msgid "short_number"
 msgstr "Lyhytnumero:"
 
-#. Default: "Subject:"
+#. Default: "Studysubject:"
 #: collective/roster/behaviors/viewlets_templates/subjectinfoviewlet.pt:3
+#, fuzzy
 msgid "subject"
 msgstr "Oppiaine:"
 

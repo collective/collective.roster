@@ -60,7 +60,10 @@ def updatePersonTitle(context, event):
 
 @indexer(IPerson)
 def title(context):
-    return IPersonTitle(context, None) or personTitle(context)
+    title = IPersonTitle(context, None) or personTitle(context)
+    if isinstance(title, unicode):
+        title = title.encode("utf-8", errors="ignore")
+    return title
 grok.global_adapter(title, name="Title")
 
 
