@@ -13,7 +13,7 @@
     <tal:block replace="structure provider:collective.roster.rosterviewlets" />
     <tal:repeat repeat="group view/tables">
     <h2><a tal:content="group/title"
-                 tal:attributes="name group/title;
+                 tal:attributes="name group/anchorTitle;
                                  href string:galleryview#${group/anchorTitle}">Title</a></h2>
       <tal:repeat repeat="person group/values">
 
