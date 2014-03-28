@@ -1,9 +1,21 @@
 Changelog
 =========
 
-1.3.5 (2013-08-06)
+1.4.0 (2014-03-28)
 ------------------
 - Tableview renders studysubject correctly now
+- Fix acceptance tests after field rename
+  [Asko Soukka]
+- Fix setup.py
+  [Asko Soukka]
+- Added anchor links to roster groups, added ability to swap roster column positions, added validators for person first and last name, and roster group fields. Fix to galleryview template.
+  [malupohj]
+- Fix analysis path to fix flake8-reports
+  [Asko Soukka]
+- Fix acceptance tests
+  [Asko Soukka]
+- Update buildout; Fix dependencies
+  [Asko Soukka]
 
 1.3.4 (2013-08-02)
 ------------------
