@@ -5,6 +5,7 @@ syntax: glob
 *.mo
 .installed.cfg
 .mr.developer.cfg
+.idea
 
 syntax: regexp
 ^bin$
