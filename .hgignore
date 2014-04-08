@@ -3,6 +3,7 @@ syntax: glob
 *.egg-info
 *.pyc
 *.mo
+*~
 .installed.cfg
 .mr.developer.cfg
 .idea
@@ -14,4 +15,3 @@ syntax: regexp
 ^eggs$
 ^parts$
 ^var$
-~$
