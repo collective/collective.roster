@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.2 (unreleased)
+1.4.2 (2014-04-09)
 ------------------
 
 - Drop keyword-argument from <unicode>.encode to fix Python 2.6 support
