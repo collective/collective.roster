@@ -62,7 +62,7 @@ def updatePersonTitle(context, event):
 def title(context):
     title = IPersonTitle(context, None) or personTitle(context)
     if isinstance(title, unicode):
-        title = title.encode("utf-8", errors="ignore")
+        title = title.encode("utf-8", "ignore")
     return title
 grok.global_adapter(title, name="Title")
 

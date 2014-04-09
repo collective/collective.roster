@@ -334,7 +334,7 @@ class PersonnelGroupListing(PersonnelListing):
         brains = pc(
             path="/".join(self.context.getPhysicalPath()),
             object_provides=IPerson.__identifier__,
-            Subject=(term.title.encode('utf-8', errors='ignore'),)  # are indexed by titles
+            Subject=(term.title.encode('utf-8', 'ignore'),)  # are indexed by titles
         )
         values = map(lambda x: x.getObject(), brains)
         sort_by_title = lambda x: x.title.lower()
