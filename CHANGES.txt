@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.3 (unreleased)
+1.4.3 (2014-05-27)
 ------------------
 
 - Fix title column header.
