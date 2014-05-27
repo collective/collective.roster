@@ -90,7 +90,7 @@ class IPerson(form.Schema):
         title=_(u"Last name")
     )
 
-    salutation = schema.TextLine(
+    salutation = schema.TextLine(  # !sic
         title=_(u"Title"),
         description=_("example: 'doctor' or 'designer'"),
         missing_value=u"",

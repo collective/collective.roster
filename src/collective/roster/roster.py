@@ -383,7 +383,7 @@ class SubjectColumn(grok.MultiAdapter, column.LinkColumn):
 
 
 class TitleColumn(grok.MultiAdapter, column.LinkColumn):
-    """ Column, which renders person's full name with salutation """
+    """ Column, which renders person's full name without title """
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -404,7 +404,7 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
 
 
 class SalutationColumn(grok.MultiAdapter, column.Column):
-    """ Column which renders person's salutation """
+    """ Column which renders person's title"""
 
     grok.provides(IColumn)
     grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
@@ -412,7 +412,7 @@ class SalutationColumn(grok.MultiAdapter, column.Column):
 
     weight = 100
 
-    header = _(u"Salutation")
+    header = _(u"Title")
 
     def renderCell(self, obj):
         return obj.salutation
