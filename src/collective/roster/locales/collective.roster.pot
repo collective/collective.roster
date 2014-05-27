@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-24 12:27+0000\n"
+"POT-Creation-Date: 2014-05-27 12:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,10 +111,6 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/roster.py:415
-msgid "Salutation"
-msgstr ""
-
 #: collective/roster/behaviors/interfaces.py:107
 #: collective/roster/roster.py:473
 msgid "Short number"
@@ -129,6 +125,7 @@ msgid "Subject"
 msgstr ""
 
 #: collective/roster/interfaces.py:81
+#: collective/roster/roster.py:415
 msgid "Title"
 msgstr ""
 
