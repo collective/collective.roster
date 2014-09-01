@@ -4,7 +4,7 @@ Changelog
 1.4.4 (2014-09-01)
 ------------------
 
-- Fix Studysubject translation
+- Redo translation files
 
 1.4.3 (2014-05-27)
 ------------------
