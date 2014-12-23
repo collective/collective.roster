@@ -1,0 +1,14 @@
+*.DS_Store
+*.egg-info
+*.pyc
+*.mo
+*~
+.installed.cfg
+.mr.developer.cfg
+.idea
+/bin
+/develop-eggs
+/dist
+/eggs
+/parts
+/var
