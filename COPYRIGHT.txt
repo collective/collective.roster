@@ -1,0 +1,3 @@
+collective.roster is copyrighted by University of Jyväskylä and Contributors
+
+collective.roster is licensed under EUPL 1.1. See LICENSE.pdf for details
