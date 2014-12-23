@@ -1,0 +1,95 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <include package="plone.app.contentmenu" />
+  <include package="Products.CMFCore" file="configure.zcml" />
+
+  <browser:resourceDirectory name="collective.roster" directory="static" />
+
+  <browser:viewletManager
+      name="collective.roster.rosterviewlets"
+      provides=".interfaces.IRosterViewlets"
+      permission="zope2.View"
+      class="plone.app.viewletmanager.manager.OrderedViewletManager"
+      />
+
+  <browser:viewlet
+      name="collective.roster.rosterviewlets.displayviews"
+      manager=".interfaces.IRosterViewlets"
+      layer=".interfaces.IRosterLayer"
+      class=".roster.DisplayViewsViewlet"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="alpha_view"
+      for="..interfaces.IRoster"
+      layer=".interfaces.IRosterLayer"
+      class=".roster.AlphaView"
+      template="templates/roster_alpha_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:menuItem
+      title="Alphabetical"
+      description="Show alphabetical order"
+      menu="plone_displayviews"
+      for="..interfaces.IRoster"
+      layer=".interfaces.IRosterLayer"
+      action="@@alpha_view"
+      permission="zope2.View"
+      i18n:attributes="title description"
+      />
+
+  <browser:viewletManager
+      name="collective.roster.personviewlets"
+      provides=".interfaces.IPersonViewlets"
+      permission="zope2.View"
+      class="plone.app.viewletmanager.manager.OrderedViewletManager"
+      />
+
+  <browser:page
+      name="view"
+      for="..interfaces.IPerson"
+      layer=".interfaces.IRosterLayer"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="templates/person_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="manage-viewlets"
+      for="..interfaces.IPerson"
+      layer=".interfaces.IRosterLayer"
+      class=".person.ManagePersonViewlets"
+      template="templates/person_manage_viewlets.pt"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.biography"
+      manager=".interfaces.IPersonViewlets"
+      layer=".interfaces.IRosterLayer"
+      template="templates/person_biography_viewlet.pt"
+      permission="zope2.View"
+      />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.portrait"
+      manager=".interfaces.IPersonViewlets"
+      layer=".interfaces.IRosterLayer"
+      template="templates/person_portrait_viewlet.pt"
+      permission="zope2.View"
+      />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.localgroups"
+      manager=".interfaces.IPersonViewlets"
+      layer=".interfaces.IRosterLayer"
+      class=".person.GroupsViewlet"
+      permission="zope2.View"
+      />
+
+</configure>

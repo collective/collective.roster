@@ -1,0 +1,18 @@
+<dl class="personContactInfo" i18n:domain="collective.roster"
+    tal:define="widgets nocall:view/aq_parent/w">
+  <div tal:condition="widgets/IContactInfo.email/value" >
+    <dt i18n:translate="email">Email:</dt>
+    <dd><a tal:define="email widgets/IContactInfo.email/value"
+           tal:attributes="href string:mailto:${email}"
+           tal:content="structure widgets/IContactInfo.email/render" />
+    </dd>
+  </div>
+
+  <div tal:condition="widgets/IContactInfo.phone_number/value" >
+    <dt i18n:translate="phone">Phone:</dt>
+    <dd><a tal:define="phone_number widgets/IContactInfo.phone_number/value"
+           tal:attributes="href string:tel:${phone_number}"
+           tal:content="structure widgets/IContactInfo.phone_number/render" />
+    </dd>
+  </div>
+</dl>

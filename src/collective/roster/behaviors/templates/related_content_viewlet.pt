@@ -1,0 +1,10 @@
+<tal:viewlet tal:define="related_items view/related_items"
+             tal:condition="related_items">
+<h2 i18n:domain="collective.roster" i18n:translate="">Related content</h2>
+<ul>
+    <li tal:repeat="item related_items">
+        <a href="#" tal:attributes="href item/getURL"
+           tal:content="item/Title">Related Content</a>
+    </li>
+</ul>
+</tal:viewlet>

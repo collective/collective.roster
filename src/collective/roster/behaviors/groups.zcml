@@ -1,0 +1,77 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <include package="plone.app.contentmenu" />
+
+  <plone:behavior
+      title="Define display groups"
+      description="Provides groups field for defining categorization groups in personnel rosters."
+      provides=".interfaces.IGroupsProvider"
+      marker=".interfaces.IProvidesGroups"
+      factory=".groups.Groups"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <plone:behavior
+      title="Use display groups"
+      description="Provides groups field for categorizing roster persons."
+      provides=".interfaces.IGroups"
+      marker=".interfaces.IHasGroups"
+      factory=".groups.Groups"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <browser:page
+      name="groups_view"
+      for=".interfaces.IProvidesGroups"
+      layer="..browser.interfaces.IRosterLayer"
+      class=".groups.GroupsView"
+      template="templates/roster_groups_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:menuItem
+      title="Groups"
+      description="Show groups"
+      menu="plone_displayviews"
+      for=".interfaces.IProvidesGroups"
+      layer="..browser.interfaces.IRosterLayer"
+      action="@@groups_view"
+      permission="zope2.View"
+      i18n:attributes="title description"
+      />
+
+  <browser:page
+      name="gallery_view"
+      for=".interfaces.IProvidesGroups"
+      layer="..browser.interfaces.IRosterLayer"
+      class=".groups.GroupsView"
+      template="templates/roster_groups_gallery_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:menuItem
+      title="Gallery"
+      description="Show portrait gallery"
+      menu="plone_displayviews"
+      for=".interfaces.IProvidesGroups"
+      layer="..browser.interfaces.IRosterLayer"
+      action="@@gallery_view"
+      permission="zope2.View"
+      i18n:attributes="title description"
+      />
+
+  <adapter name="roster_groups" factory=".groups.skipIndex" />
+  <adapter name="roster_groups" factory=".groups.indexRosterGroups" />
+
+  <adapter factory=".interfaces.GroupNameValidator" />
+
+  <utility factory=".groups.LocalGroupsVocabulary"
+           name="collective.roster.localgroups" />
+
+</configure>

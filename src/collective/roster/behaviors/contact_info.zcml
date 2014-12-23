@@ -1,0 +1,36 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <plone:behavior
+      title="Contact information"
+      description="Provides contact information fields for roster persons."
+      provides=".interfaces.IContactInfo"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <!-- Note: It's important to store 'email' field as attribute directly on the
+       content object for compatibility with dexterity membrane -->
+
+  <adapter name="collective.roster.personnellisting.email"
+           provides="z3c.table.interfaces.IColumn"
+           for="..interfaces.IRoster * ..interfaces.IPersonnelListing"
+           factory=".contact_info.EmailColumn" />
+
+  <adapter name="collective.roster.personnellisting.phone_number"
+           provides="z3c.table.interfaces.IColumn"
+           for="..interfaces.IRoster * ..interfaces.IPersonnelListing"
+           factory=".contact_info.PhoneNumberColumn" />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.contactinfo"
+      for=".interfaces.IContactInfo"
+      manager="..browser.interfaces.IPersonViewlets"
+      template="templates/contact_info_viewlet.pt"
+      permission="zope2.View"
+      />
+
+</configure>

@@ -43,7 +43,7 @@ I add a new roster
 I fill the necessary information for roster
     Input text  form.widgets.IBasic.title  Roster
     Input text  form.widgets.IBasic.description  Personnel roster
-    Input text  form.widgets.groups  Members
+    Input text  form.widgets.IGroupsProvider.groups  Members
     select from list  form.widgets.columns_display.from
     ...               collective.roster.personnellisting.title
     select from list  form.widgets.columns_display.from
@@ -66,7 +66,7 @@ I create person
 I fill the necessary information for person
     Input text  form.widgets.first_name  Foo
     Input text  form.widgets.last_name  Bar
-    Input text  form.widgets.salutation  Foobar
+    Input text  form.widgets.position  Foobar
 
 #    Select frame  text_ifr
 #    Input text  content  ${TEXT}

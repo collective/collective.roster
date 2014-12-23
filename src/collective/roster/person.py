@@ -1,151 +1,52 @@
 # -*- coding: utf-8 -*-
-"""Person.
+"""A person to store and display person related information
 """
-
-from five import grok
-from plone.directives import dexterity
-
-from zope.lifecycleevent.interfaces import (
-    IObjectModifiedEvent,
-    IObjectCreatedEvent
-)
-
-from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-
-from Products.CMFCore.utils import getToolByName
-
-from plone.indexer import indexer
-from plone.uuid.interfaces import IUUID
-
-from plone.app.viewletmanager.manager import (
-    OrderedViewletManager,
-    ManageViewlets
-)
-
+from plone import api
+from zope.component import adapter
+from zope.component.interfaces import IObjectEvent
+from zope.i18n import translate
+from zope.interface import implementer
 from plone.app.content.interfaces import INameFromTitle
 
-from collective.roster.interfaces import IPerson, IPersonTitle
+from collective.roster.interfaces import IPerson
+from collective.roster.interfaces import IPersonTitle
+from collective.roster import _
 
 
-class NameFromTitle(grok.Adapter):
-    grok.provides(INameFromTitle)
-    grok.context(IPerson)
+@adapter(IPerson)
+@implementer(INameFromTitle)
+class PersonNameFromTitle(object):
+    def __init__(self, context):
+        self.context = context
 
     @property
     def title(self):
-        return u"%s %s" % (self.context.last_name,
-                           self.context.first_name)
+        title = _('person_name',
+                  default=u'${last_name} ${first_name}',
+                  mapping={'first_name': IPerson(self.context).first_name,
+                           'last_name': IPerson(self.context).last_name})
+        return translate(title, context=api.portal.getRequest())
 
 
-def personTitle(context):
-    """Generates formatted titles for persons."""
-
-    title = INameFromTitle(context).title
-    adapted = IPerson(context, None)
+# Note: This is left unregistered by purpose to make overriding easier
+@implementer(IPersonTitle)
+def person_title(person):
+    title = INameFromTitle(person).title
+    adapted = IPerson(person, None)
     if adapted:
-        bound = IPerson["salutation"].bind(adapted)
-        salutation = bound.get(adapted)
-        if salutation:
-            title = u"%s, %s" % (title, salutation)
+        bound = IPerson['position'].bind(adapted)
+        position = bound.get(adapted)
+        title_position = _('person_title',
+                           default=u'${title}, ${position}',
+                           mapping={'title': title,
+                                    'position': position})
+        if position:
+            title = translate(title_position, context=api.portal.getRequest())
     return title
 
 
-@grok.subscribe(IPerson, IObjectCreatedEvent)
-@grok.subscribe(IPerson, IObjectModifiedEvent)
-def updatePersonTitle(context, event):
-    context.title = IPersonTitle(context, None) or personTitle(context)
-    context.reindexObject(idxs=('Title',))
-
-
-@indexer(IPerson)
-def title(context):
-    title = IPersonTitle(context, None) or personTitle(context)
-    if isinstance(title, unicode):
-        title = title.encode("utf-8", "ignore")
-    return title
-grok.global_adapter(title, name="Title")
-
-
-class View(dexterity.DisplayForm):
-    """ Person main view, which mainly renders the person viewlet manager """
-
-    grok.context(IPerson)
-    grok.require("zope2.View")
-    grok.name("view")
-
-    #@property
-    #def room(self):
-        #adapter = IOfficeInfo(obj, None)
-        #if adapter:
-            #return getattr(adapter, "room", None) or u""
-        #return u""
-
-
-class PersonViewlets(OrderedViewletManager, grok.ViewletManager):
-    """ Person viewlet manager, which manages all person related viewlets """
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets")
-
-
-class ManagePersonViewlets(View, ManageViewlets):
-    grok.context(IPerson)
-    grok.name("manage-viewlets")
-
-    def index(self):
-        # ManageViewlets.__call__ may call this at its end, and then we'd like
-        # to render by using our dexterity.DisplayForm based View-class.
-        return View.__call__(self)
-
-    def __call__(self):
-        return ManageViewlets.__call__(self)
-
-
-class GroupsViewlet(grok.Viewlet):
-    """ Groups viewlet, which render list of groups the person belongs to """
-
-    grok.viewletmanager(PersonViewlets)
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.localgroups")
-
-    @property
-    def groups(self):
-        vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="collective.roster.localgroups")
-        vocabulary = vocabulary_factory(self.context)
-
-        terms = filter(lambda term: term.value in self.context.groups,
-                       vocabulary)
-        titles = map(lambda term: term.title, terms)
-        return titles
-
-
-class PortraitViewlet(grok.Viewlet):
-    """ Portrait viewlet, which renders the portrait image """
-
-    grok.viewletmanager(PersonViewlets)
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.portrait")
-
-
-class PersonViewlet(grok.Viewlet):
-    """ Person viewlet, which renders the person image """
-
-    grok.viewletmanager(PersonViewlets)
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.person")
-
-
-class RelatedContentViewlet(grok.Viewlet):
-    """ Related content viewlet, which renders list of content linked to the
-    person """
-
-    grok.viewletmanager(PersonViewlets)
-    grok.context(IPerson)
-    grok.name("collective.roster.personviewlets.relatedcontent")
-
-    @property
-    def related_items(self):
-        pc = getToolByName(self.context, "portal_catalog")
-        results = pc(related_persons=[IUUID(self.context)])
-        return results
+# noinspection PyUnusedLocal
+@adapter(IPerson, IObjectEvent)
+def update_person_title(person, event=None):
+    person.title = IPersonTitle(person, None) or person_title(person)
+    person.reindexObject(idxs=('Title',))

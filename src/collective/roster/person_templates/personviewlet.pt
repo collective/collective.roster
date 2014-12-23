@@ -1,3 +1,0 @@
-<div class="personBiography" tal:condition="nocall:context/biography">
-    <tal:text tal:content="structure view/w/biography/render" />
-</div>

@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.roster">
+<body>
+
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <tal:block replace="structure provider:collective.roster.rosterviewlets" />
+    <tal:repeat repeat="table view/tables">
+      <tal:block condition="table/values">
+      <h2><a tal:content="table/title"
+             tal:attributes="name table/anchorTitle;
+                                 href string:#${table/anchorTitle}">Title</a></h2>
+      <tal:replace replace="structure table/renderTable" />
+      <tal:replace replace="structure table/renderBatch" />
+      </tal:block>
+    </tal:repeat>
+  </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

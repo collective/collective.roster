@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <plone:behavior
+      title="Auto-roles by item name"
+      description="Provides contributor, editor and reviewer roles for
+                   user with matching user id with the item id."
+      provides=".interfaces.IAutoRoles"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <adapter factory=".auto_roles.AutoRoleAdapter" />
+
+</configure>

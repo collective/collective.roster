@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import unittest2 as unittest
 from corejet.core import Scenario, story, scenario, given, when, then
 

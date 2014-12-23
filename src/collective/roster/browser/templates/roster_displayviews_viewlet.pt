@@ -1,0 +1,13 @@
+<div class="viewLinks" tal:condition="view/available">
+  <span i18n:translate="change_view">Change view: </span>
+  <tal:repeat repeat="item view/menuItems"
+              define="context_state context/@@plone_context_state;
+                      object_url context_state/object_url">
+  <a href="#"
+     tal:define="action item/action"
+     tal:attributes="title item/title;
+                     href string:${object_url}/${action}"
+     i18n:attributes="title"><span
+     tal:omit-tag="" tal:content="item/title" i18n:translate="">Alphabetical</span></a>
+  </tal:repeat>
+</div>

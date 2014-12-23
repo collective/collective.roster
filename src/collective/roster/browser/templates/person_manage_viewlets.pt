@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<metal:css_slot fill-slot="style_slot">
+  <style type="text/css" media="screen">
+    .viewletmanager, .viewlet { display: block; margin: .5em;}
+    .viewletmanager { border: 1px solid #000;}
+    .viewletmanager > dt { border-bottom: 1px solid #000; }
+    .viewletmanager > dt, .viewlet > dt { font-size: .8em; background: #EEE; padding: .5em; }
+    .viewlet { border: 1px solid #999; }
+    .viewlet > dt { border-bottom: 1px solid #999; }
+    .viewlet > dt > a.show { display: none; }
+    .viewlet > dt > a.hide { display: inline; }
+    .viewletmanager dd, .viewlet dd { padding: .5em; }
+    .viewlet.hiddenViewlet > dt > a.hide{ display:none; }
+    .viewlet.hiddenViewlet > dt > a.show { display: inline; }
+  </style>
+</metal:css_slot>
+
+<metal:javascript_head_slot fill-slot="javascript_head_slot">
+  <script type="text/javascript" charset="utf-8">
+    var registerClickEvents = function(jq){
+      var gt = String.fromCharCode(62);
+      jq('.up, .down, .hide, .show').click(function () {
+        var url = jq(this).attr('href');
+        var vm = jq(this).parents().filter('.managedViewlets').get(0);
+        jq(vm).load(url + ' #' + jq(vm).attr('id') + '.managedViewlets ' + gt + 'dl', '',
+            function(){registerClickEvents(jq);});
+        return false;
+      });
+    }
+    jQuery(function(jq) {
+      registerClickEvents(jq);
+    });
+  </script>
+</metal:javascript_head_slot>
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+      <div class="personView">
+        <tal:block replace="structure provider:collective.roster.personviewlets" />
+      </div>
+    </metal:content-core>
+  </metal:content-core>
+</body>
+
+<tal:comment replace="nothing">
+  The key for managing own custom viewletmanagers using the manage-viewlets-view
+  is to simply render the custom viewlet manager in the manage-viewlets-view's
+  template.
+</tal:comment>
+
+</html>

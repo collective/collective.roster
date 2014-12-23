@@ -1,0 +1,35 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <plone:behavior
+      title="Office Information"
+      description="Provides office information fields for roster persons."
+      provides=".interfaces.IOfficeInfo"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <adapter factory=".office_info.ShortNumberDataConverter" />
+
+  <adapter name="collective.roster.personnellisting.room"
+           provides="z3c.table.interfaces.IColumn"
+           for="..interfaces.IRoster * ..interfaces.IPersonnelListing"
+           factory=".office_info.RoomColumn" />
+
+  <adapter name="collective.roster.personnellisting.short_number"
+           provides="z3c.table.interfaces.IColumn"
+           for="..interfaces.IRoster * ..interfaces.IPersonnelListing"
+           factory=".office_info.ShortNumberColumn" />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.officeinfo"
+      for=".interfaces.IOfficeInfo"
+      manager="..browser.interfaces.IPersonViewlets"
+      template="templates/office_info_viewlet.pt"
+      permission="zope2.View"
+      />
+
+</configure>

@@ -1,5 +1,6 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import unittest2 as unittest
+
 from collective.roster.testing import ROSTER_INTEGRATION_TESTING
 
 
@@ -19,7 +20,8 @@ class RosterIntegrationTests(unittest.TestCase):
         self.roster = portal["example-roster"]
 
     def testRosterLocalGroupsVocabulary(self):
-        from collective.roster.roster import LocalGroupsVocabulary
+        from collective.roster.behaviors.groups import LocalGroupsVocabulary
+
         vocabulary = LocalGroupsVocabulary()(self.roster)
 
         self.assertEqual(len(vocabulary), 2)

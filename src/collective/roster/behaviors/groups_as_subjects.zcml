@@ -1,0 +1,23 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <plone:behavior
+      title="Groups as subjects"
+      description="Enables roster persons' groups to be indexed as their
+                   subjects."
+      provides=".interfaces.IGroupsAsSubjects"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <subscriber for=".interfaces.IGroupsAsSubjects
+                   zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+              handler=".groups_as_subjects.append_groups_into_subjects" />
+
+  <subscriber for=".interfaces.IGroupsAsSubjects
+                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".groups_as_subjects.append_groups_into_subjects" />
+
+</configure>

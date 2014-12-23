@@ -1,7 +1,0 @@
-<dl class="personSubjectInfo" i18n:domain="collective.roster">
-    <div tal:condition="view/w/ISubjectInfo.studysubject/value" >
-      <dt i18n:translate="subjectinfo_studysubject">subject</dt>
-      <dd><span tal:content="structure view/w/ISubjectInfo.studysubject/render" />
-      </dd>
-    </div>
-</dl>

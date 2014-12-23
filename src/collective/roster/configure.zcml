@@ -1,60 +1,57 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:grok="http://namespaces.zope.org/grok"
-           xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="collective.roster">
+    
+  <i18n:registerTranslations directory="locales" />
 
-    <includeDependencies package="." />
+  <include package="z3c.table" />
+  <include package="plone.z3ctable" />
 
-    <include package="five.grok" />
+  <include package=".behaviors" />
+  <include package=".browser" />
 
-    <grok:grok package=".interfaces" /> 
-    <grok:grok package=".roster" /> 
-    <grok:grok package=".person" /> 
+  <adapter factory=".interfaces.FirstNameValidator" />
+  <adapter factory=".interfaces.LastNameValidator" />
 
-    <i18n:registerTranslations directory="locales" />
+  <utility factory=".roster.DisplayColumnsVocabulary"
+           name="collective.roster.displaycolumns" />
 
-    <include package=".behaviors" /> 
-    <browser:resourceDirectory name="collective.roster" directory="static" />
+  <adapter name="collective.roster.personnellisting.alpha"
+           provides="z3c.table.interfaces.IColumn"
+           for=".interfaces.IRoster * .roster.PersonnelAlphaListing"
+           factory=".roster.AlphaColumn" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="Personnel Roster"
-        directory="profiles/default"
-        description="Provides extendable personnel roster content types"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        i18n:attributes="title description"
-        />
+  <adapter name="collective.roster.personnellisting.title"
+           provides="z3c.table.interfaces.IColumn"
+           for=".interfaces.IRoster * .interfaces.IPersonnelListing"
+           factory=".roster.TitleColumn" />
 
-    <include file="upgrades.zcml" /> 
+  <adapter name="collective.roster.personnellisting.position"
+           provides="z3c.table.interfaces.IColumn"
+           for=".interfaces.IRoster * .interfaces.IPersonnelListing"
+           factory=".roster.PositionColumn" />
 
-    <browser:menuItem
-        for="collective.roster.interfaces.IRoster"
-        menu="plone_displayviews"
-        title="A to Z listing"
-        action="@@alphaview"
-        description="List all persons"
-        i18n:attributes="title description"
-    />
+  <subscriber for=".interfaces.IPerson
+                   zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+              handler=".person.update_person_title" />
 
-    <browser:menuItem
-        for="collective.roster.interfaces.IRoster"
-        menu="plone_displayviews"
-        title="Group listing"
-        action="@@groupview"
-        description="List all persons inside groups"
-        i18n:attributes="title description"
-    />
+  <subscriber for=".interfaces.IPerson
+                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".person.update_person_title" />
 
-    <browser:menuItem
-        for="collective.roster.interfaces.IRoster"
-        menu="plone_displayviews"
-        title="Gallery view"
-        action="@@galleryview"
-        description="Gallery listing for persons"
-        i18n:attributes="title description"
-    />
+  <adapter factory=".person.PersonNameFromTitle" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Personnel Roster"
+      directory="profiles/default"
+      description="Adds personnel roster and person content types"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      i18n:attributes="title description"
+     />
+
+  <include file="upgrades.zcml" />
 
 </configure>

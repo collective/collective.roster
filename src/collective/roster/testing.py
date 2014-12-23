@@ -1,24 +1,21 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import (
-    PloneSandboxLayer,
-    PLONE_FIXTURE,
-    IntegrationTesting,
-    FunctionalTesting,
-    applyProfile,
-)
-from plone.testing import (
-    z2,
-)
-from plone.app.robotframework.testing import (
-    MOCK_MAILHOST_FIXTURE,
-    REMOTE_LIBRARY_BUNDLE_FIXTURE
-)
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import applyProfile
+from plone.testing import z2
+from plone.app.robotframework.testing import MOCK_MAILHOST_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 
 
 class RosterLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        import plone.app.dexterity
+        self.loadZCML(package=plone.app.dexterity)
+
         import collective.roster
         self.loadZCML(package=collective.roster)
 

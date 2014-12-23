@@ -1,0 +1,6 @@
+<div class="personPortrait">
+  <img tal:condition="context/image"
+       tal:replace="structure context/@@images/image/mini"
+       />
+</div>
+

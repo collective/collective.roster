@@ -2,55 +2,55 @@
 <object name="collective.roster.person" meta_type="Dexterity FTI"
         i18n:domain="collective.roster" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <!-- Basic metadata -->
-    <property name="title" i18n:translate="">Person</property>
-    <property name="description" i18n:translate="">A person</property>
-    <property name="content_icon">user.png</property>
-    <property name="allow_discussion">False</property>
-    <property name="global_allow">False</property>
-    <property name="filter_content_types">True</property>
-    <property name="allowed_content_types">
-        <element value="File" />
-    </property>
+  <!-- Basic metadata -->
+  <property name="title" i18n:translate="">Person</property>
+  <property name="description" i18n:translate="">A person</property>
+  <property name="content_icon">user.png</property>
+  <property name="allow_discussion">False</property>
+  <property name="global_allow">False</property>
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types" purge="false">
+    <element value="File" />
+  </property>
 
-    <!-- schema interface -->
-    <property name="schema">collective.roster.interfaces.IPerson</property>
+  <!-- schema interface -->
+  <property name="schema">collective.roster.interfaces.IPerson</property>
 
-    <!-- class used for content items -->
-    <property name="klass">plone.dexterity.content.Container</property>
+  <!-- class used for content items -->
+  <property name="klass">plone.dexterity.content.Container</property>
 
-    <!-- add permission -->
-    <property name="add_permission">cmf.AddPortalContent</property>
+  <!-- add permission -->
+  <property name="add_permission">cmf.AddPortalContent</property>
 
-    <!-- enabled behaviors -->
-    <property name="behaviors">
-        <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-        <element value="collective.roster.behaviors.interfaces.IContactInfo" />
-        <element value="collective.roster.behaviors.interfaces.IOfficeInfo" />
-        <element value="collective.roster.behaviors.interfaces.IGroupsAsSubjects" />
-    </property>
+  <!-- enabled behaviors -->
+  <property name="behaviors" purge="false">
+    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+    <element value="collective.roster.behaviors.interfaces.IGroups" />
+    <element value="collective.roster.behaviors.interfaces.IContactInfo" />
+    <element value="collective.roster.behaviors.interfaces.IOfficeInfo" />
+  </property>
 
-    <!-- View information -->
-    <property name="default_view">view</property>
-    <property name="default_view_fallback">False</property>
-    <property name="view_methods">
-        <element value="view" />
-    </property>
+  <!-- View information -->
+  <property name="default_view">view</property>
+  <property name="default_view_fallback">False</property>
+  <property name="view_methods" purge="false">
+    <element value="view" />
+  </property>
 
-    <!-- Method aliases -->
-    <alias from="(Default)" to="(dynamic view)" />
-    <alias from="edit" to="@@edit" />
-    <alias from="sharing" to="@@sharing" />
-    <alias from="view" to="(selected layout)" />
+  <!-- Method aliases -->
+  <alias from="(Default)" to="(dynamic view)" />
+  <alias from="edit" to="@@edit" />
+  <alias from="sharing" to="@@sharing" />
+  <alias from="view" to="(selected layout)" />
 
-    <!-- Actions -->
-    <action title="View" action_id="view" category="object" condition_expr=""
-            url_expr="string:${object_url}" visible="True">
-        <permission value="View" />
-    </action>
-    <action title="Edit" action_id="edit" category="object" condition_expr=""
-            url_expr="string:${object_url}/edit" visible="True">
-        <permission value="Modify portal content" />
-    </action>
+  <!-- Actions -->
+  <action title="View" action_id="view" category="object" condition_expr=""
+          url_expr="string:${object_url}" visible="True">
+    <permission value="View" />
+  </action>
+  <action title="Edit" action_id="edit" category="object" condition_expr=""
+          url_expr="string:${object_url}/edit" visible="True">
+    <permission value="Modify portal content" />
+  </action>
 </object>
 

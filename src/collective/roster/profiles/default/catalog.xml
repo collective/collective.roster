@@ -2,4 +2,8 @@
   <index name="related_persons" meta_type="KeywordIndex">
     <indexed_attr value="related_persons" />
   </index>
+  <index name="roster_groups" meta_type="KeywordIndex">
+    <indexed_attr value="roster_groups" />
+  </index>
+  <column value="roster_groups"/>
 </object>

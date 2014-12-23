@@ -1,0 +1,62 @@
+body.portaltype-collective-roster-person .personContactInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personContactInfo dt {
+  clear: left;
+  float: left;
+  width: 8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personContactInfo {
+  overflow: hidden;
+  display: block;
+  margin: 1em 0 0 0;
+}
+
+body.portaltype-collective-roster-person .personOfficeInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personOfficeInfo dt {
+  clear: left;
+  float: left;
+  width:8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo dt {
+  clear: left;
+  float: left;
+  width:8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo {
+  overflow: hidden;
+  display: block;
+  margin: 0;
+}
+
+
+body.portaltype-collective-roster-person .personPortrait {
+  float: right;
+  margin-right: 1em;
+  border: 1px solid #ccc;
+}
+
+body.portaltype-collective-roster-person .personBiography dd {
+  margin-top: 1em;
+  margin-left: 0;
+}
+
+body.portaltype-collective-roster-person .personBiography dt {
+  margin-top: 1em;
+  font-size: 1.5em;
+
+}

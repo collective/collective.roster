@@ -1,0 +1,28 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="collective.roster">
+
+  <plone:behavior
+      title="Subject information"
+      description="Provides subject information fields for roster persons."
+      provides=".interfaces.ISubjectInfo"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title description"
+      />
+
+  <adapter name="collective.roster.personnellisting.subject"
+           provides="z3c.table.interfaces.IColumn"
+           for="..interfaces.IRoster * ..interfaces.IPersonnelListing"
+           factory=".subject_info.SubjectColumn" />
+
+  <browser:viewlet
+      name="collective.roster.personviewlets.subjectinfo"
+      for=".interfaces.ISubjectInfo"
+      manager="..browser.interfaces.IPersonViewlets"
+      template="templates/subject_info_viewlet.pt"
+      permission="zope2.View"
+      />
+
+</configure>

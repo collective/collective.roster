@@ -1,0 +1,33 @@
+body.portaltype-collective-roster-roster .viewLinks{
+  float: right;
+}
+
+body.portaltype-collective-roster-roster table.roster{
+  width: 100%;
+}
+
+body.portaltype-collective-roster-roster .alphaLinks {
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+body.portaltype-collective-roster-roster .alphaLinks a {
+  font-size: 1.4em;
+  margin: 0.2em;
+}
+
+body.portaltype-collective-roster-roster .galleryPortrait{
+  float: left;
+  width: 96px;
+  height: 128px;
+  margin-right: 1em;
+}
+
+body.portaltype-collective-roster-roster .portraitPlaceholder {
+  float: left;
+  width: 96px;
+  height: 128px;
+  margin-right: 1em;
+  border: 1px solid #ccc;
+}

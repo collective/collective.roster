@@ -1,49 +1,57 @@
+# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
 setup(
-    name="collective.roster",
-    version='1.4.5.dev0',
-    description="Extendable Personnel Roster",
-    long_description=open("README.txt").read() + "\n" +
-                open("CHANGES.txt").read(),
+    name='collective.roster',
+    version='2.0.0.dev0',
+    description='Personnel Roster',
+    long_description=(open('README.rst').read() + '\n' +
+                      open('CHANGES.rst').read()),
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        "Programming Language :: Python",
+        'Programming Language :: Python',
     ],
-    keywords="",
-    author="Asko Soukka, Toni Haka-Risku",
-    author_email="asko.soukka@iki.fi, toni.haka-risku@jyu.fi",
-    url="",
-    license="GPL",
-    packages=find_packages("src", exclude=["ez_setup"]),
-    package_dir={"": "src"},
-    namespace_packages=["collective"],
+    keywords='',
+    author='Asko Soukka',
+    author_email='asko.soukka@iki.fi',
+    url='',
+    license='EUPL',
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
+    namespace_packages=['collective'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "setuptools",
-        "five.grok",
-        "zope.schema",
-#        "zope.i18n",  # fails on Plone with <includeDependencies />
-        "zope.i18nmessageid",
-        "plone.indexer",
-        "plone.directives.form",
-        "plone.directives.dexterity",
-        "plone.app.dexterity",
-        "plone.formwidget.contenttree",
-        "plone.app.referenceablebehavior",
-        "plone.app.viewletmanager",
-        "plone.namedfile[blobs]",
-        "plone.formwidget.namedfile",
-        "plone.z3ctable",
-        "plone.api",
+        'setuptools',
+        'Products.CMFCore',
+        'Products.CMFPlone',
+        'Zope2',
+        'borg.localrole',
+        'plone.api',
+        'plone.app.dexterity',
+        'plone.app.textfield',
+        'plone.app.viewletmanager',
+        'plone.autoform',
+        'plone.formwidget.contenttree',
+        'plone.formwidget.namedfile',
+        'plone.indexer',
+        'plone.memoize',
+        'plone.namedfile [blobs]',
+        'plone.supermodel',
+        'plone.z3ctable',
+        'zope.component',
+        'zope.i18n',
+        'zope.i18nmessageid',
+        'zope.interface',
+        'zope.publisher',
+        'zope.schema',
     ],
-    extras_require={"test": [
-        "Pillow",
-        "corejet.core",
-        "plone.app.testing",
-        "plone.app.robotframework"
+    extras_require={'test': [
+        'Pillow',
+        'corejet.core',
+        'plone.app.testing',
+        'plone.app.robotframework'
     ]},
     entry_points="""
     # -*- Entry points: -*-

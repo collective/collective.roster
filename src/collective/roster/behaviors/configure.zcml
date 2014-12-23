@@ -1,76 +1,14 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:grok="http://namespaces.zope.org/grok"
-           xmlns:plone="http://namespaces.plone.org/plone"
-           xmlns:browser="http://namespaces.zope.org/browser"
-           xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="collective.roster">
 
-    <grok:grok package=".interfaces" />
-    <grok:grok package=".indexers" />
-    <grok:grok package=".viewlets" />
-    <grok:grok package=".adapters" />
-    <grok:grok package=".widgets" />
+  <include package="plone.behavior" file="meta.zcml"/>
 
-    <plone:behavior
-        title="Related persons"
-        description="Provides related persons list for any dexterity
-                     content type"
-        provides=".interfaces.IRelatedPersons"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        factory="plone.behavior.AnnotationStorage"
-        marker=".interfaces.IHasRelatedPersons"
-        i18n:attributes="title description"
-        />
-
-    <!-- Note: Because 'Related persons' behavior should be safe with any
-         content, it's preferrable to use AnnotationStorage for it. -->
-
-    <plone:behavior
-        title="Subject information"
-        description="Provides subject information fields"
-        provides=".interfaces.ISubjectInfo"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        i18n:attributes="title description"
-        />
-
-
-    <plone:behavior
-        title="Groups as subjects"
-        description="Allows roster groups to be indexes as subjects, aka keywords."
-        provides=".interfaces.IGroupsAsSubjects"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        i18n:attributes="title description"
-        />
-
-
-    <plone:behavior
-        title="Contact information"
-        description="Provides contact information fields"
-        provides=".interfaces.IContactInfo"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        i18n:attributes="title description"
-        />
-
-    <plone:behavior
-        title="Office Information"
-        description="Provides office information fields"
-        provides=".interfaces.IOfficeInfo"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        i18n:attributes="title description"
-        />
-
-    <!-- Note: Because it's important to store 'email' field directly on the
-         content object (for compatibility with dexterity membrane), we'll use
-         attribute storage (default; doesn't require extra marker interface for
-         viewlets) instead. -->
-
-    <plone:behavior
-        title="Auto-roles by item name"
-        description="Provides contributor, editor and reviewer roles for
-                     user with matching userid with the item id."
-        provides=".interfaces.IAutoRoles"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        i18n:attributes="title description"
-        />
+  <include file="auto_roles.zcml" />
+  <include file="contact_info.zcml" />
+  <include file="groups.zcml" />
+  <include file="groups_as_subjects.zcml" />
+  <include file="office_info.zcml" />
+  <include file="related_persons.zcml" />
+  <include file="subject_info.zcml" />
 
 </configure>

@@ -1,0 +1,6 @@
+<div class="personBiography"
+     tal:define="widgets nocall:view/aq_parent/w"
+     tal:condition="nocall:context/biography"
+     tal:content="structure widgets/biography/render">
+  <p>All work, no play...</p>
+</div>
