@@ -17,20 +17,19 @@ Create Personnel
      And I click 'Save'
     Then new person is created
 
-
 *** Keywords ***
 
 #### ROSTER ####
+
+Background
+    Given the personnel roster product is activated
+      And I'm logged in as a site manager
 
 The personnel roster is created
     When I add a new roster
      And I fill the necessary information for roster
      And I click 'Save'
     Then new roster is created
-
-Background
-    Given the personnel roster product is activated
-      And I'm logged in as a site manager
 
 The personnel roster product is activated
     Product is activated  collective.roster
@@ -76,7 +75,6 @@ I fill the necessary information for person
 New person is created
     Page should contain  Item created
 
-
 New roster is created
     Page should contain  Item created
 
@@ -90,5 +88,5 @@ Open Menu
 I'm logged in as a site manager
     Enable autologin as  Site Administrator
 
-Log out
+I'm logged out
     Disable autologin
