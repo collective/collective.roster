@@ -22,10 +22,10 @@
            for=".interfaces.IRoster * .roster.PersonnelAlphaListing"
            factory=".roster.AlphaColumn" />
 
-  <adapter name="collective.roster.personnellisting.title"
+  <adapter name="collective.roster.personnellisting.name"
            provides="z3c.table.interfaces.IColumn"
            for=".interfaces.IRoster * .interfaces.IPersonnelListing"
-           factory=".roster.TitleColumn" />
+           factory=".roster.NameColumn" />
 
   <adapter name="collective.roster.personnellisting.position"
            provides="z3c.table.interfaces.IColumn"
