@@ -1,0 +1,10 @@
+h1, h2, h3, h4, h5, h6, footer {
+  clear: both;
+}
+.figure {
+  -webkit-box-shadow: 0 0 5px #888;
+  -moz-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
+  overflow: hidden;
+  background: white;
+}
