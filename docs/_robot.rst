@@ -9,7 +9,7 @@
    Library  OperatingSystem
 
    Suite Setup  Run keywords  Suite Setup  Test Setup
-   Suite Teardown  Run keywords  Test teardown  Suite Teardown
+   Suite Teardown  Run keywords  Test Teardown  Suite Teardown
 
    *** Variables ***
 
@@ -19,16 +19,16 @@
    *** Keywords ***
 
    Suite Setup
-       Run keyword if  not sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' not in sys.argv[0]
        ...             Setup Plone site  ${FIXTURE}
-       Run keyword if  sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' in sys.argv[0]
        ...             Open test browser
        Run keyword and ignore error  Set window size  @{DIMENSIONS}
 
    Test Setup
        Import library  Remote  ${PLONE_URL}/RobotRemote
 
-       Run keyword if  sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' in sys.argv[0]
        ...             Remote ZODB SetUp  ${FIXTURE}
 
        ${language} =  Get environment variable  LANGUAGE  'en'
@@ -43,13 +43,13 @@
        Set autologin username  ${user_id}
 
    Test Teardown
-       Run keyword if  sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' in sys.argv[0]
        ...             Remote ZODB TearDown  ${FIXTURE}
 
    Suite Teardown
-       Run keyword if  not sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' not in sys.argv[0]
        ...             Teardown Plone Site
-       Run keyword if  sys.argv[0].startswith('bin/robot')
+       Run keyword if  'bin/robot' in sys.argv[0]
        ...             Close all browsers
 
    *** Test Cases ***

@@ -10,6 +10,7 @@ install:
 - bin/buildout -N -t 3
 script:
 - bin/test
+- bin/pybot docs
 - bin/code-analysis
 cache:
   directories:

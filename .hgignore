@@ -16,3 +16,6 @@ syntax: regexp
 ^eggs$
 ^parts$
 ^var$
+^[\w-]+.png$
+^[\w-]+.html$
+^[\w-]+.xml$

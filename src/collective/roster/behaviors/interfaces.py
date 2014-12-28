@@ -153,6 +153,7 @@ alsoProvides(IGroupsProvider, IFormFieldProvider)
 @discriminators(field=IGroupsProvider['groups'])
 class GroupNameValidator(SimpleFieldValidator):
     def validate(self, value, force=False):
+        value = value or []
         super(SimpleFieldValidator, self).validate(value, force)
 
         normalizer = getUtility(IIDNormalizer)
