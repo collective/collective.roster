@@ -41,6 +41,6 @@ class RosterIntegrationTests(unittest.TestCase):
         to_tuple = lambda term: (term.value, term.token, term.title)
         tuples = map(to_tuple, vocabulary)
 
-        self.assertIn(("collective.roster.personnellisting.title",
-                       "collective.roster.personnellisting.title",
+        self.assertIn(("collective.roster.personnellisting.name",
+                       "collective.roster.personnellisting.name",
                        u"Name"), tuples)
