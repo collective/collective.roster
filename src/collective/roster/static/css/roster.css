@@ -9,6 +9,16 @@
   margin: 0.2em;
 }
 
+body.portaltype-collective-roster-roster table.roster tr.state-private a,
+body.portaltype-collective-roster-roster table.roster tr.state-private {
+  color: red !important;
+}
+
+body.portaltype-collective-roster-roster table.state-private td,
+body.portaltype-collective-roster-roster table.state-private td a {
+  color: red !important;
+}
+
 #content .rosterView .gallery_portrait{
   float: left;
   width: 96px;

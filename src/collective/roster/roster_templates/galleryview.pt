@@ -12,12 +12,14 @@
   <div class="rosterView">
     <tal:block replace="structure provider:collective.roster.rosterviewlets" />
     <tal:repeat repeat="group view/tables">
+    <tal:block condition="group/values">
     <h2><a tal:content="group/title"
-                 tal:attributes="name group/anchorTitle;
-                                 href string:galleryview#${group/anchorTitle}">Title</a></h2>
-      <tal:repeat repeat="person group/values">
-
-      <table>
+           tal:attributes="name group/anchorTitle;
+                           href string:galleryview#${group/anchorTitle}">Title</a></h2>
+      <tal:repeat repeat="value group/values">
+      <table tal:define="brain nocall:value/brain; person nocall:value/object;
+                         review_state brain/review_state"
+             tal:attributes="class string:state-${review_state}">
         <tr>
           <td>
           <div class="gallery_portrait">
@@ -53,6 +55,7 @@
         </tr>
       </table>
       </tal:repeat>
+      </tal:block>
     </tal:repeat>
   </div>
   </metal:content-core>
