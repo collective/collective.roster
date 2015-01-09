@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
+from plone import api
 from plone.i18n.normalizer import IIDNormalizer
 from plone.indexer import indexer
 from plone.memoize import view
@@ -94,8 +95,14 @@ class PersonnelGroupListing(PersonnelListing):
         normalizer = getUtility(IIDNormalizer)
         return normalizer.normalize(self.title)
 
-    # Personnel values property, which provides catalog brains for all the
-    # persons with the same group as the currently rendered personnel table
+    def renderRow(self, row, cssClass=None):
+        if api.content.get_state(row[0][0].get('object')) != 'published':
+            cssClass = u'state-private'
+        return super(PersonnelListing, self).renderRow(row, cssClass)
+
+    # Personnel values property, which provides catalog brains and objects
+    # for all the persons with the same group as the currently rendered
+    # personnel table
     @property
     def values(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
@@ -108,8 +115,9 @@ class PersonnelGroupListing(PersonnelListing):
             path='/'.join(self.context.getPhysicalPath()),
             roster_groups=[term.value]
         )
-        values = [brain.getObject() for brain in brains]
-        title_lower = lambda x: x.title.lower()
+        values = [{'brain': brain, 'object': brain.getObject()}
+                  for brain in brains]
+        title_lower = lambda x: x['object'].title.lower()
         sorted_values = sorted(values, key=title_lower)
         return sorted_values
 

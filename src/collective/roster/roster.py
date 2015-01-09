@@ -81,6 +81,11 @@ class PersonnelListing(table.Table):
     batchSize = 10
     startBatchingAt = sys.maxint
 
+    def renderRow(self, row, cssClass=None):
+        if api.content.get_state(row[0][0]) != 'published':
+            cssClass = u'state-private'
+        return super(PersonnelListing, self).renderRow(row, cssClass)
+
     def getBatchSize(self):
         return max(int(self.request.get(self.prefix + '-batchSize',
                                         self.batchSize)), 1)
@@ -178,9 +183,13 @@ class NameColumn(column.LinkColumn):
     header = _(u'Name')
 
     def getLinkURL(self, ob):
+        if isinstance(ob, dict):
+            return ob.get('object').absolute_url()
         return ob.absolute_url()
 
     def getLinkContent(self, ob):
+        if isinstance(ob, dict):
+            ob = ob.get('object')
         title = u'{0:s} {1:s}'.format(ob.last_name, ob.first_name)
         if type(title) != unicode:
             title = unicode(title, u'utf-8')
@@ -194,4 +203,6 @@ class PositionColumn(column.Column):
     header = _(u'Title')
 
     def renderCell(self, ob):
+        if isinstance(ob, dict):
+            return ob.get('object').position
         return ob.position
