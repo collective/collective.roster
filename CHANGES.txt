@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.4.5 (unreleased)
+1.5.0 (2015-01-09)
 ------------------
 
-- Nothing changed yet.
-
+- Add review state as class for listings
+- Update .hgignore
 
 1.4.4 (2014-09-01)
 ------------------
