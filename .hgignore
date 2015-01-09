@@ -4,6 +4,8 @@ syntax: glob
 *.pyc
 *.mo
 *~
+*.iml
+
 .installed.cfg
 .mr.developer.cfg
 .idea
