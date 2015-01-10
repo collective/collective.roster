@@ -1,8 +1,8 @@
-body.portaltype-collective-roster-roster .viewLinks{
+body.portaltype-collective-roster-roster .viewLinks {
   float: right;
 }
 
-body.portaltype-collective-roster-roster table.roster{
+body.portaltype-collective-roster-roster table.roster {
   width: 100%;
 }
 
@@ -22,11 +22,11 @@ body.portaltype-collective-roster-roster table.roster tr.state-private {
 }
 
 body.portaltype-collective-roster-roster table.state-private td,
-body.portaltype-collective-roster-roster table.state-private td a{
+body.portaltype-collective-roster-roster table.state-private td a {
   color: red !important;
 }
 
-body.portaltype-collective-roster-roster .galleryPortrait{
+body.portaltype-collective-roster-roster .galleryPortrait {
   float: left;
   width: 96px;
   height: 128px;

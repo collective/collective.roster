@@ -14,10 +14,9 @@
       <tal:block condition="group/values">
       <h2><a tal:content="group/title"
              tal:attributes="name group/anchorTitle;
-                             href string:galleryview#${group/anchorTitle}">Title</a></h2>
-      <tal:repeat repeat="value group/values">
-        <table tal:define="brain nocall:value/brain; person nocall:value/object;
-                           review_state brain/review_state"
+                             href string:@@gallery_view#${group/anchorTitle}">Title</a></h2>
+      <tal:repeat repeat="person group/values">
+        <table tal:define="review_state person/@@plone_context_state/workflow_state|string:published"
                tal:attributes="class string:state-${review_state}">
           <tr>
             <td>
