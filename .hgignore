@@ -9,6 +9,7 @@ syntax: glob
 .installed.cfg
 .mr.developer.cfg
 .idea
+selenium-screenshots*.png
 
 syntax: regexp
 ^bin$

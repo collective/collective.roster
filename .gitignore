@@ -6,6 +6,7 @@
 .installed.cfg
 .mr.developer.cfg
 .idea
+selenium-screenshots*.png
 /bin
 /build
 /develop-eggs
