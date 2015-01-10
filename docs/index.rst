@@ -219,6 +219,12 @@ Available behaviors
         Highlight  behaviors-groups-as-subjects
 
         Assign id to element
+        ...  xpath=//*[@id='form-widgets-collective-roster-behaviors-interfaces-IRelatedPersons']/parent::*/parent::*
+        ...  behaviors-related-persons
+        Page should contain element  behaviors-related-persons
+        Highlight  behaviors-related-persons
+
+        Assign id to element
         ...  xpath=//*[@id='form-widgets-collective-roster-behaviors-interfaces-IOfficeInfo']/parent::*/parent::*
         ...  behaviors-office-info
         Page should contain element  behaviors-office-info
