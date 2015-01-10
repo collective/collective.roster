@@ -7,7 +7,7 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 install:
 - python bootstrap.py
-- bin/buildout -N -t 3
+- bin/buildout -N -t 3 versions:zc.recipe.egg=
 script:
 - bin/test
 cache:
