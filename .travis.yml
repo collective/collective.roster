@@ -1,0 +1,17 @@
+language: python
+python:
+- 2.6
+sudo: false
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+install:
+- python bootstrap.py
+- bin/buildout -N -t 3
+script:
+- bin/test
+cache:
+  directories:
+  - eggs
+notifications:
+  flowdock: 827dea8da0905dbc8399d66eb75868df
