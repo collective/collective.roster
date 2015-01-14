@@ -24,6 +24,7 @@ class RosterLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'collective.roster:default')
+        portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
 ROSTER_FIXTURE = RosterLayer()
 

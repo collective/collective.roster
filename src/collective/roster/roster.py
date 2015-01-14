@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Roster (aka. personnel directory)
 """
+from operator import methodcaller
+from Products.CMFCore.WorkflowCore import WorkflowException
 
 from five import grok
 from plone import api
@@ -17,11 +19,9 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 
 from zope.schema.interfaces import (
     IVocabularyFactory,
-    IList
 )
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-from z3c.form.datamanager import AttributeField
 from z3c.table.interfaces import (
     IColumn
 )
@@ -224,8 +224,15 @@ class PersonnelListing(table.Table):
     startBatchingAt = 99999
 
     def renderRow(self, row, cssClass=None):
-        if api.content.get_state(row[0][0]) != 'published':
-            cssClass = u'state-private'
+        if len(row):
+            item, col, colspan = row[0]
+            try:
+                state = api.content.get_state(item)
+            except WorkflowException:
+                state = ''
+            if state:
+                cssClass = (' '.join([cssClass or '',
+                                      'state-{0:s}'.format(state)])).strip()
         return super(PersonnelListing, self).renderRow(row, cssClass)
 
     def getBatchSize(self):
@@ -320,11 +327,6 @@ class PersonnelGroupListing(PersonnelListing):
         term = vocabulary.getTerm(self.group)
         return term.title
 
-    def renderRow(self, row, cssClass=None):
-        if api.content.get_state(row[0][0].get('object')) != 'published':
-            cssClass = u'state-private'
-        return super(PersonnelListing, self).renderRow(row, cssClass)
-
     @property
     def anchorTitle(self):
         normalizer = getUtility(IIDNormalizer)
@@ -346,11 +348,9 @@ class PersonnelGroupListing(PersonnelListing):
             object_provides=IPerson.__identifier__,
             Subject=(term.title.encode('utf-8', 'ignore'),)  # are indexed by titles
         )
-        values = [{'brain': brain, 'object': brain.getObject()}
-                  for brain in brains]
-        # values = map(lambda x: x.getObject(), brains)
-        sort_by_title = lambda x: x['object'].title.lower()
-        sorted_values = sorted(values, key=sort_by_title)
+        values = map(methodcaller('getObject'), brains)
+        title_lower = lambda x: x.title.lower()
+        sorted_values = sorted(values, key=title_lower)
         return sorted_values
 
 
@@ -388,10 +388,7 @@ class SubjectColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Subject")
 
     def renderCell(self, obj):
-        if isinstance(obj, dict):
-            adapter = ISubjectInfo(obj.get('object'), None)
-        else:
-            adapter = ISubjectInfo(obj, None)
+        adapter = ISubjectInfo(obj, None)
         if adapter:
             return getattr(adapter, "studysubject", None) or u""
         return u""
@@ -409,13 +406,9 @@ class TitleColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Name")
 
     def getLinkURL(self, obj):
-        if isinstance(obj, dict):
-            return obj.get('object').absolute_url()
         return obj.absolute_url()
 
     def getLinkContent(self, obj):
-        if isinstance(obj, dict):
-            obj = obj.get('object')
         title = u"%s %s" % (obj.last_name, obj.first_name)
         if type(title) != unicode:
             title = unicode(title, u"utf-8")
@@ -434,8 +427,6 @@ class SalutationColumn(grok.MultiAdapter, column.Column):
     header = _(u"Title")
 
     def renderCell(self, obj):
-        if isinstance(obj, dict):
-            return obj.get('object').salutation
         return obj.salutation
 
 
@@ -451,10 +442,7 @@ class RoomColumn(grok.MultiAdapter, column.Column):
     header = _(u"Room")
 
     def renderCell(self, obj):
-        if isinstance(obj, dict):
-            adapter = IOfficeInfo(obj.get('object'), None)
-        else:
-            adapter = IOfficeInfo(obj, None)
+        adapter = IOfficeInfo(obj, None)
         if adapter:
             return getattr(adapter, "room", None) or u""
         return u""
@@ -472,20 +460,14 @@ class PhoneNumberColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Phone number")
 
     def getLinkURL(self, obj):
-        if isinstance(obj, dict):
-            adapter = IContactInfo(obj.get('object'), None)
-        else:
-            adapter = IContactInfo(obj, None)
+        adapter = IContactInfo(obj, None)
         phone = getattr(adapter, "phone_number", None)
         if phone:
             return "tel:" + phone
         return u""
 
     def getLinkContent(self, obj):
-        if isinstance(obj, dict):
-            adapter = IContactInfo(obj.get('object'), None)
-        else:
-            adapter = IContactInfo(obj, None)
+        adapter = IContactInfo(obj, None)
         if adapter:
             return getattr(adapter, "phone_number", u"") or u""
         return u""
@@ -503,20 +485,14 @@ class ShortNumberColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Short number")
 
     def getLinkURL(self, obj):
-        if isinstance(obj, dict):
-            adapter = IOfficeInfo(obj.get('object'), None)
-        else:
-            adapter = IOfficeInfo(obj, None)
+        adapter = IOfficeInfo(obj, None)
         short_number = getattr(adapter, "short_number", None)
         if short_number:
             return "tel: %s" % (short_number,)
         return ""
 
     def getLinkContent(self, obj):
-        if isinstance(obj, dict):
-            adapter = IOfficeInfo(obj.get('object'), None)
-        else:
-            adapter = IOfficeInfo(obj, None)
+        adapter = IOfficeInfo(obj, None)
         if adapter:
             return getattr(adapter, "short_number", None) or u""
         return u""
@@ -534,20 +510,14 @@ class EmailColumn(grok.MultiAdapter, column.LinkColumn):
     header = _(u"Email")
 
     def getLinkURL(self, obj):
-        if isinstance(obj, dict):
-            adapter = IContactInfo(obj.get('object'), None)
-        else:
-            adapter = IContactInfo(obj, None)
+        adapter = IContactInfo(obj, None)
         email = getattr(adapter, "email", None)
         if email:
             return "mailto:" + email
         return ""
 
     def getLinkContent(self, obj):
-        if isinstance(obj, dict):
-            adapter = IContactInfo(obj.get('object'), None)
-        else:
-            adapter = IContactInfo(obj, None)
+        adapter = IContactInfo(obj, None)
         if adapter:
             return getattr(adapter, "email", u"") or u""
         return u""
