@@ -521,3 +521,21 @@ class EmailColumn(grok.MultiAdapter, column.LinkColumn):
         if adapter:
             return getattr(adapter, "email", u"") or u""
         return u""
+
+
+class DescriptionColumn(grok.MultiAdapter, column.LinkColumn):
+    """Renders person's description for listings"""
+
+    grok.provides(IColumn)
+    grok.adapts(IRoster, IBrowserRequest, IPersonnelListing)
+    grok.name("collective.roster.personnellisting.description")
+
+    weight = 106
+
+    header = _(u"Description")
+
+    def renderCell(self, obj):
+        adapter = IPerson(obj, None)
+        if adapter:
+            return getattr(adapter, "description", None) or u""
+        return u""
