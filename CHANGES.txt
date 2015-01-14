@@ -1,10 +1,20 @@
 Changelog
 =========
 
-1.5.1 (unreleased)
+1.6.0 (2015-01-14)
 ------------------
 
-- Nothing changed yet.
+- Remove unnecessary pins from buildout.cfg
+- Implement description field listing from master
+- Implement workflow class state cleanup from master
+- Fix test versions
+- Add Travis-CI -build for 1.x
+- Update screenshots
+- Fix broken anchor link
+- Add related persons behavior to highlighted behaviors
+- Update ignores
+- Test old roster only for Plone 4.1.x
+- Upgrade bootstra.py
 
 
 1.5.0 (2015-01-09)
