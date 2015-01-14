@@ -49,6 +49,8 @@
 
               <dd tal:condition="nocall:person/room|nothing"
                   tal:content="person/room" />
+              <dd tal:condition="nocall:person/description|nothing"
+                  tal:content="person/description" />
             </dl>
         </td>
         </tr>
