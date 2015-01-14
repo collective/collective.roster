@@ -186,6 +186,16 @@ class AlphaColumn(column.Column):
 
 @adapter(IRoster, IBrowserRequest, IPersonnelListing)
 @implementer(IColumn)
+class DescriptionColumn(column.Column):
+    weight = 98
+    header = _(u'Description')
+
+    def renderCell(self, ob):
+        return ob.description
+
+
+@adapter(IRoster, IBrowserRequest, IPersonnelListing)
+@implementer(IColumn)
 class NameColumn(column.LinkColumn):
     weight = 99
     header = _(u'Name')

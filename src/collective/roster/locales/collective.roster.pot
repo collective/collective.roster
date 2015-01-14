@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-12-23 04:31+0000\n"
+"POT-Creation-Date: 2015-01-13 14:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:160
+#: collective/roster/roster.py:173
 msgid "#"
 msgstr ""
 
@@ -39,6 +39,7 @@ msgid "Contact information"
 msgstr ""
 
 #: collective/roster/interfaces.py:78
+#: collective/roster/roster.py:191
 msgid "Description"
 msgstr ""
 
@@ -79,7 +80,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: collective/roster/roster.py:178
+#: collective/roster/roster.py:201
 msgid "Name"
 msgstr ""
 
@@ -112,7 +113,7 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:162
+#: collective/roster/behaviors/interfaces.py:163
 msgid "Roster display groups must be unique."
 msgstr ""
 
@@ -130,7 +131,7 @@ msgid "Subject"
 msgstr ""
 
 #: collective/roster/interfaces.py:72
-#: collective/roster/roster.py:194
+#: collective/roster/roster.py:217
 msgid "Title"
 msgstr ""
 

@@ -27,6 +27,11 @@
            for=".interfaces.IRoster * .interfaces.IPersonnelListing"
            factory=".roster.NameColumn" />
 
+  <adapter name="collective.roster.personnellisting.description"
+           provides="z3c.table.interfaces.IColumn"
+           for=".interfaces.IRoster * .interfaces.IPersonnelListing"
+           factory=".roster.DescriptionColumn" />
+
   <adapter name="collective.roster.personnellisting.position"
            provides="z3c.table.interfaces.IColumn"
            for=".interfaces.IRoster * .interfaces.IPersonnelListing"
