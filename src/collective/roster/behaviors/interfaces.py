@@ -16,14 +16,22 @@ from zope.component import getUtility
 from zope.schema import ValidationError
 from zope.interface import Interface, Invalid
 from zope.interface import alsoProvides
-from Products.CMFDefault.utils import checkEmailAddress
-from Products.CMFDefault.exceptions import EmailAddressInvalid
 from plone.formwidget.contenttree import UUIDSourceBinder
 from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 
 from collective.roster.interfaces import discriminators
 
 from collective.roster import _
+
+try:
+    from Products.CMFPlone.RegistrationTool import checkEmailAddress
+except ImportError:
+    from Products.CMFDefault.utils import checkEmailAddress
+
+try:
+    from Products.CMFPlone.RegistrationTool import EmailAddressInvalid
+except ImportError:
+    from Products.CMFDefault.exceptions import EmailAddressInvalid
 
 
 class InvalidEmailAddress(ValidationError):
