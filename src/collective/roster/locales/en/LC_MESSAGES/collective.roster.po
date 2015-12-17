@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-01 11:02+0000\n"
+"POT-Creation-Date: 2015-12-17 06:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:353
+#: collective/roster/roster.py:365
 msgid "#"
 msgstr ""
 
@@ -39,6 +39,7 @@ msgid "Contact information"
 msgstr ""
 
 #: collective/roster/interfaces.py:101
+#: collective/roster/roster.py:535
 msgid "Description"
 msgstr ""
 
@@ -55,7 +56,7 @@ msgid "Duplicates in Groups"
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:74
-#: collective/roster/roster.py:498
+#: collective/roster/roster.py:510
 msgid "Email"
 msgstr ""
 
@@ -75,7 +76,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: collective/roster/roster.py:394
+#: collective/roster/roster.py:406
 msgid "Name"
 msgstr ""
 
@@ -91,7 +92,7 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: collective/roster/roster.py:448
+#: collective/roster/roster.py:460
 msgid "Phone number"
 msgstr ""
 
@@ -101,7 +102,7 @@ msgstr ""
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:99
-#: collective/roster/roster.py:430
+#: collective/roster/roster.py:442
 msgid "Room"
 msgstr ""
 
@@ -110,20 +111,17 @@ msgid "Roster"
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:107
-#: collective/roster/roster.py:473
+#: collective/roster/roster.py:485
 msgid "Short number"
 msgstr ""
 
 #: collective/roster/behaviors/interfaces.py:52
-msgid "Studysubject"
-msgstr ""
-
-#: collective/roster/roster.py:376
+#: collective/roster/roster.py:388
 msgid "Subject"
 msgstr ""
 
 #: collective/roster/interfaces.py:81
-#: collective/roster/roster.py:415
+#: collective/roster/roster.py:427
 msgid "Title"
 msgstr ""
 

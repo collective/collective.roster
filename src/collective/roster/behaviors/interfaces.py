@@ -49,7 +49,7 @@ class ISubjectInfo(form.Schema):
     """Behavior interface for providing contact info.
     """
     studysubject = schema.TextLine(
-        title=_(u"Studysubject"),
+        title=_(u"Subject"),
         required=False
     )
 
