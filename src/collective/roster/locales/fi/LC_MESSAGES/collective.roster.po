@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-01 11:02+0000\n"
+"POT-Creation-Date: 2015-12-17 06:59+0000\n"
 "PO-Revision-Date: 2013-08-02 10:13+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:353
+#: collective/roster/roster.py:365
 msgid "#"
 msgstr ""
 
@@ -39,6 +39,7 @@ msgid "Contact information"
 msgstr "Yhteystiedot"
 
 #: collective/roster/interfaces.py:101
+#: collective/roster/roster.py:535
 msgid "Description"
 msgstr "Kuvaus"
 
@@ -55,7 +56,7 @@ msgid "Duplicates in Groups"
 msgstr "Samannimisiä ryhmiä"
 
 #: collective/roster/behaviors/interfaces.py:74
-#: collective/roster/roster.py:498
+#: collective/roster/roster.py:510
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -75,7 +76,7 @@ msgstr "Ryhmät"
 msgid "Last name"
 msgstr "Sukunimi"
 
-#: collective/roster/roster.py:394
+#: collective/roster/roster.py:406
 msgid "Name"
 msgstr "Nimi"
 
@@ -91,7 +92,7 @@ msgstr "Henkilö"
 msgid "Phone"
 msgstr "Puhelin"
 
-#: collective/roster/roster.py:448
+#: collective/roster/roster.py:460
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
@@ -101,7 +102,7 @@ msgstr "Henkilöön liittyvä sisältö"
 
 #. Default: "Room:"
 #: collective/roster/behaviors/interfaces.py:99
-#: collective/roster/roster.py:430
+#: collective/roster/roster.py:442
 msgid "Room"
 msgstr "Huone"
 
@@ -110,20 +111,17 @@ msgid "Roster"
 msgstr "Henkilöluettelo"
 
 #: collective/roster/behaviors/interfaces.py:107
-#: collective/roster/roster.py:473
+#: collective/roster/roster.py:485
 msgid "Short number"
 msgstr "Lyhytnumero"
 
 #: collective/roster/behaviors/interfaces.py:52
-msgid "Studysubject"
-msgstr "Oppiaine"
-
-#: collective/roster/roster.py:376
+#: collective/roster/roster.py:388
 msgid "Subject"
 msgstr "Oppiaine"
 
 #: collective/roster/interfaces.py:81
-#: collective/roster/roster.py:415
+#: collective/roster/roster.py:427
 msgid "Title"
 msgstr "Nimike"
 
