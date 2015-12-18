@@ -38,6 +38,7 @@ setup(
         "plone.formwidget.namedfile",
         "plone.z3ctable",
         "plone.api",
+        "python-magic"
     ],
     extras_require={"test": [
         "Pillow",

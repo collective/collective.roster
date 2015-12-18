@@ -19,6 +19,8 @@ from collective.roster import _
 from plone.namedfile.field import NamedBlobImage
 from plone.app.textfield import RichText
 
+from collective.roster.utils import validate_image_file_extension
+
 
 class IPersonnelListing(Interface):
     """ Marker interface for personnel listing tables """
@@ -111,6 +113,7 @@ class IPerson(form.Schema):
     image = NamedBlobImage(
         title=_(u"Upload an image"),
         required=False,
+        constraint=validate_image_file_extension
     )
 
     form.widget(groups=CheckBoxFieldWidget)
