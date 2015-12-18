@@ -180,5 +180,5 @@ msgstr ""
 #. Default: "subject"
 #: collective/roster/behaviors/viewlets_templates/subjectinfoviewlet.pt:3
 msgid "subjectinfo_studysubject"
-msgstr "Studysubject:"
+msgstr "Subject:"
 
