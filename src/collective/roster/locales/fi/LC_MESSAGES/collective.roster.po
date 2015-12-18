@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-12-17 06:59+0000\n"
+"POT-Creation-Date: 2015-12-18 08:52+0000\n"
 "PO-Revision-Date: 2013-08-02 10:13+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Henkilö"
 msgid "A personnel roster"
 msgstr "Henkilöluettelo"
 
-#: collective/roster/interfaces.py:106
+#: collective/roster/interfaces.py:108
 msgid "Biography"
 msgstr "Taustatiedot"
 
-#: collective/roster/interfaces.py:69
+#: collective/roster/interfaces.py:71
 msgid "Column"
 msgstr "Sarake"
 
@@ -38,20 +38,20 @@ msgstr "Sarake"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
-#: collective/roster/interfaces.py:101
+#: collective/roster/interfaces.py:103
 #: collective/roster/roster.py:535
 msgid "Description"
 msgstr "Kuvaus"
 
-#: collective/roster/interfaces.py:65
+#: collective/roster/interfaces.py:67
 msgid "Display columns"
 msgstr "Näkyvät sarakkeet"
 
-#: collective/roster/interfaces.py:66
+#: collective/roster/interfaces.py:68
 msgid "Display only the selected person information columns on supporting views."
 msgstr "Näytä vain valitut sarakkeet (niitä tukevissa näkyvissä)."
 
-#: collective/roster/interfaces.py:136
+#: collective/roster/interfaces.py:139
 msgid "Duplicates in Groups"
 msgstr "Samannimisiä ryhmiä"
 
@@ -60,19 +60,23 @@ msgstr "Samannimisiä ryhmiä"
 msgid "Email"
 msgstr "Sähköposti"
 
-#: collective/roster/interfaces.py:86
+#: collective/roster/interfaces.py:88
 msgid "First name"
 msgstr "Etunimi"
 
-#: collective/roster/interfaces.py:42
+#: collective/roster/interfaces.py:44
 msgid "Group"
 msgstr "Ryhmä"
 
-#: collective/roster/interfaces.py:40
+#: collective/roster/interfaces.py:42
 msgid "Groups"
 msgstr "Ryhmät"
 
-#: collective/roster/interfaces.py:90
+#: collective/roster/utils.py:53
+msgid "Image must be one of the permitted file types (${extlist})."
+msgstr "Kuvan on oltava joku sallituista kuvatyypeistä (${extlist})"
+
+#: collective/roster/interfaces.py:92
 msgid "Last name"
 msgstr "Sukunimi"
 
@@ -80,7 +84,7 @@ msgstr "Sukunimi"
 msgid "Name"
 msgstr "Nimi"
 
-#: collective/roster/interfaces.py:144
+#: collective/roster/interfaces.py:147
 msgid "No valid characters"
 msgstr "Ei tunnistettavia kirjaimia"
 
@@ -120,12 +124,12 @@ msgstr "Lyhytnumero"
 msgid "Subject"
 msgstr "Oppiaine"
 
-#: collective/roster/interfaces.py:81
+#: collective/roster/interfaces.py:83
 #: collective/roster/roster.py:427
 msgid "Title"
 msgstr "Nimike"
 
-#: collective/roster/interfaces.py:112
+#: collective/roster/interfaces.py:114
 msgid "Upload an image"
 msgstr "Siirrä kuva"
 
@@ -144,7 +148,7 @@ msgstr "Vaihda näkymä:"
 msgid "email"
 msgstr "Sähköposti:"
 
-#: collective/roster/interfaces.py:95
+#: collective/roster/interfaces.py:97
 msgid "example: 'doctor' or 'designer'"
 msgstr ""
 
