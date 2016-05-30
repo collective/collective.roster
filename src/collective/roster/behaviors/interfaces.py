@@ -82,7 +82,7 @@ class ISubjectInfo(model.Schema):
     """Behavior schema
     """
     studysubject = schema.TextLine(
-        title=_(u'Studysubject'),
+        title=_(u'Subject'),
         required=False
     )
     fieldset(
