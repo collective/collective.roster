@@ -40,6 +40,7 @@ setup(
         'plone.namedfile [blobs]',
         'plone.supermodel',
         'plone.z3ctable',
+        'python-magic',
         'zope.component',
         'zope.i18n',
         'zope.i18nmessageid',

@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 """Personnel roster and person related interfaces and schemas
 """
+from os import path
+from plone.app.textfield import RichText
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-
-from plone.supermodel import model
+from plone.namedfile.field import NamedBlobImage
 from plone.supermodel.directives import primary
+from plone.supermodel import model
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.validator import WidgetsValidatorDiscriminators
 from z3c.form.validator import WidgetValidatorDiscriminators
+from zope.component import getUtility
 from zope import schema
 from zope.interface import Interface
 from zope.interface import Invalid
-from zope.component import getUtility
-from plone.namedfile.field import NamedBlobImage
-from plone.app.textfield import RichText
+import magic
 
 from collective.roster import _
 
@@ -88,7 +89,7 @@ class IPerson(model.Schema):
     primary('image')
     image = NamedBlobImage(
         title=_(u'Image'),
-        required=False,
+        required=False
     )
 
 
@@ -106,6 +107,20 @@ class LastNameValidator(SimpleFieldValidator):
         normalizer = getUtility(IIDNormalizer)
         if not len(normalizer.normalize(value)):
             raise Invalid(_(u"Person name contains invalid characters."))
+
+
+@discriminators(field=IPerson['image'])
+class ImageFileValidator(SimpleFieldValidator):
+    def validate(seflf, value, force=False):
+        allowed = ['jpeg', 'jpg', 'png', 'gif']
+        ext = path.splitext(value.filename)[1]
+        mime = magic.Magic(mime=True)
+        mime_type = mime.from_buffer(value.data)
+
+        if (not ext or ext[1:].lower() not in allowed or not mime_type.startswith("image/")):  # noqa
+            raise Invalid(_(u"Image must be one of the permitted file types "
+                            u"(${extlist}).",
+                            mapping={"extlist": u", ".join(allowed)}))
 
 
 class IPersonTitle(Interface):

@@ -53,7 +53,7 @@ class InvalidShortNumber(ValidationError):
 
 
 def is_short_number(value):
-    if value < 999 or value > 9999:
+    if value < 99 or value > 9999:
         raise InvalidShortNumber(value)
     return True
 
@@ -82,7 +82,7 @@ class ISubjectInfo(model.Schema):
     """Behavior schema
     """
     studysubject = schema.TextLine(
-        title=_(u'Studysubject'),
+        title=_(u'Subject'),
         required=False
     )
     fieldset(
