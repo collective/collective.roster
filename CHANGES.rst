@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0.0 (unreleased)
-------------------
+2.0.0a1 (2016-05-30)
+--------------------
 
 - Plone 5 compatibility: Optionally import ``checkEmailAddress`` and
   ``EmailAddressInvalid`` from CMFPlone respectively CMFDefault.
