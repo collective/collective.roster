@@ -53,7 +53,7 @@ class InvalidShortNumber(ValidationError):
 
 
 def is_short_number(value):
-    if value < 999 or value > 9999:
+    if value < 99 or value > 9999:
         raise InvalidShortNumber(value)
     return True
 
