@@ -32,7 +32,7 @@ class GroupsViewlet(ViewletBase):
                                         name="collective.roster.localgroups")
         vocabulary = vocabulary_factory(self.context)
 
-        terms = filter(lambda term: term.value in self.context.groups,
+        terms = filter(lambda term: term.value in (self.context.groups or []),
                        vocabulary)
         titles = map(lambda term: term.title, terms)
         return titles
