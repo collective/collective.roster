@@ -1,6 +1,6 @@
 <dl class="personOfficeInfo" i18n:domain="collective.roster"
     tal:define="widgets nocall:view/aq_parent/w">
-  <div tal:condition="widgets/IOfficeInfo.short_number/value" >
+  <div tal:condition="widgets/IOfficeInfo.short_number/value|nothing" >
     <dt i18n:translate="short_number">Short number:</dt>
     <dd>
       <a tal:define="short_number widgets/IOfficeInfo.short_number/value"
@@ -8,7 +8,7 @@
          tal:content="structure widgets/IOfficeInfo.short_number/render" />
     </dd>
   </div>
-  <div tal:condition="widgets/IOfficeInfo.room/value">
+  <div tal:condition="widgets/IOfficeInfo.room/value|nothing">
     <dt i18n:translate="room">Room:</dt>
     <dd tal:content="structure widgets/IOfficeInfo.room/render" />
   </div>

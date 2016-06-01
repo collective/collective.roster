@@ -61,7 +61,9 @@ class LocalGroupsVocabulary(object):
         for parent in tuple(parents(context, iface=IProvidesGroups)):
             roster = parent
             break
-        for group in getattr(roster, 'groups', ()):
+        for group in (getattr(roster, 'groups', ()) or ()):
+            if group is None:
+                continue
             if '|' in group:
                 value, title = group.split('|', 1)
             else:
