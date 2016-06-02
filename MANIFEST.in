@@ -1,3 +1,3 @@
 recursive-include src *
-include *.py *.txt *.rst LICENSE.*
+include *.py *.txt *.rst *.js *.json LICENSE.*
 global-exclude *.pyc
