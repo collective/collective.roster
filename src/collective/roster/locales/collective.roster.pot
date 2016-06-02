@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-05-30 11:10+0000\n"
+"POT-Creation-Date: 2016-06-02 10:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,10 @@ msgstr ""
 
 #: collective/roster/interfaces.py:85
 msgid "Biography"
+msgstr ""
+
+#: collective/roster/behaviors/groups.zcml:47
+msgid "By groups"
 msgstr ""
 
 #: collective/roster/interfaces.py:44
@@ -93,7 +97,6 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: collective/roster/behaviors/groups.zcml:47
 #: collective/roster/behaviors/interfaces.py:149
 msgid "Groups"
 msgstr ""
@@ -106,7 +109,7 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: collective/roster/interfaces.py:123
+#: collective/roster/interfaces.py:121
 msgid "Image must be one of the permitted file types (${extlist})."
 msgstr ""
 
@@ -126,7 +129,7 @@ msgstr ""
 msgid "Person"
 msgstr ""
 
-#: collective/roster/interfaces.py:102
+#: collective/roster/interfaces.py:101
 msgid "Person name contains invalid characters."
 msgstr ""
 
@@ -226,6 +229,11 @@ msgstr ""
 msgid "Use display groups"
 msgstr ""
 
+#. Default: "Change view:"
+#: collective/roster/browser/templates/roster_displayviews_viewlet.pt:3
+msgid "change_view"
+msgstr ""
+
 #. Default: "Email:"
 #: collective/roster/behaviors/templates/contact_info_viewlet.pt:4
 msgid "email"
@@ -262,6 +270,6 @@ msgid "short_number"
 msgstr ""
 
 #. Default: "subject"
-#: collective/roster/behaviors/templates/subject_info_viewlet.pt:3
+#: collective/roster/behaviors/templates/subject_info_viewlet.pt:4
 msgid "subjectinfo_studysubject"
 msgstr ""

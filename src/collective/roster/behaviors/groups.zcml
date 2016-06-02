@@ -36,7 +36,7 @@
       />
 
   <browser:menuItem
-      title="Groups"
+      title="By groups"
       description="Show groups"
       menu="plone_displayviews"
       for=".interfaces.IProvidesGroups"

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from Products.CMFDynamicViewFTI.interfaces import ISelectableBrowserDefault
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.viewlet.viewlet import ViewletBase
@@ -22,8 +23,12 @@ class DisplayViewsViewlet(ViewletBase):
     @view.memoize
     def menuItems(self):
         menu = getUtility(IBrowserMenu, name='plone_displayviews')
-        return sorted(menu.getMenuItems(self.context, self.request),
-                      key=lambda item: item['action'])
+        layouts = ISelectableBrowserDefault(self.context).getAvailableLayouts()
+        actions = [layout[0] for layout in layouts]
+        items = menu.getMenuItems(self.context, self.request)
+        return sorted([item for item in items
+                       if item['action'].strip('@') in actions],
+                      key=lambda x: x['action'])
 
     def render(self):
         return self.index()
