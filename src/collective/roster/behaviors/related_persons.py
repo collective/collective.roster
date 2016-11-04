@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-import os
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.Five.viewlet.viewlet import ViewletBase
+from collective.roster.behaviors.interfaces import IHasRelatedPersons
+from collective.roster.behaviors.interfaces import IRelatedPersons
 from plone import api
 from plone.indexer import indexer
 from plone.uuid.interfaces import IUUID
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.viewlet.viewlet import ViewletBase
 from zope.interface import Interface
 
-from collective.roster.behaviors.interfaces import IHasRelatedPersons
-from collective.roster.behaviors.interfaces import IRelatedPersons
+import os
 
 
 # noinspection PyUnusedLocal

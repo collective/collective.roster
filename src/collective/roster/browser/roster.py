@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-import os
+from collective.roster.roster import PersonnelAlphaListing
+from plone import api
+from plone.memoize import view
 from Products.CMFDynamicViewFTI.interfaces import ISelectableBrowserDefault
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.viewlet.viewlet import ViewletBase
-from plone import api
-from plone.memoize import view
 from zope.browsermenu.interfaces import IBrowserMenu
 from zope.component import getUtility
 
-from collective.roster.roster import PersonnelAlphaListing
+import os
 
 
 class DisplayViewsViewlet(ViewletBase):

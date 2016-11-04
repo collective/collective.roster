@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
-from zope.schema.interfaces import IInt
-from z3c.form.interfaces import IDataConverter
+from collective.roster import _
+from collective.roster.behaviors.interfaces import IOfficeInfo
+from collective.roster.behaviors.interfaces import ShortNumberWidget
+from collective.roster.interfaces import IPersonnelListing
+from collective.roster.interfaces import IRoster
 from z3c.form.converter import IntegerDataConverter
+from z3c.form.interfaces import IDataConverter
 from z3c.table import column
 from z3c.table.interfaces import IColumn
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
-
-from collective.roster.behaviors.interfaces import IOfficeInfo
-from collective.roster.behaviors.interfaces import ShortNumberWidget
-
-from collective.roster.interfaces import IRoster
-from collective.roster.interfaces import IPersonnelListing
-from collective.roster import _
+from zope.schema.interfaces import IInt
 
 
 @adapter(IRoster, IBrowserRequest, IPersonnelListing)

@@ -67,14 +67,14 @@ def upgrade5to6(context):
         adapted = IContactInfo(obj, None)
 
         if adapted:
-            email_key = '%semail' % prefix
+            email_key = '{0:s}email'.format(prefix)
             if email_key in annotations:
                 email = annotations[email_key]
                 del annotations[email_key]
                 bound = IContactInfo['email'].bind(adapted)
                 bound.set(adapted, email)
 
-            phone_number_key = '%sphone_number' % prefix
+            phone_number_key = '{0:s}phone_number'.format(prefix)
             if phone_number_key in annotations:
                 phone_number = annotations[phone_number_key]
                 del annotations[phone_number_key]
@@ -114,7 +114,7 @@ def upgrade14to15(context):
             else:
                 columns_display.append(column)
         ob.columns_display = columns_display
-        if hasattr(ob, 'columns_hidden'):
+        try:
             columns_hidden = []
             for column in ob.columns_hidden:
                 if column == 'collective.roster.personnellisting.salutation':
@@ -123,6 +123,8 @@ def upgrade14to15(context):
                 else:
                     columns_hidden.append(column)
             ob.columns_hidden = columns_display
+        except AttributeError:
+            pass
 
         types_tool = api.portal.get_tool('portal_types')
         types_tool['collective.roster.roster'].default_view = 'groups_view'

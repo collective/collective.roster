@@ -1,8 +1,5 @@
 *** Settings ***
 
-Meta: Id  38652139
-Meta: Title  As a ME, I Want to create personnel roster
-
 Resource  common.robot
 
 Suite Setup  Background
@@ -36,8 +33,11 @@ The personnel roster product is activated
 
 I add a new roster
     Go to  ${PLONE_URL}
-    Open menu  plone-contentmenu-factories
+    Wait until element is visible  ${SELECTOR_ADD_NEW_MENU}
+    Click link  ${SELECTOR_ADD_NEW_MENU}
+    Wait until element is visible  id=collective-roster-roster
     Click link  collective-roster-roster
+    Wait until page contains  Add Roster
 
 I fill the necessary information for roster
     Input text  form.widgets.IBasic.title  Roster
@@ -59,8 +59,11 @@ I click 'save'
 
 I create person
     Go to  ${PLONE_URL}/roster
-    Open menu  plone-contentmenu-factories
+    Wait until element is visible  ${SELECTOR_ADD_NEW_MENU}
+    Click link  ${SELECTOR_ADD_NEW_MENU}
+    Wait until element is visible  id=collective-roster-person
     Click link  collective-roster-person
+    Wait until page contains  Add Person
 
 I fill the necessary information for person
     Input text  form.widgets.first_name  Foo
@@ -77,13 +80,6 @@ New person is created
 
 New roster is created
     Page should contain  Item created
-
-Open Menu
-    [Arguments]  ${elementId}
-    Element Should Be Visible  css=dl#${elementId} span
-    Element Should Not Be Visible  css=dl#${elementId} dd.actionMenuContent
-    Click link  css=dl#${elementId} dt.actionMenuHeader a
-    Wait until keyword succeeds  1  5  Element Should Be Visible  css=dl#${elementId} dd.actionMenuContent
 
 I'm logged in as a site manager
     Enable autologin as  Site Administrator

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import os
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.Five.viewlet.viewlet import ViewletBase
 from plone.app.viewletmanager.manager import ManageViewlets
 from plone.dexterity.browser.view import DefaultView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.viewlet.viewlet import ViewletBase
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+
+import os
 
 
 class ManagePersonViewlets(DefaultView, ManageViewlets):
@@ -29,7 +29,7 @@ class GroupsViewlet(ViewletBase):
     @property
     def groups(self):
         vocabulary_factory = getUtility(IVocabularyFactory,
-                                        name="collective.roster.localgroups")
+                                        name='collective.roster.localgroups')
         vocabulary = vocabulary_factory(self.context)
 
         terms = filter(lambda term: term.value in (self.context.groups or []),

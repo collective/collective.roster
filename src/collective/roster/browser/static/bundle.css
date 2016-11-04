@@ -1,0 +1,104 @@
+body.portaltype-collective-roster-person .personContactInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personContactInfo dt {
+  clear: left;
+  float: left;
+  width: 8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personContactInfo {
+  overflow: hidden;
+  display: block;
+  margin: 1em 0 0 0;
+}
+
+body.portaltype-collective-roster-person .personOfficeInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personOfficeInfo dt {
+  clear: left;
+  float: left;
+  width:8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo dd {
+  margin: 0 0 0 1em;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo dt {
+  clear: left;
+  float: left;
+  width:8.5em;
+  margin: 0;
+}
+
+body.portaltype-collective-roster-person .personSubjectInfo {
+  overflow: hidden;
+  display: block;
+  margin: 0;
+}
+
+
+body.portaltype-collective-roster-person .personPortrait {
+  float: right;
+  margin-right: 1em;
+  border: 1px solid #ccc;
+}
+
+body.portaltype-collective-roster-person .personBiography dd {
+  margin-top: 1em;
+  margin-left: 0;
+}
+
+body.portaltype-collective-roster-person .personBiography dt {
+  margin-top: 1em;
+  font-size: 1.5em;
+
+}
+body.portaltype-collective-roster-roster .viewLinks {
+  float: right;
+}
+
+body.portaltype-collective-roster-roster table.roster {
+  width: 100%;
+}
+
+body.portaltype-collective-roster-roster .alphaLinks {
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+body.portaltype-collective-roster-roster .alphaLinks a {
+  font-size: 1.4em;
+  margin: 0.2em;
+}
+body.portaltype-collective-roster-roster table.roster tr.state-private a,
+body.portaltype-collective-roster-roster table.roster tr.state-private {
+  color: red !important;
+}
+
+body.portaltype-collective-roster-roster table.state-private td,
+body.portaltype-collective-roster-roster table.state-private td a {
+  color: red !important;
+}
+
+body.portaltype-collective-roster-roster .galleryPortrait {
+  float: left;
+  width: 96px;
+  height: 128px;
+  margin-right: 1em;
+}
+
+body.portaltype-collective-roster-roster .portraitPlaceholder {
+  float: left;
+  width: 96px;
+  height: 128px;
+  margin-right: 1em;
+  border: 1px solid #ccc;
+}

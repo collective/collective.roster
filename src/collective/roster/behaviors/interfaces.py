@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-from plone.autoform.directives import widget
-
-from plone.autoform.directives import order_before
+from collective.roster import _
+from collective.roster.interfaces import discriminators
 from plone.autoform.directives import order_after
+from plone.autoform.directives import order_before
+from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.formwidget.contenttree import UUIDSourceBinder
+from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 from plone.i18n.normalizer import IIDNormalizer
 from plone.supermodel import model
 from plone.supermodel.directives import fieldset
@@ -13,15 +16,11 @@ from z3c.form.validator import SimpleFieldValidator
 from z3c.form.widget import FieldWidget
 from zope import schema
 from zope.component import getUtility
-from zope.schema import ValidationError
-from zope.interface import Interface, Invalid
 from zope.interface import alsoProvides
-from plone.formwidget.contenttree import UUIDSourceBinder
-from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
+from zope.interface import Interface
+from zope.interface import Invalid
+from zope.schema import ValidationError
 
-from collective.roster.interfaces import discriminators
-
-from collective.roster import _
 
 try:
     from Products.CMFPlone.RegistrationTool import checkEmailAddress
@@ -168,7 +167,7 @@ class GroupNameValidator(SimpleFieldValidator):
         normalized = map(normalizer.normalize, value)
 
         if len(set(normalized)) != len(value):
-            raise Invalid(_(u"Roster display groups must be unique."))
+            raise Invalid(_(u'Roster display groups must be unique.'))
 
 
 class IProvidesGroups(Interface):

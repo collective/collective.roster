@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
-
 from collective.roster.testing import ROSTER_INTEGRATION_TESTING
+
+import unittest2 as unittest
 
 
 class RosterIntegrationTests(unittest.TestCase):
@@ -10,14 +10,14 @@ class RosterIntegrationTests(unittest.TestCase):
 
     def setUp(self):
         from plone.dexterity.utils import createContentInContainer
-        portal = self.layer["portal"]
+        portal = self.layer['portal']
         data = {
-            "id": "example-roster",
-            "groups": [u"Alfa|Alfa coders", u"Beta|Beta testers"]
+            'id': 'example-roster',
+            'groups': [u'Alfa|Alfa coders', u'Beta|Beta testers']
         }
-        createContentInContainer(portal, "collective.roster.roster",
+        createContentInContainer(portal, 'collective.roster.roster',
                                  checkConstraints=False, **data)
-        self.roster = portal["example-roster"]
+        self.roster = portal['example-roster']
 
     def testRosterLocalGroupsVocabulary(self):
         from collective.roster.behaviors.groups import LocalGroupsVocabulary
@@ -26,11 +26,13 @@ class RosterIntegrationTests(unittest.TestCase):
 
         self.assertEqual(len(vocabulary), 2)
 
-        to_tuple = lambda term: (term.value, term.token, term.title)
+        def to_tuple(term):
+            return term.value, term.token, term.title
+
         tuples = map(to_tuple, vocabulary)
 
-        self.assertIn((u"Alfa", "alfa-alfa-coders", u"Alfa coders"), tuples)
-        self.assertIn((u"Beta", "beta-beta-testers", u"Beta testers"), tuples)
+        self.assertIn((u'Alfa', 'alfa-alfa-coders', u'Alfa coders'), tuples)
+        self.assertIn((u'Beta', 'beta-beta-testers', u'Beta testers'), tuples)
 
     def testRosterDisplayColumnsVocabulary(self):
         from collective.roster.roster import DisplayColumnsVocabulary
@@ -38,9 +40,10 @@ class RosterIntegrationTests(unittest.TestCase):
 
         self.assertNotEqual(len(vocabulary), 0)
 
-        to_tuple = lambda term: (term.value, term.token, term.title)
+        def to_tuple(term):
+            return term.value, term.token, term.title
         tuples = map(to_tuple, vocabulary)
 
-        self.assertIn(("collective.roster.personnellisting.name",
-                       "collective.roster.personnellisting.name",
-                       u"Name"), tuples)
+        self.assertIn(('collective.roster.personnellisting.name',
+                       'collective.roster.personnellisting.name',
+                       u'Name'), tuples)

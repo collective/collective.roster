@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from zope.component import getUtility, adapter
-from zope.component.interfaces import IObjectEvent
-from zope.schema.interfaces import IVocabularyFactory
-
 from collective.roster.behaviors.interfaces import IGroups
 from collective.roster.behaviors.interfaces import IGroupsAsSubjects
+from zope.component import adapter
+from zope.component import getUtility
+from zope.component.interfaces import IObjectEvent
+from zope.schema.interfaces import IVocabularyFactory
 
 
 # noinspection PyUnusedLocal

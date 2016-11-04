@@ -12,16 +12,13 @@ developed add-ons.
 
     Show product as activated
         Go to  ${PLONE_URL}/prefs_install_products_form
-        Page should contain element  id=collective.roster
 
         Assign id to element
-        ...  xpath=//*[@id='collective.roster']/parent::*
-        ...  addons-collective-roster
-        Assign id to element
-        ...  xpath=//*[@id='collective.roster']/ancestor::form
+        ...  ${SELECTOR_ADDONS_ROSTER}
         ...  addons-enabled
 
-        Highlight  addons-collective-roster
+        Element should contain  ${SELECTOR_ADDONS_ROSTER}  Personnel Roster
+        Highlight  ${SELECTOR_ADDONS_ROSTER}
 
         Capture and crop page screenshot
         ...  roster-product-activated.png

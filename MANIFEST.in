@@ -1,3 +1,5 @@
-recursive-include src *
-include *.py *.txt *.rst *.js *.json LICENSE.*
+graft src/collective
+graft docs
+include *.rst
 global-exclude *.pyc
+exclude .* *.nix *.cfg result Makefile*

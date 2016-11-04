@@ -8,7 +8,6 @@
       description="Enables roster persons' groups to be indexed as their
                    subjects."
       provides=".interfaces.IGroupsAsSubjects"
-      for="plone.dexterity.interfaces.IDexterityContent"
       i18n:attributes="title description"
       />
 
