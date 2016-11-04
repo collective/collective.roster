@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.0 (unreleased)
+2.0.0 (2016-11-04)
 ------------------
 
 - Allow short number to be anything between 100 and 9999
