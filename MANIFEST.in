@@ -1,5 +1,5 @@
 graft src/collective
 graft docs
-include *.rst
+include *.rst *.txt *.js *.json
 global-exclude *.pyc
-exclude .* *.nix *.cfg result Makefile*
+exclude .* *.nix *.sh *.cfg result Makefile*
