@@ -11,5 +11,8 @@
     "url": "git+ssh://git@github.com/collective/collective.roster"
   },
   "author": "",
-  "license": "EUPL"
+  "license": "EUPL",
+  "devDependencies": {
+    "fontello-svg": "^0.5.0"
+  }
 }

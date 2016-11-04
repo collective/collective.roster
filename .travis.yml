@@ -2,16 +2,13 @@ language: python
 python:
 - 2.7
 sudo: false
-before_install:
+install:
+- make BUILDOUT_ARGS="-N -t 3" bin/code-analysis bin/test
+before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-install:
-- python bootstrap-buildout.py
-- bin/buildout -N -t 3
 script:
-- bin/test
-- bin/pybot docs
-- bin/code-analysis
+- make test
 cache:
   directories:
   - eggs

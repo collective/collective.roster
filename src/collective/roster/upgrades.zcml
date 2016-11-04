@@ -161,4 +161,16 @@
       run_deps="false"
       />
 
+  <genericsetup:upgradeDepends
+      source="15" destination="16" sortkey="15"
+      title="Upgrade collective.roster (15 to 16)"
+      description="Re-import type info to allow both files and
+                   images under folderish persons by default"
+      profile="collective.roster:default"
+      import_profile="collective.roster:default"
+      import_steps="typeinfo"
+      purge="false"
+      run_deps="false"
+      />
+
 </configure>

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 """A person to store and display person related information
 """
+from collective.roster import _
+from collective.roster.interfaces import IPerson
+from collective.roster.interfaces import IPersonTitle
 from plone import api
+from plone.app.content.interfaces import INameFromTitle
 from zope.component import adapter
 from zope.component.interfaces import IObjectEvent
 from zope.i18n import translate
 from zope.interface import implementer
-from plone.app.content.interfaces import INameFromTitle
-
-from collective.roster.interfaces import IPerson
-from collective.roster.interfaces import IPersonTitle
-from collective.roster import _
 
 
 @adapter(IPerson)

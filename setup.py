@@ -1,24 +1,24 @@
-# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
+
 
 setup(
     name='collective.roster',
     version='2.0.0.dev0',
     description='Personnel Roster',
     long_description=(open('README.rst').read() + '\n' +
-                      open('CHANGES.rst').read()),
-    # Get more strings from
-    # http://pypi.python.org/pypi?%3Aaction=list_classifiers
+                      open('CHANGELOG.rst').read()),
     classifiers=[
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Framework :: Plone :: 4.3',
+        'Framework :: Plone :: 5.0',
     ],
     keywords='',
     author='Asko Soukka',
     author_email='asko.soukka@iki.fi',
-    url='',
+    url='https://github.com/collective/collective.roster',
     license='EUPL',
-    packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
+    packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['collective'],
     include_package_data=True,
     zip_safe=False,
@@ -52,11 +52,11 @@ setup(
         'Pillow',
         'corejet.core',
         'plone.app.testing',
-        'plone.app.robotframework'
+        'plone.app.robotframework',
     ]},
     entry_points="""
     # -*- Entry points: -*-
     [z3c.autoinclude.plugin]
     target = plone
-    """
+    """,
 )

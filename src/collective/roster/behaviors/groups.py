@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-from operator import methodcaller
-from Products.CMFCore.utils import getToolByName
-from Products.Five import BrowserView
-from plone.i18n.normalizer import IIDNormalizer
-from plone.indexer import indexer
-from plone.memoize import view
-from zope.component import getUtility
-from zope.interface import implementer, Interface
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
-
-from collective.roster.behaviors.interfaces import IGroupsProvider
 from collective.roster.behaviors.interfaces import IGroups
+from collective.roster.behaviors.interfaces import IGroupsProvider
 from collective.roster.behaviors.interfaces import IHasGroups
 from collective.roster.behaviors.interfaces import IProvidesGroups
 from collective.roster.roster import PersonnelListing
 from collective.roster.utils import parents
+from operator import methodcaller
+from plone.i18n.normalizer import IIDNormalizer
+from plone.indexer import indexer
+from plone.memoize import view
+from Products.CMFCore.utils import getToolByName
+from Products.Five import BrowserView
+from zope.component import getUtility
+from zope.interface import implementer
+from zope.interface import Interface
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IGroupsProvider)
@@ -112,7 +112,10 @@ class PersonnelGroupListing(PersonnelListing):
             roster_groups=[term.value]
         )
         values = map(methodcaller('getObject'), brains)
-        title_lower = lambda x: x.title.lower()
+
+        def title_lower(obj):
+            return obj.title.lower()
+
         sorted_values = sorted(values, key=title_lower)
         return sorted_values
 

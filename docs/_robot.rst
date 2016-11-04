@@ -1,55 +1,61 @@
-.. code:: robotframework
+..  code:: robotframework
 
-   *** Settings ***
+    *** Settings ***
 
-   Resource  plone/app/robotframework/server.robot
-   Resource  plone/app/robotframework/keywords.robot
-   Resource  Selenium2Screenshots/keywords.robot
+    Resource  plone/app/robotframework/server.robot
+    Resource  plone/app/robotframework/keywords.robot
+    Resource  Selenium2Screenshots/keywords.robot
 
-   Library  OperatingSystem
+    Resource  ${RESOURCE_DIR}/_selectors.robot
 
-   Suite Setup  Run keywords  Suite Setup  Test Setup
-   Suite Teardown  Run keywords  Test Teardown  Suite Teardown
+    Library  OperatingSystem
+    Library  String
 
-   *** Variables ***
+    Suite Setup  Run keywords  Suite Setup  Test Setup
+    Suite Teardown  Run keywords  Test teardown  Suite Teardown
 
-   ${FIXTURE}  collective.roster.testing.ROSTER_ROBOT_TESTING
-   @{DIMENSIONS}  640  1024
+    *** Variables ***
 
-   *** Keywords ***
+    ${FIXTURE}  collective.roster.testing.ROSTER_ACCEPTANCE_TESTING
+    @{DIMENSIONS}  1200  900
+    ${RESOURCE_DIR}  ${CURDIR}
 
-   Suite Setup
-       Run keyword if  'bin/robot' not in sys.argv[0]
-       ...             Setup Plone site  ${FIXTURE}
-       Run keyword if  'bin/robot' in sys.argv[0]
-       ...             Open test browser
-       Run keyword and ignore error  Set window size  @{DIMENSIONS}
+    *** Keywords ***
 
-   Test Setup
-       Import library  Remote  ${PLONE_URL}/RobotRemote
+    Suite Setup
+        Run keyword if  not sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Setup Plone site  ${FIXTURE}
+        Run keyword if  sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Open test browser
+        Run keyword if  '${CMFPLONE_VERSION}'.startswith('5.')
+        ...             Import resource  ${RESOURCE_DIR}/_selectors-5.x.robot
+        Run keyword and ignore error  Set window size  @{DIMENSIONS}
 
-       Run keyword if  'bin/robot' in sys.argv[0]
-       ...             Remote ZODB SetUp  ${FIXTURE}
+    Test Setup
+        Import library  Remote  ${PLONE_URL}/RobotRemote
 
-       ${language} =  Get environment variable  LANGUAGE  'en'
-       Set default language  ${language}
+        Run keyword if  sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Remote ZODB SetUp  ${FIXTURE}
 
-       Enable autologin as  Manager
-       ${user_id} =  Translate  user_id
-       ...  default=jane-doe
-       ${user_fullname} =  Translate  user_fullname
-       ...  default=Jane Doe
-       Create user  ${user_id}  Member  Editor  fullname=${user_fullname}
-       Set autologin username  ${user_id}
+        ${language} =  Get environment variable  LANGUAGE  'en'
+        Set default language  ${language}
 
-   Test Teardown
-       Run keyword if  'bin/robot' in sys.argv[0]
-       ...             Remote ZODB TearDown  ${FIXTURE}
+        Enable autologin as  Manager
+        ${user_id} =  Translate  user_id
+        ...  default=jane-doe
+        ${user_fullname} =  Translate  user_fullname
+        ...  default=Jane Doe
+        Create user  ${user_id}  Member  Editor  fullname=${user_fullname}
+        Set autologin username  ${user_id}
 
-   Suite Teardown
-       Run keyword if  'bin/robot' not in sys.argv[0]
-       ...             Teardown Plone Site
-       Run keyword if  'bin/robot' in sys.argv[0]
-       ...             Close all browsers
+    Test Teardown
+        Run keyword if  sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Remote ZODB TearDown  ${FIXTURE}
 
-   *** Test Cases ***
+    Suite Teardown
+        Run keyword if  not sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Teardown Plone Site
+        Run keyword if  sys.argv[0].startswith('bin/robot-sphinx')
+        ...             Close all browsers
+
+    *** Test Cases ***

@@ -11,13 +11,10 @@ extensions = [
 sphinxcontrib_robotframework_enabled = True
 sphinxcontrib_robotframework_quiet = True
 
-# Configure Robot Framework tests to use PhantomJS
+# Configure Robot Frameowrk tests to use Firefox
 sphinxcontrib_robotframework_variables = {
-    'BROWSER': 'firefox'
+    'BROWSER': 'Firefox'
 }
-
-# The language
-language = 'en'
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -45,7 +42,7 @@ release = '2.0.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_*.rst', 'README']
+exclude_patterns = ['_*.rst', 'LICENSE*']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

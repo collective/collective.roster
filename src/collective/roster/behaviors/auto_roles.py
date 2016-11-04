@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from borg.localrole.interfaces import ILocalRoleProvider
+from collective.roster.behaviors.interfaces import IAutoRoles
 from zope.component import adapter
 from zope.interface import implementer
-
-from collective.roster.behaviors.interfaces import IAutoRoles
 
 
 @adapter(ILocalRoleProvider)

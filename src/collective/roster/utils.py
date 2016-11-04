@@ -19,7 +19,7 @@ def parents(context, iface=None):
         if iface.providedBy(context):
             yield context
 
-        funcObject = getattr(context, "im_self", None)
+        funcObject = getattr(context, 'im_self', None)
         if funcObject is not None:
             context = Acquisition.aq_inner(funcObject)
         else:

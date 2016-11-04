@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 """Personnel roster (to contain and display persons)
 """
-import sys
-
+from collective.roster import _
+from collective.roster.interfaces import IPerson
+from collective.roster.interfaces import IPersonnelListing
+from collective.roster.interfaces import IRoster
+from collective.roster.utils import parents
 from plone import api
-
+from plone.memoize import view
+from Products.CMFCore.WorkflowCore import WorkflowException
+from z3c.table import column
+from z3c.table import table
+from z3c.table.interfaces import IColumn
 from z3c.table.table import getWeight
 from zope.component import adapter
 from zope.component import getAdapters
@@ -14,17 +21,8 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from z3c.table.interfaces import IColumn
-from z3c.table import column
-from z3c.table import table
-from plone.memoize import view
-from Products.CMFCore.WorkflowCore import WorkflowException
 
-from collective.roster.interfaces import IPersonnelListing
-from collective.roster.interfaces import IPerson
-from collective.roster.interfaces import IRoster
-from collective.roster.utils import parents
-from collective.roster import _
+import sys
 
 
 @implementer(IRoster)
@@ -110,8 +108,8 @@ class PersonnelListing(table.Table):
             cols_all = [col.value for col in cols_vocabulary]
 
             cols_selected = [col for col in cols
-                             if col.__name__ in columns_display
-                             or col.__name__ not in cols_all]
+                             if col.__name__ in columns_display or
+                             col.__name__ not in cols_all]
             return cols_selected
 
         # BBB: Roster used to support hiding explicitly hidden columns
@@ -157,7 +155,10 @@ class PersonnelAlphaListing(PersonnelListing):
     @property
     def values(self):
         values = super(PersonnelAlphaListing, self).values
-        title_lower = lambda x: x.title.lower()
+
+        def title_lower(obj):
+            obj.title.lower()
+
         sorted_values = sorted(values, key=title_lower)
         return sorted_values
 

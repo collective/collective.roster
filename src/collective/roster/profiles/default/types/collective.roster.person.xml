@@ -11,6 +11,7 @@
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types" purge="false">
     <element value="File" />
+    <element value="Image" />
   </property>
 
   <!-- schema interface -->
