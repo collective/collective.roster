@@ -4,8 +4,9 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where empty value for JS bundle broke Plone bundle merge
+  on a new site
+  [datakurre]
 
 2.0.0 (2016-11-04)
 ------------------

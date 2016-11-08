@@ -173,4 +173,15 @@
       run_deps="false"
       />
 
+  <genericsetup:upgradeDepends
+      source="16" destination="17" sortkey="16"
+      title="Upgrade collective.roster (16 to 17)"
+      description="Register resource bundles for Plone 5"
+      profile="collective.roster:default"
+      import_profile="collective.roster:default"
+      import_steps="plone.app.registry"
+      purge="false"
+      run_deps="false"
+      />
+
 </configure>
