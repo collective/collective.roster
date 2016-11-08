@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
+2.0.1 (2016-11-08)
 ------------------
 
 - Fix issue where empty value for JS bundle broke Plone bundle merge
