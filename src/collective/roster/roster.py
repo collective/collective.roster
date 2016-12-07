@@ -6,6 +6,7 @@ from collective.roster.interfaces import IPerson
 from collective.roster.interfaces import IPersonnelListing
 from collective.roster.interfaces import IRoster
 from collective.roster.utils import parents
+from collective.roster.utils import sortable_title
 from plone import api
 from plone.memoize import view
 from Products.CMFCore.WorkflowCore import WorkflowException
@@ -155,11 +156,7 @@ class PersonnelAlphaListing(PersonnelListing):
     @property
     def values(self):
         values = super(PersonnelAlphaListing, self).values
-
-        def title_lower(obj):
-            obj.title.lower()
-
-        sorted_values = sorted(values, key=title_lower)
+        sorted_values = sorted(values, key=sortable_title)
         return sorted_values
 
     def update(self):

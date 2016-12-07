@@ -5,6 +5,7 @@ from collective.roster.behaviors.interfaces import IHasGroups
 from collective.roster.behaviors.interfaces import IProvidesGroups
 from collective.roster.roster import PersonnelListing
 from collective.roster.utils import parents
+from collective.roster.utils import sortable_title
 from operator import methodcaller
 from plone.i18n.normalizer import IIDNormalizer
 from plone.indexer import indexer
@@ -113,10 +114,7 @@ class PersonnelGroupListing(PersonnelListing):
         )
         values = map(methodcaller('getObject'), brains)
 
-        def title_lower(obj):
-            return obj.title.lower()
-
-        sorted_values = sorted(values, key=title_lower)
+        sorted_values = sorted(values, key=sortable_title)
         return sorted_values
 
 
