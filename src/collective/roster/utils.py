@@ -1,5 +1,27 @@
 # -*- coding: utf-8 -*-
+from Products.CMFPlone.CatalogTool import num_sort_regex
+from Products.CMFPlone.CatalogTool import zero_fill
+from Products.CMFPlone.utils import safe_callable
+from Products.CMFPlone.utils import safe_unicode
+
 import Acquisition
+import locale
+
+
+# http://bo.geekworld.dk/the-scandinavian-curse-sorting-ae-o-and-a/
+def sortable_title(obj):
+    title = getattr(obj, 'Title', None)
+    if title is not None:
+        if safe_callable(title):
+            title = title()
+
+        if isinstance(title, basestring):
+            sortabletitle = safe_unicode(title).lower().strip()
+            sortabletitle = num_sort_regex.sub(zero_fill, sortabletitle)
+            sortabletitle = sortabletitle[:70].encode('utf-8')
+            return locale.strxfrm(sortabletitle)
+
+    return ''
 
 
 # noinspection PyUnresolvedReferences

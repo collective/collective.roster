@@ -4,8 +4,8 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix alphabetical listing to sort using locale aware sortable title
+  [datakurre]
 
 2.0.1 (2016-11-08)
 ------------------
