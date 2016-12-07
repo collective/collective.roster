@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='collective.roster',
-    version='2.0.2.dev0',
+    version='2.0.2',
     description='Personnel Roster',
     long_description=(open('README.rst').read() + '\n' +
                       open('CHANGELOG.rst').read()),
