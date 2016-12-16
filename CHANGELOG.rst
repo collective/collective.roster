@@ -4,8 +4,8 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where group anchors on groups_view were broken
+  [datakurre]
 
 2.0.2 (2016-12-07)
 ------------------
