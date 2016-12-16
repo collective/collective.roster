@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.3 (unreleased)
+2.0.3 (2016-12-16)
 ------------------
 
 - Fix issue where group anchors on groups_view were broken
