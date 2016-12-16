@@ -10,11 +10,12 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
     <tal:block replace="structure provider:collective.roster.rosterviewlets" />
-    <tal:repeat repeat="table view/tables">
+    <tal:repeat repeat="table view/tables"
+                define="absolute_url view/context/absolute_url">
       <tal:block condition="table/values">
       <h2><a tal:content="table/title"
              tal:attributes="name table/anchorTitle;
-                             href string:@@groups_view#${table/anchorTitle}">Title</a></h2>
+                             href string:${absolute_url}/@@groups_view#${table/anchorTitle}">Title</a></h2>
       <tal:replace replace="structure table/renderTable" />
       <tal:replace replace="structure table/renderBatch" />
       </tal:block>
