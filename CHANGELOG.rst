@@ -1,10 +1,11 @@
 Changelog
 =========
 
-2.0.4 (unreleased)
+2.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make roster views aware of possibly enabled RichText-behavior
+  [datakurre]
 
 
 2.0.3 (2016-12-16)
@@ -13,11 +14,13 @@ Changelog
 - Fix issue where group anchors on groups_view were broken
   [datakurre]
 
+
 2.0.2 (2016-12-07)
 ------------------
 
 - Fix alphabetical listing to sort using locale aware sortable title
   [datakurre]
+
 
 2.0.1 (2016-11-08)
 ------------------
@@ -25,6 +28,7 @@ Changelog
 - Fix issue where empty value for JS bundle broke Plone bundle merge
   on a new site
   [datakurre]
+
 
 2.0.0 (2016-11-04)
 ------------------
