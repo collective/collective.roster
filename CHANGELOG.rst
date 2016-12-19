@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.0 (unreleased)
+2.1.0 (2016-12-19)
 ------------------
 
 - Make roster views aware of possibly enabled RichText-behavior
