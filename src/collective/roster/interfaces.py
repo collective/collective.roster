@@ -104,6 +104,8 @@ class IPerson(form.Schema):
         missing_value=u"",
         required=False
     )
+
+    form.primary('biography')
     biography = RichText(
         title=_(u"Biography"),
         required=False
