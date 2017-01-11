@@ -4,8 +4,8 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix biography to be primary field
+  [datakurre]
 
 2.1.0 (2016-12-19)
 ------------------
