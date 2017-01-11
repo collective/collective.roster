@@ -81,6 +81,7 @@ class IPerson(model.Schema):
         required=False
     )
 
+    primary('biography')
     biography = RichText(
         title=_(u'Biography'),
         required=False
