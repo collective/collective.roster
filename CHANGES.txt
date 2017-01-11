@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.6.3 (unreleased)
+1.7.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix biography to be primary field
+  [datakurre]
 
 1.6.2 (2015-12-18)
 ------------------
@@ -19,10 +19,12 @@ Changelog
 
 - Add file type checking for roster person image
   [Matti Pohjanvirta]
+
 - Change studysubject label from Studysubject to Subject
   [Matti Pohjanvirta]
+
 - Fix indexer to work with None as groups
-  [Asko Soukka]
+  [datakurre]
 
 
 1.6.0 (2015-01-14)
