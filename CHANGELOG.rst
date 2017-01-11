@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.1 (unreleased)
+2.1.1 (2017-01-11)
 ------------------
 
 - Fix biography to be primary field
