@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.2 (unreleased)
+2.1.2 (2017-01-12)
 ------------------
 
 - Fix issue where groups adapter returned None
