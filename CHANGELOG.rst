@@ -4,8 +4,8 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where groups adapter returned None
+  [datakurre]
 
 2.1.1 (2017-01-11)
 ------------------
