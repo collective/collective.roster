@@ -29,7 +29,7 @@ class Groups(object):
         self.context = context
 
     def get_groups(self):
-        return getattr(self.context, 'groups', [])
+        return getattr(self.context, 'groups', []) or []
 
     def set_groups(self, groups):
         if groups is None:
