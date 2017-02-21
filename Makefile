@@ -66,35 +66,35 @@ node_modules/.bin/fontello-svg: node_modules
 bootstrap-buildout.py:
 	curl -k -O https://bootstrap.pypa.io/bootstrap-buildout.py
 
-bin/buildout: bootstrap-buildout.py buildout.cfg
-	python bootstrap-buildout.py -c buildout.cfg
+bin/buildout: bootstrap-buildout.py
+	python bootstrap-buildout.py -c
 
-bin/test: $(BUILDOUT_BIN) buildout.cfg
+bin/test: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install test
 
-bin/pybot: $(BUILDOUT_BIN) buildout.cfg
+bin/pybot: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install pybot
 
-bin/sphinx-build: $(BUILDOUT_BIN) buildout.cfg
+bin/sphinx-build: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install sphinx-build
 
-bin/robot: $(BUILDOUT_BIN) buildout.cfg
+bin/robot: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install robot
 
-bin/robot-server: $(BUILDOUT_BIN) buildout.cfg
+bin/robot-server: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install robot
 
-bin/robot-sphinx-build: $(BUILDOUT_BIN) buildout.cfg
+bin/robot-sphinx-build: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install robot
 
-bin/instance: $(BUILDOUT_BIN) buildout.cfg
+bin/instance: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install instance
 
-bin/code-analysis: $(BUILDOUT_BIN) buildout.cfg
+bin/code-analysis: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install code-analysis
 
-bin/isort: $(BUILDOUT_BIN) buildout.cfg
+bin/isort: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install isort
 
-bin/pocompile: $(BUILDOUT_BIN) buildout.cfg
+bin/pocompile: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install i18ndude
