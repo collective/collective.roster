@@ -67,7 +67,7 @@ bootstrap-buildout.py:
 	curl -k -O https://bootstrap.pypa.io/bootstrap-buildout.py
 
 bin/buildout: bootstrap-buildout.py
-	python bootstrap-buildout.py -c
+	python bootstrap-buildout.py
 
 bin/test: $(BUILDOUT_BIN)
 	$(BUILDOUT_BIN) $(BUILDOUT_ARGS) install test
