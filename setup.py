@@ -32,6 +32,7 @@ setup(
         'plone.app.dexterity',
         'plone.app.textfield',
         'plone.app.viewletmanager',
+        'plone.app.registry>=1.2.5',
         'plone.autoform',
         'plone.formwidget.contenttree',
         'plone.formwidget.namedfile',
