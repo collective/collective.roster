@@ -53,6 +53,7 @@ setup(
         'Pillow',
         'corejet.core',
         'plone.app.testing',
+        'plone.app.imaging',
         'plone.app.robotframework',
     ]},
     entry_points="""
