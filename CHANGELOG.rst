@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.3 (unreleased)
+2.1.3 (2017-03-29)
 ------------------
 
 - Fix to require plone.app.registry>=1.2.5 [fixes #6]
