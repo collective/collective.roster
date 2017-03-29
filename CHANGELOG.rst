@@ -4,8 +4,8 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix to require plone.app.registry>=1.2.5 [fixes #6]
+  [datakurre]
 
 2.1.2 (2017-01-12)
 ------------------
