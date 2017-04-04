@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-06-02 10:49+0000\n"
+"POT-Creation-Date: 2017-04-04 12:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/roster/roster.py:173
+#: collective/roster/roster.py:171
 msgid "#"
 msgstr ""
 
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Alphabetical"
 msgstr ""
 
-#: collective/roster/behaviors/auto_roles.zcml:13
+#: collective/roster/behaviors/auto_roles.zcml:12
 msgid "Auto-roles by item name"
 msgstr ""
 
-#: collective/roster/interfaces.py:85
+#: collective/roster/interfaces.py:86
 msgid "Biography"
 msgstr ""
 
@@ -50,8 +50,8 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
-#: collective/roster/behaviors/contact_info.zcml:13
-#: collective/roster/behaviors/interfaces.py:75
+#: collective/roster/behaviors/contact_info.zcml:12
+#: collective/roster/behaviors/interfaces.py:74
 msgid "Contact information"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgid "Define display groups"
 msgstr ""
 
 #: collective/roster/interfaces.py:79
-#: collective/roster/roster.py:191
+#: collective/roster/roster.py:189
 msgid "Description"
 msgstr ""
 
@@ -76,12 +76,12 @@ msgstr ""
 msgid "Display only the selected person information columns on supporting views."
 msgstr ""
 
-#: collective/roster/behaviors/contact_info.py:18
-#: collective/roster/behaviors/interfaces.py:65
+#: collective/roster/behaviors/contact_info.py:17
+#: collective/roster/behaviors/interfaces.py:64
 msgid "Email"
 msgstr ""
 
-#: collective/roster/behaviors/groups_as_subjects.zcml:13
+#: collective/roster/behaviors/groups_as_subjects.zcml:12
 msgid "Enables roster persons' groups to be indexed as their                    subjects."
 msgstr ""
 
@@ -93,23 +93,27 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:153
+#: collective/roster/behaviors/interfaces.py:160
 msgid "Group"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:149
+#: collective/roster/behaviors/interfaces.py:156
 msgid "Groups"
 msgstr ""
 
-#: collective/roster/behaviors/groups_as_subjects.zcml:13
+#: collective/roster/behaviors/groups_as_subjects.zcml:12
 msgid "Groups as subjects"
 msgstr ""
 
-#: collective/roster/interfaces.py:91
+#: collective/roster/behaviors/interfaces.py:203
+msgid "Groups leader"
+msgstr ""
+
+#: collective/roster/interfaces.py:92
 msgid "Image"
 msgstr ""
 
-#: collective/roster/interfaces.py:121
+#: collective/roster/interfaces.py:122
 msgid "Image must be one of the permitted file types (${extlist})."
 msgstr ""
 
@@ -117,11 +121,15 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: collective/roster/roster.py:201
+#: collective/roster/behaviors/interfaces.py:204
+msgid "Leaders will be shown before the others in grouped views."
+msgstr ""
+
+#: collective/roster/roster.py:199
 msgid "Name"
 msgstr ""
 
-#: collective/roster/behaviors/office_info.zcml:13
+#: collective/roster/behaviors/office_info.zcml:12
 msgid "Office Information"
 msgstr ""
 
@@ -129,7 +137,7 @@ msgstr ""
 msgid "Person"
 msgstr ""
 
-#: collective/roster/interfaces.py:101
+#: collective/roster/interfaces.py:102
 msgid "Person name contains invalid characters."
 msgstr ""
 
@@ -137,19 +145,19 @@ msgstr ""
 msgid "Personnel Roster"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:70
+#: collective/roster/behaviors/interfaces.py:69
 msgid "Phone"
 msgstr ""
 
-#: collective/roster/behaviors/contact_info.py:38
+#: collective/roster/behaviors/contact_info.py:37
 msgid "Phone number"
 msgstr ""
 
-#: collective/roster/behaviors/contact_info.zcml:13
+#: collective/roster/behaviors/contact_info.zcml:12
 msgid "Provides contact information fields for roster persons."
 msgstr ""
 
-#: collective/roster/behaviors/auto_roles.zcml:13
+#: collective/roster/behaviors/auto_roles.zcml:12
 msgid "Provides contributor, editor and reviewer roles for                    user with matching user id with the item id."
 msgstr ""
 
@@ -161,7 +169,7 @@ msgstr ""
 msgid "Provides groups field for defining categorization groups in personnel rosters."
 msgstr ""
 
-#: collective/roster/behaviors/office_info.zcml:13
+#: collective/roster/behaviors/office_info.zcml:12
 msgid "Provides office information fields for roster persons."
 msgstr ""
 
@@ -169,7 +177,7 @@ msgstr ""
 msgid "Provides related persons filed and viewlet                    for any dexterity content type."
 msgstr ""
 
-#: collective/roster/behaviors/subject_info.zcml:13
+#: collective/roster/behaviors/subject_info.zcml:12
 msgid "Provides subject information fields for roster persons."
 msgstr ""
 
@@ -181,8 +189,8 @@ msgstr ""
 msgid "Related persons"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:110
-#: collective/roster/behaviors/office_info.py:23
+#: collective/roster/behaviors/interfaces.py:113
+#: collective/roster/behaviors/office_info.py:21
 msgid "Room"
 msgstr ""
 
@@ -190,12 +198,12 @@ msgstr ""
 msgid "Roster"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:171
+#: collective/roster/behaviors/interfaces.py:180
 msgid "Roster display groups must be unique."
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:118
-#: collective/roster/behaviors/office_info.py:36
+#: collective/roster/behaviors/interfaces.py:121
+#: collective/roster/behaviors/office_info.py:34
 msgid "Short number"
 msgstr ""
 
@@ -211,17 +219,17 @@ msgstr ""
 msgid "Show portrait gallery"
 msgstr ""
 
-#: collective/roster/behaviors/interfaces.py:85
-#: collective/roster/behaviors/subject_info.py:18
+#: collective/roster/behaviors/interfaces.py:86
+#: collective/roster/behaviors/subject_info.py:17
 msgid "Subject"
 msgstr ""
 
-#: collective/roster/behaviors/subject_info.zcml:13
+#: collective/roster/behaviors/subject_info.zcml:12
 msgid "Subject information"
 msgstr ""
 
 #: collective/roster/interfaces.py:73
-#: collective/roster/roster.py:217
+#: collective/roster/roster.py:215
 msgid "Title"
 msgstr ""
 
@@ -240,12 +248,12 @@ msgid "email"
 msgstr ""
 
 #. Default: "${last_name} ${first_name}"
-#: collective/roster/person.py:24
+#: collective/roster/person.py:23
 msgid "person_name"
 msgstr ""
 
 #. Default: "${title}, ${position}"
-#: collective/roster/person.py:39
+#: collective/roster/person.py:38
 msgid "person_title"
 msgstr ""
 
@@ -260,7 +268,7 @@ msgid "room"
 msgstr ""
 
 #. Default: "group_id|Group title"
-#: collective/roster/behaviors/interfaces.py:150
+#: collective/roster/behaviors/interfaces.py:157
 msgid "roster_groups_help"
 msgstr ""
 

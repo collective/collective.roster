@@ -74,6 +74,8 @@ class IContactInfo(model.Schema):
         label=_(u'Contact information'),
         fields=['email', 'phone_number']
     )
+
+
 alsoProvides(IContactInfo, IFormFieldProvider)
 
 
@@ -89,6 +91,8 @@ class ISubjectInfo(model.Schema):
         label=_(u'Contact information'),
         fields=['studysubject']
     )
+
+
 alsoProvides(ISubjectInfo, IFormFieldProvider)
 
 
@@ -118,6 +122,8 @@ class IOfficeInfo(model.Schema):
         required=False,
         constraint=is_short_number
     )
+
+
 alsoProvides(IOfficeInfo, IFormFieldProvider)
 
 
@@ -132,6 +138,8 @@ class IRelatedPersons(model.Schema):
             source=UUIDSourceBinder(portal_type='collective.roster.person')
         )
     )
+
+
 alsoProvides(IRelatedPersons, IFormFieldProvider)
 
 
@@ -154,6 +162,8 @@ class IGroupsProvider(Interface):
         ),
         required=False
     )
+
+
 alsoProvides(IGroupsProvider, IFormFieldProvider)
 
 
@@ -188,6 +198,15 @@ class IGroups(model.Schema):
         missing_value=[],
         required=False
     )
+
+    groups_leader = schema.Bool(
+        title=_('Groups leader'),
+        description=_('Leaders will be shown before the others '
+                      'in grouped views.'),
+        required=False
+    )
+
+
 alsoProvides(IGroups, IFormFieldProvider)
 
 

@@ -38,6 +38,14 @@ class Groups(object):
 
     groups = property(get_groups, set_groups)
 
+    def get_groups_leader(self):
+        return getattr(self.context, 'groups_leader', False)
+
+    def set_groups_leader(self, groups_leader):
+        setattr(self.context, 'groups_leader', bool(groups_leader))
+
+    groups_leader = property(get_groups_leader, set_groups_leader)
+
 
 # noinspection PyUnusedLocal
 @indexer(Interface)
@@ -114,7 +122,11 @@ class PersonnelGroupListing(PersonnelListing):
         )
         values = map(methodcaller('getObject'), brains)
 
-        sorted_values = sorted(values, key=sortable_title)
+        def leader_prefixed_title(obj):
+            is_leader = bool(IGroups(obj).groups_leader) and -1 or 1
+            return [is_leader] + list(sortable_title(obj))
+
+        sorted_values = sorted(values, key=leader_prefixed_title)
         return sorted_values
 
 

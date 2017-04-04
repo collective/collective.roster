@@ -23,6 +23,7 @@ class RosterLayer(PloneSandboxLayer):
         applyProfile(portal, 'collective.roster:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
+
 ROSTER_FIXTURE = RosterLayer()
 
 ROSTER_INTEGRATION_TESTING = IntegrationTesting(
