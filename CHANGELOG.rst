@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.4 (unreleased)
+2.1.4 (2017-04-04)
 ------------------
 
 - Fix issue where group links on gallery depended on current URL and might have
