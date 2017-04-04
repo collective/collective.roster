@@ -4,7 +4,9 @@ Changelog
 2.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add option for groups behavior to mark person a groups leader and sort
+  leaders before others in grouped views
+  [datakurre]
 
 
 2.1.4 (2017-04-04)
