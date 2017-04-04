@@ -9,17 +9,18 @@
 
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core"
-                      tal:define="toc context/table_of_contents|nothing;">
+                      tal:define="toc context/table_of_contents|nothing;
+                                  absolute_url context/absolute_url">
     <div id="parent-fieldname-text"
          tal:condition="context/text|nothing"
-         tal:content="structure python:context.text.output_relative_to(view.context)"
+         tal:content="structure python:context.text.output_relative_to(context)"
          tal:attributes="class python: toc and 'pat-autotoc' or ''" />
     <tal:block replace="structure provider:collective.roster.rosterviewlets" />
     <tal:repeat repeat="group view/tables">
       <tal:block condition="group/values">
       <h2><a tal:content="group/title"
              tal:attributes="name group/anchorTitle;
-                             href string:@@gallery_view#${group/anchorTitle}">Title</a></h2>
+                             href string:${absolute_url}/@@gallery_view#${group/anchorTitle}">Title</a></h2>
       <tal:repeat repeat="person group/values">
         <table tal:define="review_state person/@@plone_context_state/workflow_state|string:published"
                tal:attributes="class string:state-${review_state}">
