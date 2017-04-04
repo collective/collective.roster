@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.5 (unreleased)
+2.2.0 (2017-04-04)
 ------------------
 
 - Add option for groups behavior to mark person a groups leader and sort
