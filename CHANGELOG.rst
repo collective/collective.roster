@@ -4,7 +4,9 @@ Changelog
 2.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix issue where group links on gallery depended on current URL and might have
+  been broken
+  [datakurre]
 
 
 2.1.3 (2017-03-29)
