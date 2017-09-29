@@ -4,7 +4,8 @@ Changelog
 2.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed SimpleTerm creation.
+  [iham]
 
 
 2.2.0 (2017-04-04)
