@@ -74,13 +74,13 @@ class LocalGroupsVocabulary(object):
             if group is None:
                 continue
             if '|' in group:
-                value, title = group.split('|', 1)
+                group_id, group_title = group.split('|', 1)
             else:
-                value = title = group
+                group_id = group_title = group
             groups.append(
-                SimpleTerm(value,
-                           token=normalizer.normalize(group),
-                           title=title)
+                SimpleTerm(group_id,
+                           token=normalizer.normalize(group_id),
+                           title=group_title)
             )
         return SimpleVocabulary(groups)
 
