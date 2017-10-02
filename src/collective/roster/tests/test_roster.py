@@ -37,12 +37,11 @@ class RosterIntegrationTests(unittest.TestCase):
 
         tuples = map(to_tuple, vocabulary)
 
-        import pdb; pdb.set_trace()
         self.assertIn((u'Title only', 'title-only', u'Title only'), tuples)
         self.assertIn((u'Alfa', 'alfa', u'Alfa coders'), tuples)
         self.assertIn((u'Beta', 'beta', u'Beta testers'), tuples)
-        self.assertIn((u'gamma-tester', 'gamma-tester', u'Gamma Tester'), tuples)
-        self.assertIn((u'delta tester', 'delta-tester', u'Delta Tester'), tuples)
+        self.assertIn((u'gamma-tester', 'gamma-tester', u'Gamma Tester'), tuples)  # noqa: E501
+        self.assertIn((u'delta tester', 'delta-tester', u'Delta Tester'), tuples)  # noqa: E501
 
     def testRosterDisplayColumnsVocabulary(self):
         from collective.roster.roster import DisplayColumnsVocabulary
