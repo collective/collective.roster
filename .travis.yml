@@ -13,5 +13,9 @@ cache:
 notifications:
   flowdock: 827dea8da0905dbc8399d66eb75868df
 env:
-- BUILDOUT_ARGS="-N -t 3 -c buildout-plone-4.x.cfg"
-- BUILDOUT_ARGS="-N -t 3 -c buildout-plone-5.x.cfg"
+  global:
+  - ROBOT_BROWSER=phantomjs
+  - PYBOT_ARGS="-v BROWSER:phantomjs"
+  matrix:
+  - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-4.x.cfg"
+  - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-5.x.cfg"
