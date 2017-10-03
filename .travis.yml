@@ -18,4 +18,5 @@ env:
   - PYBOT_ARGS="-v BROWSER:phantomjs"
   matrix:
   - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-4.x.cfg"
-  - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-5.x.cfg"
+  - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-5.0.cfg"
+  - BUILDOUT_ARGS="-N -t 3 -c buildout-plone-5.1.cfg"
