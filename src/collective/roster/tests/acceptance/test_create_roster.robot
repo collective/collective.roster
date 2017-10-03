@@ -29,6 +29,7 @@ The personnel roster is created
     Then new roster is created
 
 The personnel roster product is activated
+    Set window size  1200  900
     Product is activated  collective.roster
 
 I add a new roster
