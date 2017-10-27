@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2.2 (unreleased)
+2.3.0 (2017-10-27)
 ------------------
 
 - Change english translation for subject from studysubject to subject
