@@ -4,7 +4,8 @@ Changelog
 2.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change english translation for subject from studysubject to subject
+  [Grrandi]
 
 
 2.2.1 (2017-10-03)
