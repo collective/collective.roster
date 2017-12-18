@@ -4,8 +4,9 @@ Changelog
 2.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix groups behavior to not acquire person groups from roster when dexterity
+  implicit attribute lookup is disabled and groups attribute is missing
+  [datakurre]
 
 2.3.0 (2017-10-27)
 ------------------
