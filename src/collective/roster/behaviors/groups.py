@@ -19,6 +19,8 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+import Acquisition
+
 
 @implementer(IGroupsProvider)
 @implementer(IGroups)
@@ -29,7 +31,8 @@ class Groups(object):
         self.context = context
 
     def get_groups(self):
-        return getattr(self.context, 'groups', []) or []
+        obj = Acquisition.aq_base(self.context)  # do not acquire groups
+        return getattr(obj, 'groups', []) or []
 
     def set_groups(self, groups):
         if groups is None:
