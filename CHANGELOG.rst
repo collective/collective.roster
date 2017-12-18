@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.1 (unreleased)
+2.3.1 (2017-12-18)
 ------------------
 
 - Fix groups behavior to not acquire person groups from roster when dexterity
