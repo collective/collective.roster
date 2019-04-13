@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.roster.testing import ROSTER_INTEGRATION_TESTING
-
-import unittest2 as unittest
 from six.moves import map
+
+import unittest
 
 
 class RosterIntegrationTests(unittest.TestCase):
