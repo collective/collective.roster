@@ -20,6 +20,7 @@ from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.schema import ValidationError
+from six.moves import map
 
 
 try:
@@ -174,7 +175,7 @@ class GroupNameValidator(SimpleFieldValidator):
         super(SimpleFieldValidator, self).validate(value, force)
 
         normalizer = getUtility(IIDNormalizer)
-        normalized = map(normalizer.normalize, value)
+        normalized = list(map(normalizer.normalize, value))
 
         if len(set(normalized)) != len(value):
             raise Invalid(_(u'Roster display groups must be unique.'))

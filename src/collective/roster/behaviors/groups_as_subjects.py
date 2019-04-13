@@ -5,6 +5,7 @@ from zope.component import adapter
 from zope.component import getUtility
 from zope.component.interfaces import IObjectEvent
 from zope.schema.interfaces import IVocabularyFactory
+from six.moves import filter
 
 
 # noinspection PyUnusedLocal

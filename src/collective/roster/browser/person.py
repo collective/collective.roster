@@ -32,9 +32,8 @@ class GroupsViewlet(ViewletBase):
                                         name='collective.roster.localgroups')
         vocabulary = vocabulary_factory(self.context)
 
-        terms = filter(lambda term: term.value in (self.context.groups or []),
-                       vocabulary)
-        titles = map(lambda term: term.title, terms)
+        terms = [term for term in vocabulary if term.value in (self.context.groups or [])]
+        titles = [term.title for term in terms]
         return titles
 
     def render(self):

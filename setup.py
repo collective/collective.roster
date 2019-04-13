@@ -34,8 +34,8 @@ setup(
         'plone.app.viewletmanager',
         'plone.app.registry>=1.2.5',
         'plone.autoform',
-        'plone.formwidget.contenttree',
-        'plone.formwidget.namedfile',
+        # 'plone.formwidget.contenttree',
+        # 'plone.formwidget.namedfile',
         'plone.indexer',
         'plone.memoize',
         'plone.namedfile [blobs]',
@@ -51,9 +51,9 @@ setup(
     ],
     extras_require={'test': [
         'Pillow',
-        'corejet.core',
+        # 'corejet.core',
         'plone.app.testing',
-        'plone.app.imaging',
+        # 'plone.app.imaging',
         'plone.app.robotframework',
     ]},
     entry_points="""

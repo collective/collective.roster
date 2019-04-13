@@ -24,6 +24,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 import sys
+import six
 
 
 @implementer(IRoster)
@@ -79,7 +80,7 @@ class PersonnelListing(table.Table):
     # Batching
     batchProviderName = 'plonebatch'
     batchSize = 10
-    startBatchingAt = sys.maxint
+    startBatchingAt = sys.maxsize
 
     def renderRow(self, row, cssClass=None):
         if len(row):
@@ -116,7 +117,7 @@ class PersonnelListing(table.Table):
         # BBB: Roster used to support hiding explicitly hidden columns
         columns_hidden = getattr(self.context, 'columns_hidden', [])
         if columns_hidden:
-            return filter(lambda x: x.__name__ not in columns_hidden, cols)
+            return [x for x in cols if x.__name__ not in columns_hidden]
 
         return cols
 
@@ -144,7 +145,7 @@ class PersonnelListing(table.Table):
             path='/'.join(self.context.getPhysicalPath()),
             object_provides=IPerson.__identifier__
         )
-        values = map(lambda x: x.getObject(), brains)
+        values = [x.getObject() for x in brains]
         return values
 
 
@@ -202,10 +203,7 @@ class NameColumn(column.LinkColumn):
         return ob.absolute_url()
 
     def getLinkContent(self, ob):
-        title = u'{0:s} {1:s}'.format(ob.last_name, ob.first_name)
-        if type(title) != unicode:
-            title = unicode(title, u'utf-8')
-        return title
+        return u'{ob.last_name} {ob.first_name}'.format(ob=ob)
 
 
 @adapter(IRoster, IBrowserRequest, IPersonnelListing)

@@ -6,6 +6,7 @@ from Products.CMFPlone.utils import safe_unicode
 
 import Acquisition
 import locale
+import six
 
 
 # http://bo.geekworld.dk/the-scandinavian-curse-sorting-ae-o-and-a/
@@ -15,7 +16,7 @@ def sortable_title(obj):
         if safe_callable(title):
             title = title()
 
-        if isinstance(title, basestring):
+        if isinstance(title, six.string_types):
             sortabletitle = safe_unicode(title).lower().strip()
             sortabletitle = num_sort_regex.sub(zero_fill, sortabletitle)
             sortabletitle = sortabletitle[:70].encode('utf-8')

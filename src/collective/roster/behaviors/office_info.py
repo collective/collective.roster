@@ -12,6 +12,7 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.schema.interfaces import IInt
+import six
 
 
 @adapter(IRoster, IBrowserRequest, IPersonnelListing)
@@ -53,4 +54,5 @@ class ShortNumberDataConverter(IntegerDataConverter):
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
             return u''
-        return unicode(value)
+        # TODO: verify if this ony ever gets a int and never a byte
+        return six.text_type(value)

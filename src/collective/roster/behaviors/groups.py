@@ -20,6 +20,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 import Acquisition
+from six.moves import map
 
 
 @implementer(IGroupsProvider)
@@ -123,7 +124,7 @@ class PersonnelGroupListing(PersonnelListing):
             path='/'.join(self.context.getPhysicalPath()),
             roster_groups=[term.value]
         )
-        values = map(methodcaller('getObject'), brains)
+        values = list(map(methodcaller('getObject'), brains))
 
         def leader_prefixed_title(obj):
             is_leader = bool(IGroups(obj).groups_leader) and -1 or 1

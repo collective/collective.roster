@@ -2,6 +2,7 @@
 from collective.roster.testing import ROSTER_INTEGRATION_TESTING
 
 import unittest2 as unittest
+from six.moves import map
 
 
 class RosterIntegrationTests(unittest.TestCase):
@@ -35,7 +36,7 @@ class RosterIntegrationTests(unittest.TestCase):
         def to_tuple(term):
             return term.value, term.token, term.title
 
-        tuples = map(to_tuple, vocabulary)
+        tuples = list(map(to_tuple, vocabulary))
 
         self.assertIn((u'Title only', 'title-only', u'Title only'), tuples)
         self.assertIn((u'Alfa', 'alfa', u'Alfa coders'), tuples)
@@ -51,7 +52,7 @@ class RosterIntegrationTests(unittest.TestCase):
 
         def to_tuple(term):
             return term.value, term.token, term.title
-        tuples = map(to_tuple, vocabulary)
+        tuples = list(map(to_tuple, vocabulary))
 
         self.assertIn(('collective.roster.personnellisting.name',
                        'collective.roster.personnellisting.name',
