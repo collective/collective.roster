@@ -1,5 +1,5 @@
 <dl class="personOfficeInfo" i18n:domain="collective.roster"
-    tal:define="widgets nocall:view/aq_parent/w">
+    tal:define="widgets python:view.__parent__.w">
   <div tal:condition="widgets/IOfficeInfo.short_number/value|nothing" >
     <dt i18n:translate="short_number">Short number:</dt>
     <dd>

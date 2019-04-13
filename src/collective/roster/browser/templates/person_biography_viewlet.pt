@@ -1,5 +1,5 @@
 <div class="personBiography"
-     tal:define="widgets nocall:view/aq_parent/w"
+     tal:define="widgets python:view.__parent__.w"
      tal:condition="nocall:context/biography|nothing"
      tal:content="structure widgets/biography/render">
   <p>All work, no play...</p>

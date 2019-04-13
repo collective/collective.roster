@@ -1,5 +1,5 @@
 <dl class="personSubjectInfo" i18n:domain="collective.roster"
-    tal:define="widgets nocall:view/aq_parent/w">
+    tal:define="widgets python:view.__parent__.w">
   <div tal:condition="widgets/ISubjectInfo.studysubject/value|nothing" >
     <dt i18n:translate="subjectinfo_studysubject">subject</dt>
     <dd><span tal:content="structure widgets/ISubjectInfo.studysubject/render"></span>

@@ -1,37 +1,29 @@
 # -*- coding: utf-8 -*-
 from collective.roster import _
 from collective.roster.interfaces import discriminators
+from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.directives import order_after
 from plone.autoform.directives import order_before
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.formwidget.contenttree import UUIDSourceBinder
-from plone.formwidget.contenttree.widget import MultiContentTreeFieldWidget
 from plone.i18n.normalizer import IIDNormalizer
 from plone.supermodel import model
 from plone.supermodel.directives import fieldset
+from Products.CMFPlone.RegistrationTool import checkEmailAddress
+from Products.CMFPlone.RegistrationTool import EmailAddressInvalid
+from six.moves import map
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.browser.text import TextWidget
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.schema import ValidationError
-from six.moves import map
-
-
-try:
-    from Products.CMFPlone.RegistrationTool import checkEmailAddress
-except ImportError:
-    from Products.CMFDefault.utils import checkEmailAddress
-
-try:
-    from Products.CMFPlone.RegistrationTool import EmailAddressInvalid
-except ImportError:
-    from Products.CMFDefault.exceptions import EmailAddressInvalid
 
 
 class InvalidEmailAddress(ValidationError):
@@ -131,12 +123,11 @@ alsoProvides(IOfficeInfo, IFormFieldProvider)
 class IRelatedPersons(model.Schema):
     """Behavior schema
     """
-    widget(related_persons=MultiContentTreeFieldWidget)
-    related_persons = schema.List(
+    related_persons = RelationList(
         title=u'Related persons',
         description=u'Search for persons related to this item',
-        value_type=schema.Choice(
-            source=UUIDSourceBinder(portal_type='collective.roster.person')
+        value_type=RelationChoice(
+            source=CatalogSource(portal_type='collective.roster.person')
         )
     )
 

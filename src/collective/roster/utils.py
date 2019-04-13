@@ -2,6 +2,7 @@
 from Products.CMFPlone.CatalogTool import num_sort_regex
 from Products.CMFPlone.CatalogTool import zero_fill
 from Products.CMFPlone.utils import safe_callable
+from Products.CMFPlone.utils import safe_encode
 from Products.CMFPlone.utils import safe_unicode
 
 import Acquisition
@@ -19,7 +20,9 @@ def sortable_title(obj):
         if isinstance(title, six.string_types):
             sortabletitle = safe_unicode(title).lower().strip()
             sortabletitle = num_sort_regex.sub(zero_fill, sortabletitle)
-            sortabletitle = sortabletitle[:70].encode('utf-8')
+            sortabletitle = sortabletitle[:70]
+            if six.PY2:
+                sortabletitle = safe_encode(sortabletitle)
             return locale.strxfrm(sortabletitle)
 
     return ''
