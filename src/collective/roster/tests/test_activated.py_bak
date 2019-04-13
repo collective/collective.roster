@@ -13,7 +13,7 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing import z2
 
 import transaction
-import unittest2 as unittest
+import unittest
 
 
 @story(id='30278553', title=u'As a user, I want to add a new personnel roster')
