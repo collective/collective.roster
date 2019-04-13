@@ -2,7 +2,7 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="collective.roster">
-    
+
   <i18n:registerTranslations directory="locales" />
 
   <include package="z3c.table" />
@@ -56,6 +56,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       i18n:attributes="title description"
      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.roster (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.roster add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 
   <include file="upgrades.zcml" />
 
