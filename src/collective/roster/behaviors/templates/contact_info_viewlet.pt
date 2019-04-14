@@ -1,5 +1,5 @@
 <dl class="personContactInfo" i18n:domain="collective.roster"
-    tal:define="widgets python:view.__parent__.w">
+    tal:define="widgets python:view.view.w">
   <div tal:condition="widgets/IContactInfo.email/value|nothing" >
     <dt i18n:translate="email">Email:</dt>
     <dd><a tal:define="email widgets/IContactInfo.email/value"
